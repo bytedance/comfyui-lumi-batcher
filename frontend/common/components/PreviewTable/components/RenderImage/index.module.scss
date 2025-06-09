@@ -1,0 +1,93 @@
+.container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  .responsiveBox {
+    display: contents;
+    width: 100%;
+    height: 100%;
+
+    .loading {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 1 / 1;
+      z-index: 2;
+    }
+  }
+
+  .hiddenCarousel {
+    :global {
+      .arco-carousel-arrow {
+        visibility: hidden;
+      }
+
+      .arco-carousel-indicator-wrapper {
+        visibility: hidden;
+      }
+    }
+  }
+
+  .carousel {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    z-index: auto;
+
+    :global {
+      .arco-carousel-indicator-wrapper-bottom {
+        height: 0 !important;
+      }
+
+      // .arco-carousel-arrow>.arco-carousel-arrow-left {
+      //   backdrop-filter: blur(10px);
+      // }
+
+      // .arco-carousel-arrow>.arco-carousel-arrow-right {
+      //   backdrop-filter: blur(10px);
+      // }
+    }
+  }
+
+  .image {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    z-index: auto;
+
+    // :global {
+    //   img {
+    //     width: 100%;
+    //     height: 100%;
+    //     object-fit: contain;
+    //   }
+    // }
+  }
+
+  .tag {
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.85);
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    font-family: 'PingFang SC';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    z-index: 1;
+
+    :global {
+      .arco-tag-icon {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}

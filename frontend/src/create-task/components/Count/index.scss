@@ -1,0 +1,58 @@
+.batch-tools-count {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: var(--radius-md, 8px);
+  background: var(---color-fill-1, rgba(255, 255, 255, 0.04));
+  margin-bottom: 20px;
+
+  & > p {
+    margin: 0;
+  }
+
+  &-number {
+    color: #fff;
+    text-align: right;
+
+    /* 西文 Albert Sans/24/ExtraBold */
+    font-family: 'Albert Sans';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 32px; /* 133.333% */
+  }
+
+  &-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(---color-text-2, rgba(255, 255, 255, 0.7));
+    font-family: 'PingFang SC';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px; /* 157.143% */
+  }
+
+  &-value {
+    & > :first-child {
+      color: var(---color-text-2, rgba(255, 255, 255, 0.7));
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 22px; /* 157.143% */
+    }
+    & > :last-child {
+      color: #fff;
+      text-align: right;
+      /* 西文 Albert Sans/24/ExtraBold */
+      font-family: 'Albert Sans';
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 32px; /* 133.333% */
+    }
+  }
+}

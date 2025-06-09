@@ -1,0 +1,37 @@
+.language-trigger-button {
+  display: flex;
+  align-items: center;
+  background-color: transparent !important;
+  padding: 0;
+}
+
+.language-trigger-button-active {
+  background: var(--fills-color-fill-1, rgba(255, 255, 255, 0.1)) !important;
+}
+
+.language-menu-item {
+  height: 40px;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background: none;
+    cursor: pointer;
+
+    .language-menu-item-content {
+      background: var(--fills-color-fill-1, rgba(255, 255, 255, 0.1));
+    }
+  }
+
+  &-content {
+    width: 100%;
+    padding: 0 8px;
+    box-sizing: border-box;
+    border-radius: 6px;
+  }
+
+  .arco-space-item {
+    display: flex;
+    align-items: center;
+  }
+}

@@ -1,0 +1,45 @@
+.params-config-header {
+  display: flex;
+  align-items: center;
+  padding: 24px 120px;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  &-left {
+    flex: 1;
+    .tag {
+      box-sizing: border-box;
+      padding: 3px var(--spacing-md, 8px);
+      border-radius: var(--radius-sm, 6px);
+      border: 0px solid var(---color-border-3, #c6cacd);
+      background: var(---color-fill-3, rgba(255, 255, 255, 0.12));
+      color: var(---color-text-1, rgba(255, 255, 255, 0.9));
+      text-align: center;
+
+      /* 12/CN-Regular */
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px; /* 166.667% */
+    }
+  }
+
+  &-right {
+    flex-shrink: 0;
+  }
+
+  &-continue-button {
+    &::before {
+      webkit-mask-composite: destination-out !important; /* 修改mask模式 */
+      mask-composite: exclude !important; /* 标准属性 */
+    }
+  }
+
+  &-cancel-button {
+    &::before {
+      -webkit-mask-composite: destination-out !important; /* 修改mask模式 */
+      mask-composite: exclude !important; /* 标准属性 */
+    }
+  }
+}

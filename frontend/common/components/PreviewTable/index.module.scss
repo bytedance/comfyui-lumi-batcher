@@ -1,0 +1,37 @@
+@import '@common/styles/base.scss';
+
+.table {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  @include scrollbar(8px, 0px);
+
+  :global {
+    .arco-table-th .arco-table-th-item {
+      padding: 8px;
+    }
+
+    .arco-table-th {
+      z-index: 4;
+    }
+
+    .arco-table-header,
+    .arco-table-body {
+      position: relative;
+      @include scrollbar(8px, 0px);
+
+      &::-webkit-scrollbar-track {
+        border-left: 1px solid var(--color-border-3);
+      }
+
+      .arco-table-td {
+        padding: 8px;
+        z-index: 3;
+      }
+    }
+
+    .arco-table-col-fixed-left {
+      border-right: 1px solid var(--color-border-3);
+    }
+  }
+}

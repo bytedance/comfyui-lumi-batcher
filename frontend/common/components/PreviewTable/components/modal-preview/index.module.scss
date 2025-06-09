@@ -1,0 +1,80 @@
+@import '@common/styles/base.scss';
+
+.container {
+  background-color: #000;
+  width: 100vw;
+  height: 100vh;
+  padding: 92px 32px 32px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: $modalIndex !important;
+
+  :global {
+    .arco-image-preview-close-btn {
+      font-size: 20px;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      background-color: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.34);
+    }
+
+    .arco-image-preview-img-container {
+      padding: 92px 32px 32px;
+      box-sizing: border-box;
+      overflow: hidden;
+
+      .arco-image-preview-img {
+        border-radius: 16px;
+      }
+    }
+  }
+
+  .extra {
+    position: relative;
+    // right: 120px;
+    // top: 92px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    overflow-y: auto;
+    height: 100%;
+
+    @include scrollbar(0, 0);
+  }
+
+  .extraImage {
+    display: block;
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-sizing: border-box;
+    cursor: pointer;
+    min-height: 64px;
+  }
+
+  .extraActive {
+    border-color: #fff;
+    width: 72px;
+    height: 72px;
+    border-radius: 8px 0 0 8px;
+    min-height: 72px;
+  }
+
+  .layout {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    overflow: hidden;
+    gap: 16px;
+  }
+
+  .resource {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -1,0 +1,71 @@
+$modalIndex: 9999;
+$minWidth: 1180px;
+
+// 模拟mac滚动条
+@mixin scrollbar($height: 8px, $width: 8px) {
+  &::-webkit-scrollbar {
+    height: $height;
+    width: $width;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background: transparent;
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: hsla(0, 0%, 100%, 0.2);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@mixin topZIndex {
+  z-index: $modalIndex !important;
+}
+
+// 表格主题色修改
+@mixin tableTheme() {
+  $backgroundColor: #070909;
+  $borderColor: var(---color-fill-2, rgba(255, 255, 255, 0.08));
+  $thBackgroundColor: rgba(255, 255, 255, 0.08);
+
+  // 表格主题修改
+  .arco-table {
+    thead > .arco-table-tr > .arco-table-th {
+      background-color: $thBackgroundColor;
+      border-color: $borderColor !important;
+
+      &:first-child {
+        border-left-color: $borderColor;
+      }
+    }
+
+    &.arco-table-border .arco-table-container {
+      border-color: $borderColor;
+
+      &::before {
+        background-color: $borderColor;
+      }
+    }
+
+    .arco-table-header {
+      background-color: $backgroundColor;
+    }
+
+    .arco-table-body {
+      background-color: $backgroundColor;
+    }
+
+    .arco-table-td {
+      background-color: $backgroundColor;
+      border-color: $borderColor;
+    }
+  }
+}

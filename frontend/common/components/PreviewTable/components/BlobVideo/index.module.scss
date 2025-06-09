@@ -1,0 +1,19 @@
+.tag {
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.85);
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  font-family: 'PingFang SC';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  border: none;
+
+  .arco-tag-icon {
+    display: flex;
+    align-items: center;
+  }
+}

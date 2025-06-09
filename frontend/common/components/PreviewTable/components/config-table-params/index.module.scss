@@ -1,0 +1,42 @@
+.container {
+  max-width: unset !important;
+
+  :global(.arco-popover-content) {
+    padding: 16px;
+  }
+}
+
+.contentTitle {
+  color: var(---color-text-2, rgba(255, 255, 255, 0.7));
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.contentSelector {
+  width: 209px;
+}
+
+.popoverBtn {
+  color: var(---color-text-1, rgba(255, 255, 255, 0.9));
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  will-change: color;
+  transition: color 0.3s;
+  // padding: 7px 8px;
+
+  svg {
+    will-change: transform;
+    transform: rotateZ(0deg);
+    transition: transform 0.3s;
+  }
+}
+
+.popoverOpen {
+  color: var(---color-text-1, #ffffffe6);
+  font-weight: 500;
+
+  svg {
+    transform: rotateZ(180deg);
+  }
+}

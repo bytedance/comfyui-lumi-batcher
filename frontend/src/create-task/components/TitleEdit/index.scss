@@ -1,0 +1,68 @@
+.title-edit {
+  .arco-space-item {
+    width: 100%;
+  }
+
+  .title-edit-input {
+    background-color: transparent !important;
+    border: none;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'PingFang SC';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: center;
+
+    & > input {
+      background-color: transparent;
+    }
+
+    &-intelligent-card {
+      text-align: left;
+      line-height: 32px !important;
+      font-size: 14px !important;
+      & > input {
+        padding: 0;
+        text-align: left;
+        font-size: 14px !important;
+      }
+    }
+    &-intelligent-card {
+      text-align: left;
+      line-height: 32px !important;
+      font-size: 14px !important;
+      & > input {
+        padding: 0;
+        text-align: left;
+        font-size: 14px !important;
+      }
+    }
+  }
+  .title-edit-wrapper {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+
+    .title-edit-text {
+      margin-right: 4px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.9);
+      font-family: 'PingFang SC';
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .title-edit-operate {
+      margin-left: 4px;
+      width: 16px;
+      height: 16px;
+    }
+  }
+}

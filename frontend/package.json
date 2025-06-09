@@ -1,0 +1,50 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "rsbuild build",
+    "dev": "rsbuild dev --open",
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "preview": "rsbuild preview"
+  },
+  "dependencies": {
+    "@arco-design/theme-babeta": "1.0.2-beta.37",
+    "@arco-design/web-react": "^2.66.1",
+    "@datarangers/sdk-javascript": "^0.1.0",
+    "@fingerprintjs/fingerprintjs": "^4.6.1",
+    "@rsbuild/plugin-less": "^1.2.2",
+    "@rsbuild/plugin-typed-css-modules": "^1.0.2",
+    "axios": "^1.9.0",
+    "classnames": "^2.5.1",
+    "dayjs": "^1.11.13",
+    "immer": "^10.1.1",
+    "lodash": "^4.17.21",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-sortable-hoc": "^2.0.0",
+    "streamsaver": "^2.0.6",
+    "zustand": "^5.0.3"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^1.2.7",
+    "@eslint/js": "^9.23.0",
+    "@rsbuild/core": "^1.3.1",
+    "@rsbuild/plugin-react": "^1.1.1",
+    "@rsbuild/plugin-sass": "^1.3.1",
+    "@rsbuild/plugin-svgr": "^1.2.0",
+    "@types/lodash": "^4.17.16",
+    "@types/node": "^22.15.15",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@types/streamsaver": "^2.0.5",
+    "eslint": "^9.23.0",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "globals": "^16.0.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.2"
+  }
+}

@@ -1,0 +1,57 @@
+@import '@common/styles/base.scss';
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--Dark, #000);
+  overflow: auto;
+
+  @include scrollbar;
+
+  .header {
+    position: relative;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 18px 24px;
+    box-sizing: border-box;
+    background: var(--materials-materials-menu, rgba(40, 40, 40, 0.58));
+    backdrop-filter: blur(10px);
+    justify-content: space-between;
+  }
+
+  .headerLeft {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .headerText {
+    color: var(--text-color-text-1, rgba(255, 255, 255, 0.85));
+    /* CN-Regular/14CN-Regular */
+    font-family: 'PingFang SC';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    /* 157.143% */
+    margin: 0 0;
+  }
+
+  .headerTitle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #fafbff;
+    /* CN-Medium/20CN-Medium */
+    font-family: 'PingFang SC';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+    /* 140% */
+    margin: 0 0;
+  }
+}

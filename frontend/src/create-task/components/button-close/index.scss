@@ -1,0 +1,18 @@
+.batch-tools-modal-button-close {
+  display: flex;
+  align-items: center;
+
+  &.arco-btn-secondary {
+    height: 22px;
+    padding: 0 2px;
+
+    &:not(.arco-btn-disabled) {
+      background-color: transparent;
+    }
+
+    &.arco-btn-size-small > svg + span,
+    &.arco-btn-size-small > span + svg {
+      margin-left: 4px;
+    }
+  }
+}

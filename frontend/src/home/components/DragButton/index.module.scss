@@ -1,0 +1,50 @@
+$big-width: 204px;
+$little-width: 40px;
+
+.button {
+  z-index: 1001;
+  position: fixed;
+  right: 24px;
+  top: 60px;
+  height: 40px;
+  width: $little-width;
+  padding: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  box-sizing: border-box;
+  border-radius: 100px;
+  animation: none;
+
+  &:hover {
+    width: $big-width;
+    padding: 8px 16px;
+    // animation: expand 0.3s ease;
+  }
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+@keyframes expand {
+  0% {
+    width: $little-width;
+    padding: 8px;
+  }
+  100% {
+    width: $big-width;
+    padding: 8px 16px;
+  }
+}
+
+@keyframes collapse {
+  0% {
+    width: $big-width;
+    padding: 8px 16px;
+  }
+  100% {
+    width: $little-width;
+    padding: 8px;
+  }
+}

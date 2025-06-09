@@ -1,0 +1,229 @@
+@import '@common/styles/base.scss';
+
+.popoverContainer {
+  :global {
+    .arco-popover-content {
+      padding: 0;
+      height: 100%;
+      max-height: 100%;
+      box-sizing: border-box;
+      width: 468px;
+      overflow: hidden;
+      border: 0.5px solid
+        var(--border-color-border-2, rgba(255, 255, 255, 0.12));
+      background: var(--materials-materials-headerview, rgba(30, 30, 30, 0.8));
+      box-shadow: 0px 8px 40px 0px rgba(0, 0, 0, 0.7);
+    }
+  }
+}
+
+.triggerContainer {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 4px;
+
+  .text {
+    color: var(---color-text-1, rgba(255, 255, 255, 0.9));
+
+    /* 14/CN-Regular */
+    font-family: 'PingFang SC';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    /* 157.143% */
+  }
+
+  .icon {
+    width: 12px;
+    height: 12px;
+    color: var(---color-text-1, rgba(255, 255, 255, 0.9));
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  height: 100%;
+  overflow: hidden;
+
+  .search {
+    margin-bottom: 16px;
+    flex-shrink: 0;
+
+    & > *::before {
+      -webkit-mask-composite: destination-out !important; /* 修改mask模式 */
+      mask-composite: exclude !important; /* 标准属性 */
+    }
+
+    :global {
+      .arco-input-inner-wrapper:focus:before,
+      .arco-input-inner-wrapper-focus:before {
+        -webkit-mask-composite: destination-out !important; /* 修改mask模式 */
+        mask-composite: exclude !important; /* 标准属性 */
+      }
+    }
+  }
+
+  .actions {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 16px;
+    gap: 16px;
+
+    .hightLightText {
+      color: var(--text-color-text-1, rgba(255, 255, 255, 0.85));
+
+      /* CN-Medium/14CN-Medium */
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 22px;
+    }
+
+    .countText {
+      color: var(--tag-tagtext-yellow, #ffd60a);
+
+      /* CN-Medium/14CN-Medium */
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 22px;
+    }
+
+    .clickableText {
+      color: var(--text-color-text-2, rgba(255, 255, 255, 0.55));
+
+      /* 14/CN-Medium */
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 22px;
+      cursor: pointer;
+      /* 157.143% */
+
+      &:hover {
+        color: var(--text-color-text-1, rgba(255, 255, 255, 0.85));
+
+        /* 14/CN-Medium */
+        font-family: 'PingFang SC';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 22px;
+        cursor: pointer;
+        /* 157.143% */
+      }
+    }
+  }
+
+  .selectItemContainer {
+    flex: 1;
+    height: 100%;
+    max-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    @include scrollbar;
+
+    .selectItemColumn {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      overflow: hidden;
+    }
+
+    .selectItemRow {
+      box-sizing: border-box;
+      padding-left: 14px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-direction: row;
+      border-radius: 8px;
+
+      &:hover {
+        background: var(--fills-color-fill-1, rgba(255, 255, 255, 0.1));
+      }
+    }
+
+    .selectItemCheckbox {
+      display: block;
+      color: var(--text-color-text-1, rgba(255, 255, 255, 0.85));
+
+      /* CN-Regular/14CN-Regular */
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 32px;
+      /* 157.143% */
+    }
+
+    .rotateAnimation {
+      transform: rotate(90deg);
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+  }
+
+  .footer {
+    flex-shrink: 0;
+    border-top: 0.5px solid
+      var(--border-color-border-2, rgba(255, 255, 255, 0.12));
+    padding-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4px;
+
+    .resetText {
+      color: var(--text-color-text-1, rgba(255, 255, 255, 0.85));
+
+      /* 12/CN-Regular */
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      /* 166.667% */
+      cursor: pointer;
+    }
+
+    .button {
+      width: 56px;
+      height: 32px;
+      padding: 0 !important;
+    }
+  }
+}
+
+.rotate180Animation {
+  transform: rotate(180deg);
+}
+
+/* 内容区域 - 初始状态 */
+.accordionContent {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.2s ease-in;
+  will-change: height;
+}
+
+/* 展开状态 */
+.accordionContentExpanded {
+  transition-timing-function: ease-in-out;
+}

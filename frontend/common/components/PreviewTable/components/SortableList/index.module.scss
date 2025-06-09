@@ -1,0 +1,81 @@
+.listContainer {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.dragIcon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 20px;
+  cursor: move;
+  overflow: hidden;
+}
+
+.checkbox {
+  padding-left: 0;
+  padding-right: 8px;
+}
+
+.renderText {
+  overflow: hidden;
+  color: var(--text-color-text-1, rgba(255, 255, 255, 0.85));
+
+  /* CN-Regular/14CN-Regular */
+  font-family: 'PingFang SC';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  /* 157.143% */
+}
+
+.renderImage {
+  flex-shrink: 0;
+  width: auto;
+  height: 22px;
+  width: 22px;
+  background: var(--color-fill-1, rgba(0, 0, 0, 0.12));
+
+  :global {
+    img {
+      border-radius: 4px;
+      object-fit: contain;
+    }
+  }
+}
+
+.renderVideo {
+  width: auto;
+  height: 22px;
+  width: 22px;
+}
+
+.popoverContainer {
+  width: 256px;
+  transform: translateX(9px);
+  border-radius: 12px;
+  border: 0.5px solid var(--border-color-border-2, rgba(255, 255, 255, 0.12));
+  box-shadow: 0px 8px 40px 0px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px);
+
+  :global {
+    .arco-popover-content {
+      padding: 16px;
+    }
+
+    .arco-popover-content,
+    .arco-popconfirm-content {
+      border: none;
+      border-radius: 12px;
+    }
+  }
+}
+
+.sortableItem {
+  border-radius: 8px;
+
+  &:hover {
+    background: var(--fills-color-fill-1, rgba(255, 255, 255, 0.1));
+  }
+}

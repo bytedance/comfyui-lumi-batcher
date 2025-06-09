@@ -1,0 +1,197 @@
+@import '@common/styles/base.scss';
+
+.container {
+  width: 444px;
+  height: 100%;
+  display: flex;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  flex-direction: column;
+  gap: 24px;
+
+  /* CN-Medium/14CN-Medium */
+  font-family: 'PingFang SC';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px; /* 157.143% */
+
+  .section {
+    display: flex;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    flex-direction: column;
+    border-radius: var(--radius-150, 12px);
+    background: var(--fills-color-fill-1, rgba(255, 255, 255, 0.1));
+    color: var(--text-color-text-1, rgba(255, 255, 255, 0.85));
+  }
+
+  .finalCount {
+    padding: 16px 24px;
+    box-sizing: border-box;
+  }
+
+  .finalCountDefault {
+    width: 100%;
+    display: flex;
+    padding: 13px 12px 27px 12px;
+    align-items: center;
+    justify-content: center;
+    gap: 22.5px;
+    box-sizing: border-box;
+
+    :global {
+      img {
+        width: 120px;
+        height: 120px;
+      }
+
+      span {
+        color: var(--text-color-text-2, rgba(255, 255, 255, 0.55));
+
+        /* CN-Regular/14段落CN-Regular */
+        font-family: 'PingFang SC';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 142.857% */
+      }
+    }
+  }
+
+  .header {
+    padding-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid
+      var(--border-color-border-1, rgba(255, 255, 255, 0.08));
+    .headerTitle {
+      margin: 0;
+      color: var(--text-color-text-1, rgba(255, 255, 255, 0.85));
+
+      /* CN-Medium/14CN-Medium */
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 22px; /* 157.143% */
+    }
+    .headerCount {
+      margin: 0;
+      color: #fff;
+      text-align: right;
+
+      /* 西文 Albert Sans/24/ExtraBold */
+      font-family: 'Albert Sans';
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 32px; /* 133.333% */
+    }
+  }
+
+  .content {
+    margin-top: 16px;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+    max-height: 374px;
+    overflow: auto;
+
+    @include scrollbar();
+
+    .card {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      border-radius: var(--radius-100, 8px);
+      background: var(--fills-color-fill-3, rgba(255, 255, 255, 0.05));
+      padding: 14px 24px 8px 24px;
+      box-sizing: border-box;
+
+      .cardCount {
+        margin: 0;
+        color: #fff;
+        text-align: right;
+
+        /* 西文 Albert Sans/24/ExtraBold */
+        font-family: 'Albert Sans';
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 32px; /* 133.333% */
+      }
+
+      .cardText {
+        margin: 0;
+        color: var(--text-color-text-1, rgba(255, 255, 255, 0.85));
+
+        /* CN-Regular/12CN-Regular */
+        font-family: 'PingFang SC';
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 166.667% */
+      }
+    }
+  }
+
+  .titleName {
+    padding: 24px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+
+  :global {
+    .input-wrapper {
+      position: relative;
+      display: inline-flex;
+      width: 100%;
+      padding: 1px;
+      border-radius: 8px;
+    }
+
+    .input-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: linear-gradient(
+        99.34deg,
+        #fff 3.14%,
+        rgba(228, 240, 255, 0.909) 28.47%,
+        rgba(212, 229, 255, 0.876) 46.67%,
+        hsla(0, 0%, 100%, 0.838) 67.59%,
+        rgba(190, 220, 255, 0.78) 94.8%
+      );
+      border-radius: 8px;
+      padding: 1px;
+      opacity: 0;
+    }
+
+    .input-wrapper input {
+      width: 100%;
+      background: #2c2c2c;
+      border: none;
+      outline: none;
+      position: relative;
+      z-index: 1; /* 确保input在边框上层 */
+      padding: 8px 12px; /* 适当内边距 */
+    }
+
+    /* 聚焦时显示边框 */
+    .input-wrapper:focus-within::before {
+      opacity: 1;
+    }
+
+    .arco-input:focus,
+    .arco-input.arco-input-focus {
+      border: none;
+      background: #1a1a1a;
+    }
+  }
+}

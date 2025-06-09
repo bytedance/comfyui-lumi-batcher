@@ -1,0 +1,111 @@
+@import '@common/styles/base.scss';
+
+.params-select-container {
+  .arco-tree-node.arco-tree-node-is-leaf {
+    position: relative;
+    &::before {
+      content: ' ';
+      position: absolute;
+      height: 100%;
+      left: 5px;
+      border-left: 1px solid #484849;
+    }
+  }
+
+  .arco-tree-select-popup {
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    @include scrollbar();
+
+    .arco-tree-node {
+      color: var(---color-text-2, rgba(255, 255, 255, 0.7));
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      /* 14/CN-Regular */
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 22px; /* 157.143% */
+    }
+  }
+
+  .arco-tree-node-selected .arco-tree-node-title,
+  .arco-tree-node-selected .arco-tree-node-title:hover {
+    color: #fff;
+  }
+
+  .arco-icon-hover:before {
+    border-radius: 100px;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.tree-select-wrapper {
+  position: relative;
+  display: inline-flex;
+  width: 100%;
+  padding: 1px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  min-height: 36px;
+
+  .arco-tree-select-multiple .arco-input-tag {
+    display: flex;
+    align-items: center;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(
+      99.34deg,
+      #fff 3.14%,
+      rgba(228, 240, 255, 0.909) 28.47%,
+      rgba(212, 229, 255, 0.876) 46.67%,
+      hsla(0, 0%, 100%, 0.838) 67.59%,
+      rgba(190, 220, 255, 0.78) 94.8%
+    );
+    border-radius: 8px;
+    padding: 1px;
+    opacity: 0;
+  }
+
+  & > .arco-tree-select-view {
+    width: 100%;
+    border: none !important;
+    border-radius: 8px;
+    background: #141414 !important;
+    border: none;
+    outline: none;
+    position: relative;
+    z-index: 1;
+    line-height: 36px !important;
+    height: 100% !important;
+    min-height: 36px;
+
+    &:focus-within {
+      background: #000000 !important;
+    }
+  }
+
+  &:focus-within::before {
+    opacity: 1;
+  }
+
+  .arco-input-tag-size-small .arco-input-tag-view {
+    height: 100%;
+  }
+
+  .arco-tree-select-multiple .arco-input-tag {
+    display: flex !important;
+  }
+  .arco-input-tag.arco-input-tag-focus .arco-input-tag-tag {
+    background-color: #000;
+  }
+}

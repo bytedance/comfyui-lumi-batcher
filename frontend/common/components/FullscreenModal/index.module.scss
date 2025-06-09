@@ -1,0 +1,39 @@
+@import '@common/styles/base.scss';
+
+.fullscreenWrap {
+  position: fixed;
+  @include topZIndex;
+
+  .fullscreenModal {
+    width: 100%;
+    height: 100vh;
+    transition-timing-function: unset !important;
+    overflow: hidden;
+    padding: 0;
+    border-radius: unset;
+    // background: rgba(0, 0, 0, 0.45);
+    background: var(--Dark, #000);
+    backdrop-filter: blur(20px);
+
+    :global {
+      .arco-modal-content {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .fullscreenContent {
+      width: 100%;
+      height: 100%;
+    }
+
+    .fullscreenBg {
+      position: absolute;
+      width: 100%;
+      height: 56px;
+      left: 0;
+      top: 60px;
+      border-top: 1px solid #5b5c5d;
+    }
+  }
+}

@@ -1,0 +1,85 @@
+@import '@common/styles/base.scss';
+
+.task-list {
+  width: 100%;
+  height: 100%;
+
+  &-table {
+    min-height: 100%;
+
+    .arco-table-header,
+    .arco-table-body {
+      position: relative;
+      background-color: #141414;
+      @include scrollbar(8px, 0px);
+    }
+
+    .arco-table-no-data {
+      width: 100% !important;
+    }
+
+    .arco-table {
+      padding-left: 1px;
+
+      .arco-table-td {
+        background-color: #141414;
+      }
+    }
+
+    .arco-table table thead tr:first-child th:first-child {
+      border-left: none !important;
+    }
+
+    .arco-table .arco-table-content-scroll::before {
+      content: ' ';
+      border-top-left-radius: var(--border-radius-medium);
+      width: 20px;
+      border-left: 1px solid var(--color-border-3);
+      left: -1px;
+      top: 0px;
+    }
+
+    .arco-table-border .arco-table-td:first-child {
+      border-left: none !important;
+    }
+
+    &-creator {
+      &-name.arco-typography {
+        max-width: 180px;
+        margin-bottom: 0;
+      }
+    }
+
+    &-result {
+      margin-top: 190px;
+    }
+  }
+
+  .arco-table {
+    .arco-table-col-has-filter {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .arco-table-filters {
+        position: relative;
+      }
+    }
+  }
+  .arco-pagination-jumper {
+    .arco-input:focus,
+    .arco-input.arco-input-focus {
+      border-color: #fff !important;
+    }
+  }
+
+  .arco-pagination-item-active {
+    background: var(--fills-color-fill-2, rgba(255, 255, 255, 0.08)) !important;
+    color: var(--text-color-text-1, rgba(255, 255, 255, 0.85)) !important;
+  }
+
+  *::before {
+    -webkit-mask-composite: destination-out !important; /* 修改mask模式 */
+    mask-composite: exclude !important; /* 标准属性 */
+  }
+}

@@ -1,0 +1,20 @@
+.table-header {
+  &-title {
+    color: var(---color-text-1, rgba(255, 255, 255, 0.9));
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  &-name-input {
+    width: 240px;
+
+    *::before {
+      -webkit-mask-composite: destination-out !important; /* 修改mask模式 */
+      mask-composite: exclude !important; /* 标准属性 */
+    }
+
+    .arco-input-inner-wrapper-default {
+      border-radius: 40px;
+    }
+  }
+}

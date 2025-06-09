@@ -1,0 +1,63 @@
+@import '@common/styles/base.scss';
+
+.comfyui-lumi-batcher-params-value-list {
+  padding: 16px 24px;
+  box-sizing: border-box;
+  background: var(---color-fill-1, rgba(255, 255, 255, 0.04));
+  height: 100%;
+  flex: 1;
+  overflow: hidden;
+  width: calc(100vw - 240px);
+
+  .title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .title {
+    color: var(---color-text-2, rgba(255, 255, 255, 0.7));
+
+    /* 14/CN-Regular */
+    font-family: 'PingFang SC';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px; /* 157.143% */
+  }
+  .img {
+    display: block;
+    width: 645px;
+    margin: 0 auto;
+    margin-top: 92px;
+  }
+
+  &-table {
+    margin-top: 16px;
+    border-collapse: collapse;
+
+    .arco-table-tr,
+    .arco-table-td {
+      height: 46px;
+      background-color: #0a0a0a;
+    }
+
+    .arco-table-body {
+      @include scrollbar();
+    }
+  }
+
+  .params-values-edit-value {
+    box-sizing: border-box;
+    display: grid;
+    align-items: center;
+    color: #ff453a;
+  }
+
+  .params-values-preview-container {
+    // display: flex;
+    // gap: 8px;
+    // align-items: center;
+    display: block;
+  }
+}

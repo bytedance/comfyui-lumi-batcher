@@ -1,0 +1,55 @@
+.random-seed-trigger-text {
+  background: var(--linear, linear-gradient(255deg, #47fff2 0%, #0ad3fb 100%));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* 14/CN-Regular */
+  font-family: 'PingFang SC';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  margin: 0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.random-seed-content {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-xl, 16px);
+  box-sizing: border-box;
+
+  border-radius: var(--radius-150, 12px);
+  background: var(--fills-fills-primaryvibrant, #242424);
+  backdrop-filter: blur(10px);
+
+  &-header {
+    display: flex;
+    align-items: center;
+    &-title {
+      flex: 1;
+      margin: 0;
+      color: var(--text-text-primary, rgba(255, 255, 255, 0.85));
+
+      /* CN Body/body1-Medium */
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 22px; /* 157.143% */
+    }
+  }
+
+  &-main {
+    margin-top: 9px;
+  }
+
+  &-footer {
+    margin-top: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}

@@ -1,0 +1,10 @@
+.container {
+
+    cursor: 'default';
+
+    :global {
+        .arco-tag-content {
+            display: flex;
+        }
+    }
+}

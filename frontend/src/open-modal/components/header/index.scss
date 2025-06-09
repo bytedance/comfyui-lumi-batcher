@@ -1,0 +1,18 @@
+.batch-tools-modal-header {
+  height: 56px;
+  padding: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-sizing: border-box;
+
+  &-title {
+    color: var(---color-text-1, rgba(255, 255, 255, 0.9));
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  &-subtitle {
+    color: var(---color-text-3, rgba(255, 255, 255, 0.5));
+    font-size: 14px;
+    font-weight: 400;
+  }
+}

@@ -1,0 +1,13 @@
+.params-config-content {
+  padding: 0 120px;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  .params-config-form-item-wrapper {
+    .arco-row {
+      flex-wrap: nowrap;
+    }
+  }
+}

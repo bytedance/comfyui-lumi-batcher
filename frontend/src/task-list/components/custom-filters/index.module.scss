@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  width: 124px;
+  box-sizing: border-box;
+  padding: 8px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: var(--radius-100, 8px);
+  border: 0.5px solid var(--border-color-border-2, rgba(255, 255, 255, 0.12));
+  background: var(--background-color-bg-5, #242424);
+
+  /* Secondary */
+  box-shadow: 0px 8px 40px 0px rgba(0, 0, 0, 0.7);
+
+  .checkbox {
+    :global {
+      .arco-checkbox {
+        box-sizing: border-box;
+        padding: 7px 12px;
+        width: 100%;
+        border-radius: 6px;
+
+        .arco-icon-hover:before {
+          border-radius: 100px !important;
+          width: 24px !important;
+          height: 24px !important;
+        }
+      }
+    }
+  }
+
+  .selected {
+    background: var(--fills-color-fill-1, rgba(255, 255, 255, 0.1));
+  }
+
+  .operator {
+    box-sizing: border-box;
+    padding: 8px 0 0 0;
+    border-top: 1px solid
+      var(--border-btn-fill-hover, rgba(255, 255, 255, 0.06));
+  }
+}

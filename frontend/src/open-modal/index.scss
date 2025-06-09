@@ -1,0 +1,58 @@
+@import '@common/styles/base.scss';
+
+$tabIndex: 2;
+$renderContentIndex: 1;
+
+#workspaceManagerPanel.visibility-hidden-with-batch-tools {
+  visibility: hidden !important;
+}
+
+.batch-tools-container-modal-wrap {
+  position: fixed;
+
+  .batch-tools-container-modal {
+    min-width: $minWidth;
+    width: 100vw;
+    height: 100vh;
+    transition-timing-function: unset !important;
+    background-color: #070909;
+    overflow: hidden;
+    padding: 0;
+    border-radius: unset;
+
+    .arco-modal-content {
+      height: 100%;
+      overflow: auto;
+      box-sizing: border-box;
+      @include scrollbar;
+
+      .batch-tools-container {
+        position: relative;
+        height: calc(100% - 56px);
+        box-sizing: border-box;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .batch-tools-tabs {
+        position: relative;
+        padding: 0 24px;
+        z-index: $tabIndex;
+        width: 100%;
+        height: fit-content;
+        box-sizing: border-box;
+      }
+
+      .batch-tools-render-content {
+        padding: 16px 0 0 0;
+        z-index: $renderContentIndex;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  @include tableTheme;
+}

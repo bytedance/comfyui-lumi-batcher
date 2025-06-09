@@ -1,0 +1,21 @@
+.param-value-preview-image {
+  border-radius: unset;
+  box-sizing: border-box;
+
+  & > img {
+    vertical-align: unset;
+    height: calc(100%);
+    width: calc(100%);
+    object-fit: cover;
+  }
+}
+
+.param-value-preview-video {
+  border-radius: unset;
+  box-sizing: border-box;
+  vertical-align: unset;
+}
+
+.arco-image-preview {
+  z-index: 10000;
+}

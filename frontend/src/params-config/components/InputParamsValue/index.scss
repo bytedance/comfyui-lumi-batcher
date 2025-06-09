@@ -1,0 +1,71 @@
+.icon-loading-rotate {
+  transform: rotate(0deg);
+  animation: loading-rotate 1s linear infinite;
+
+  @keyframes loading-rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.upload-trigger-left-0 {
+  left: 0 !important;
+}
+
+.input-param-value-wrapper {
+  position: relative;
+  width: 100%;
+
+  .input-param-value-select,
+  .input-param-value-input {
+    & > *::before {
+      -webkit-mask-composite: destination-out !important; /* 修改mask模式 */
+      mask-composite: exclude !important; /* 标准属性 */
+    }
+    .arco-input-inner-wrapper:focus:before,
+    .arco-input-inner-wrapper-focus:before {
+      -webkit-mask-composite: destination-out !important; /* 修改mask模式 */
+      mask-composite: exclude !important; /* 标准属性 */
+    }
+  }
+
+  .arco-input-size-large {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  .arco-select-view > .arco-input-tag {
+    z-index: 1;
+  }
+
+  .arco-select-view-value {
+    display: flex;
+    align-items: center;
+  }
+
+  .custom-placeholder {
+    z-index: 2;
+    margin-right: 54px;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    position: absolute;
+    left: 12px;
+    top: 7px;
+
+    .placeholder-text {
+      color: var(---color-text-3, rgba(255, 255, 255, 0.5));
+      /* 14/CN-Regular */
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 22px; /* 157.143% */
+    }
+  }
+}

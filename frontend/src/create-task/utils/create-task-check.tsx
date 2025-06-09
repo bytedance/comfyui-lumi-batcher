@@ -1,0 +1,85 @@
+// Copyright (c) 2025 Bytedance Ltd. and/or its affiliates
+// SPDX-License-Identifier: GPL-3.0-or-later
+import { queuePrompt } from '@api/batch-task';
+import { Link, Message } from '@arco-design/web-react';
+import { IconCloseCircleFill } from '@arco-design/web-react/icon';
+import { I18n } from '@common/i18n';
+import { useBatchToolsStore } from '@src/batch-tools/state';
+import { Comfy } from '@typings/comfy';
+
+const OutputNodesList = [
+  'SaveImage',
+  'VHS_VideoCombine',
+  'VideoCombine_Adv',
+  'ShowText|pysssss',
+  'DisplayString',
+  'SaveVideo',
+];
+
+// 检测输出节点是否在输出节点列表中
+export const checkOutputNodes = (output: Comfy.WorkflowOutput) =>
+  Object.values(output).some((node) =>
+    OutputNodesList.includes(node.class_type),
+  );
+
+export const createTaskCheck = async (): Promise<boolean> => {
+  try {
+    const { output, workflow } = await window.app.graphToPrompt();
+    const link = useBatchToolsStore.getState().task.outputRuleLink;
+    const hasOutputNode = checkOutputNodes(output);
+    // save image节点验证
+    if (!hasOutputNode) {
+      Message.normal({
+        id: 'workflow_check_error',
+        content: (
+          <div
+            style={{
+              display: 'flex',
+              gap: 8,
+            }}
+          >
+            <IconCloseCircleFill
+              style={{ fontSize: 20, color: 'rgb(var(--danger-6))' }}
+            />
+            <div style={{ display: 'inline-block', textAlign: 'left' }}>
+              {I18n.t(
+                'it_is_detected_that_there_is_no_output_node_in_the_current_workflow__please_add_',
+                {},
+                '检测到当前工作流没有输出节点，请添加相关节点后再进行批量验证!',
+              )}
+              <br />
+              {I18n.t(
+                'please_check_the_output_node_specification_',
+                {},
+                '输出节点规范请查看,',
+              )}
+              <Link href={link} target="_blank">
+                {I18n.t('help_documentation', {}, '帮助文档')}
+              </Link>
+            </div>
+          </div>
+        ),
+      });
+      return false;
+    }
+
+    try {
+      await queuePrompt(0, output, workflow);
+    } catch (error) {
+      Message.error(
+        I18n.t(
+          'it_is_detected_that_the_current_workflow_cannot_be_run_through__please_run_throu',
+          {},
+          '检测到当前工作流无法跑通，请跑通工作流后再进行批量验证',
+        ),
+      );
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Failed to execute create-task check');
+    // Message.error('工作流校验失败，请检查工作流');
+    return false;
+  }
+};

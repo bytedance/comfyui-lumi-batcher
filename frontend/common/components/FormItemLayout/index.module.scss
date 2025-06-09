@@ -1,0 +1,18 @@
+.formItemLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+
+  .formItemLayoutLabel {
+    color: var(--text-color-text-1, rgba(255, 255, 255, 0.85));
+
+    /* CN-Medium/14CN-Medium */
+    font-family: 'PingFang SC';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px; /* 157.143% */
+    margin: 0;
+  }
+}

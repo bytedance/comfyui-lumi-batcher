@@ -1,0 +1,22 @@
+.icon-loading-rotate {
+  transform: rotate(0deg);
+  animation: loading-rotate 1s linear infinite;
+
+  @keyframes loading-rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.upload-trigger-left-0 {
+  left: 0 !important;
+}
+
+.arco-message-wrapper {
+  z-index: 10000;
+}
