@@ -12,7 +12,7 @@ from lumi_batcher_service.controller.output.process import process_output
 from lumi_batcher_service.constant.package import PackageStatus
 from lumi_batcher_service.common.homeless import get_max_workers
 from lumi_batcher_service.constant.task import Category
-from lumi_batcher_service.common.file import file_processor
+from lumi_batcher_service.common.file import file_processor, get_file_absolute_path
 
 
 async def execute_package_batch_task(
@@ -138,6 +138,10 @@ def resolve_results(results: list[dict], dir: str):
         if type in ["image", "video"]:
             path = os.path.join("output", value)
 
+            if not os.path.isfile(path):
+                new_file_path = get_file_absolute_path(path)
+                if os.path.exists(new_file_path):
+                    path = new_file_path
             if not os.path.isfile(path):
                 print(f"File not found: {path}")
             else:

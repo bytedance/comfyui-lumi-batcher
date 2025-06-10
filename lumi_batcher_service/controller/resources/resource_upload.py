@@ -4,7 +4,11 @@ import os
 import traceback
 import uuid
 from lumi_batcher_service.thread.task_scheduler_manager import ThreadTaskManager
-from lumi_batcher_service.common.file import get_file_info, copy_file_v2
+from lumi_batcher_service.common.file import (
+    get_file_absolute_path,
+    get_file_info,
+    copy_file_v2,
+)
 from lumi_batcher_service.handler.batch_tools import BatchToolsHandler
 from lumi_batcher_service.thread.utils import sync_wrapper
 
@@ -74,11 +78,17 @@ class ResourceUpload:
 
         for value in values:
             try:
-                filePath = os.path.join(os.getcwd(), "input", str(value))
-                status = os.path.exists(filePath)
+                file_origin_path = f"input/{str(value)}"
+                filePath = os.path.join(os.getcwd(), file_origin_path)
+                if not os.path.exists(filePath):
+                    new_file_path = get_file_absolute_path(file_origin_path)
+                    if os.path.exists(new_file_path):
+                        filePath = new_file_path
+                    else:
+                        # 如果文件不存在，跳过
+                        continue
 
-                if status is True:
-                    result.append(filePath)
+                result.append(filePath)
             except Exception as e:
                 print(f"Exception in _parseSingleConfig: {e}")
                 traceback.print_exc()

@@ -10,6 +10,9 @@ import filetype
 import re
 import urllib.parse
 
+import os
+from pathlib import Path
+
 
 # 拷贝文件
 def copyFile(source_file, destination_file):
@@ -169,3 +172,45 @@ class FileProcessor:
 
 
 file_processor = FileProcessor()
+
+
+def find_comfyui_dir(start_path=None, max_depth=10):
+    """
+    从指定路径向上递归查找名为ComfyUI的父目录
+
+    参数:
+        start_path: 起始路径(默认为当前文件所在目录)
+        max_depth: 最大递归深度(防止无限循环)
+
+    返回:
+        找到的ComfyUI目录绝对路径，未找到返回None
+    """
+    if start_path is None:
+        # 获取当前文件的绝对路径
+        start_path = os.path.dirname(os.path.abspath(__file__))
+
+    current_path = Path(start_path)
+    depth = 0
+
+    while depth < max_depth and current_path != current_path.parent:
+        if current_path.name == "ComfyUI":
+            return str(current_path)
+        current_path = current_path.parent
+        depth += 1
+
+    return None
+
+
+def get_file_absolute_path(file_path):
+    """
+    获取文件的绝对路径，如果文件不存在则返回None
+    :param file_path: 文件路径
+    :return: 文件的绝对路径或None
+    """
+    comfyui_dir = find_comfyui_dir()
+
+    return (
+        os.path.join(comfyui_dir, file_path[2:])
+        if file_path.startswith("./")
+        else os.path.join(comfyui_dir, file_path)
+    )

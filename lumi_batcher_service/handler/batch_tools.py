@@ -29,7 +29,11 @@ from lumi_batcher_service.constant.task import (
 from lumi_batcher_service.controller.homeless.save_image import getSaveImageConfig
 from lumi_batcher_service.thread.task_scheduler_manager import RunInThread
 from lumi_batcher_service.common.error import getErrorResponse
-from lumi_batcher_service.common.file import get_file_info
+from lumi_batcher_service.common.file import (
+    find_comfyui_dir,
+    get_file_absolute_path,
+    get_file_info,
+)
 from lumi_batcher_service.controller.task.cancel_queue import cancel_queue
 from lumi_batcher_service.common.resolve_file import resolveFileManager
 from lumi_batcher_service.controller.task.update_prompt import (
@@ -490,7 +494,12 @@ class BatchToolsHandler:
 
             # 检查文件是否存在
             if not os.path.exists(file_path):
-                return web.Response(status=404, text="Image not found")
+                new_file_path = get_file_absolute_path(file_path)
+
+                if os.path.exists(new_file_path):
+                    file_path = new_file_path
+                else:
+                    return web.Response(status=404, text="Image not found")
 
             # 获取文件信息
             file_info = get_file_info(file_path)
@@ -614,7 +623,12 @@ class BatchToolsHandler:
 
             # 检查文件是否存在
             if not os.path.exists(file_path):
-                return web.Response(status=404, text="File not found")
+                new_file_path = get_file_absolute_path(file_path)
+
+                if os.path.exists(new_file_path):
+                    file_path = new_file_path
+                else:
+                    return web.Response(status=404, text="File not found")
 
             # 异步读取文件
             async with aiofiles.open(file_path, "rb") as f:
