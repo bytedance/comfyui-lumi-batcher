@@ -4,7 +4,7 @@ import io
 import os
 import pandas
 import zipfile
-from .file import copyFile
+from .file import copyFile, get_file_absolute_path, find_comfyui_dir
 
 
 class ResolveFileManager:
@@ -93,6 +93,9 @@ class ResolveFileManager:
         # 打开ZIP文件
         with zipfile.ZipFile(path, "r") as zip_ref:
             output_directory = os.path.join("input")
+            if os.getcwd() != "ComfyUI":
+                comfyui_dir = find_comfyui_dir()
+                output_directory = os.path.join(comfyui_dir, "input")
 
             if not os.path.exists(output_directory):
                 os.makedirs(output_directory)
@@ -133,7 +136,10 @@ class ResolveFileManager:
 
     def resolve_single_file(self, path) -> list[str]:
         file_name = os.path.basename(path)
-        copyFile(path, os.path.join("input", file_name))
+        if os.getcwd() != "ComfyUI":
+            copyFile(path, get_file_absolute_path(f"input/{file_name}"))
+        else:
+            copyFile(path, os.path.join("input", file_name))
         return [file_name]
 
 
