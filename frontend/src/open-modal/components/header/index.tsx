@@ -19,7 +19,7 @@ export default function ModalHeader() {
         <div className="batch-tools-modal-header-title">
           {I18n.t(
             '{placeholder1}_batch_generation',
-            { placeholder1: 'ComfyUI Lumi Batcher' },
+            { placeholder1: 'ComfyUI-Lumi-Batcher' },
             '{placeholder1} 批量生成',
           )}
         </div>
