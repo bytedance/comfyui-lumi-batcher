@@ -114,10 +114,11 @@ def get_file_info(filepath):
 
 class FileProcessor:
     def __init__(self):
+        self.isWindows = os.name == "nt"
         self.invalid_chars = re.compile(r'[<>:"/\\|?*\x00-\x1F]')  # 包含控制字符
-        self.max_length = 255  # 标准文件系统最大长度
+        self.max_length = 250  # 标准文件系统最大长度,预留文件后缀
 
-    def sanitize_filename(self, filename):
+    def sanitize_filename(self, dir, filename):
         """最终版文件名处理方法"""
         # 处理URL编码（可选）
         try:
@@ -130,7 +131,18 @@ class FileProcessor:
         clean = re.sub(r"_{2,}", "_", clean)  # 合并连续下划线
 
         # 智能截断（同时考虑字符数和字节数）
-        if len(clean.encode("utf-8")) > self.max_length:
+        if self.isWindows:
+            full_path = os.path.join(dir, clean)
+            if len(full_path.encode("utf-8")) > self.max_length:
+                encoded = full_path.encode("utf-8")[: self.max_length]
+                while True:
+                    try:
+                        full_path = encoded.decode("utf-8")
+                        break
+                    except UnicodeDecodeError:
+                        encoded = encoded[:-1]
+                clean = os.path.basename(full_path)
+        elif len(clean.encode("utf-8")) > self.max_length:
             encoded = clean.encode("utf-8")[: self.max_length]
             while True:
                 try:
