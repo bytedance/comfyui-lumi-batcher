@@ -211,7 +211,8 @@ def find_comfyui_dir(start_path=None, max_depth=10):
         current_path = current_path.parent
         depth += 1
 
-    return None
+    # 如果找不到，默认找到当前工作目录
+    return os.getcwd()
 
 
 def get_file_absolute_path(file_path):
