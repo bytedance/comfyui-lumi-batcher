@@ -14,4 +14,4 @@ export enum ContainerTypeEnum {
  * 变更记录：
  * 1. 2025年6月9日 版本 v1.0.0
  */
-export const BatchToolsVersion = 'v1.0.0';
+export const BatchToolsVersion = 'v1.0.1';
