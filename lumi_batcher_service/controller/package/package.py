@@ -133,7 +133,8 @@ def resolve_results(results: list[dict], dir: str):
                     configValues.append(config.get("value", ""))
 
         output_file_name = "_".join(str(x) for x in configValues)
-        output_file_name = file_processor.sanitize_filename(output_file_name)
+        # 处理文件名中的特殊字符，处理文件路径长度，文件名长度
+        output_file_name = file_processor.sanitize_filename(dir, output_file_name)
 
         if type in ["image", "video"]:
             path = os.path.join("output", value)
@@ -153,7 +154,10 @@ def resolve_results(results: list[dict], dir: str):
                 # 新的完整路径
                 new_full_path = os.path.join(dir, file_name)
 
-                file_name_unique_name = f"{output_file_name}{file_extension}"
+                # 用目录路径+文件名作为唯一标识
+                file_name_unique_name = (
+                    f"{os.path.join(dir, output_file_name)}{file_extension}"
+                )
 
                 temp_full_name = f"{output_file_name}{file_extension}"
 
