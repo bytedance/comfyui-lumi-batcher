@@ -205,7 +205,8 @@ def find_comfyui_dir(start_path=None, max_depth=10):
     depth = 0
 
     while depth < max_depth and current_path != current_path.parent:
-        if current_path.name == "ComfyUI":
+        # 兼容ComfyUI，ComfyUI_***目录场景
+        if current_path.name.startswith("ComfyUI"):
             return str(current_path)
         current_path = current_path.parent
         depth += 1
