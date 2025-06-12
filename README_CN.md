@@ -19,11 +19,17 @@
 
 https://github.com/user-attachments/assets/7608db68-b7ca-411a-bdf1-b3d8f4a04410
 
+&nbsp;
+
 ---
+
+&nbsp;
 
 ## 📌 概括
 
 **ComfyUI-Lumi-Batcher 是专为 ComfyUI 设计的批量处理扩展插件，旨在提升 AIGC 创作效率。**
+
+&nbsp;
 
 ## 😭 你是否在经历这些创作难题
 
@@ -36,7 +42,11 @@ https://github.com/user-attachments/assets/7608db68-b7ca-411a-bdf1-b3d8f4a04410
 ❌ _素材管理如大海捞针_
 生成 100 张图混乱命名，跑图 10 分钟找图 2 小时
 
+&nbsp;
+
 ---
+
+&nbsp;
 
 ## ☀️Comfyui-Lumi-Batcher 如何帮你解决难题
 
@@ -46,13 +56,23 @@ ComfyUI-Lumi-Batcher 之于 comfyui，用途范围超过 xyz pilot 之于 webui�
 - **多组参数自由组合，场景个性配置**： 批量调试可以是多个参数的组合体，如「商品图 + 对应 prompt」 X 不同基模；
 - **多维表格，自由抽卡预览或批量导出**：不同参数的聚合浏览方式，可视化工具让你对工作流效果运筹帷幄。
 
+&nbsp;
+
 ---
+
+&nbsp;
 
 ## 😁 为何选择 Comfyui-Lumi-Batcher
 
 - 🔥**易于使用**：丝滑交互降低学习成本，能跑 Comfyui 就能上手工具
 - 🔥**高效创作**：「单次设置参数」代替「反复输入参数」、「智能化结果管理」代替「手动下载效果对比」，创作效率跃迁
 - 🔥**多模态支持**：深入各类创作场景，无论你在进行文本、图像还是视频创作，都能助你一臂之力
+
+&nbsp;
+
+---
+
+&nbsp;
 
 ## 🚀 如何安装
 
@@ -68,9 +88,17 @@ git clone https://github.com/bytedance/comfyui-lumi-batcher.git
 
 安装完成后，在 ComfyUI 的 UI 面板中，默认在右上角位置，点击按钮，即可打开批量工具的界面。
 
+&nbsp;
+
+---
+
+&nbsp;
+
 ## 🤝 获得帮助
 
 **[新手帮助文档](https://bytedance.larkoffice.com/docx/LGLWdPIj8ooQyxxMAOQcWmR8nCh)**
 
-**联系我们**
-![飞书群组](https://github.com/user-attachments/assets/b24c1e8c-dba8-47ed-9ad4-ed197f57301b)
+<div style="margin-bottom:20px;font-weight: bold;">
+  联系我们
+</div>
+<img alt="飞书群组" src="https://github.com/user-attachments/assets/b24c1e8c-dba8-47ed-9ad4-ed197f57301b" width="300" style="height:auto;" />
