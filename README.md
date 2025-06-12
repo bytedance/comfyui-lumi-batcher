@@ -1,41 +1,60 @@
-# ComfyUI Lumi Batcher
-
 [简体中文](./README_CN.md) | English
 
-## Overview
+<div align="center">
 
-ComfyUI Lumi Batcher is a batch processing extension plugin designed for ComfyUI, aiming to improve workflow debugging efficiency. Traditional debugging methods require adjusting parameters one by one, while this tool significantly enhances work efficiency through batch processing capabilities.
+**By ByteDance intelligent creation team**
 
-## Core Value
+# 🚀 ComfyUI Lumi Batcher
 
-### Pain Points of Traditional Debugging
+<h4 align="center">
+<div align="center">
+<img src="https://img.shields.io/badge/Version-1.0.0-blue.svg" alt="Version"> 
+<img src="https://img.shields.io/badge/License-GPL 3.0-green.svg" alt="License">
+<img src="https://img.shields.io/github/stars/bytedance/comfyui-lumi-batcher?color=yellow" alt="Stars">
+<img src="https://img.shields.io/github/issues/bytedance/comfyui-lumi-batcher?color=orange" alt="Issues">
+<img src="https://img.shields.io/badge/python-3.10%2B-red.svg" alt="Python">
+</h4>
 
-- Manual parameter adjustment one by one
-- Difficult to manage parameter combinations (e.g., image-text correspondence)
-- Time-consuming and error-prone
+</div>
 
-![Traditional Method](./static/old_way_en.png)
+https://github.com/user-attachments/assets/7608db68-b7ca-411a-bdf1-b3d8f4a04410
 
-### Advantages of Batch Tool
+---
 
-- One-time configuration, automatic execution of multiple parameter combinations
-- Visual result comparison
-- Supports multiple output types (images/text/videos)
+## 📌 Overview
 
-![Batch Tool](./static/new_way_en.png)
+## **ComfyUI-Lumi-Batcher is a specialized batch processing extension for ComfyUI, designed to enhance AIGC creation efficiency.**
 
-## Features
+## 😭 Are You Facing These Creative Challenges?
 
-### Core Functions
+❌ **Model Indecision**:  
+Spending hours replacing models manually, unable to pinpoint the best style.
 
-- 🚀 Batch Task Creation: Intelligent parameter cross-multiplication generation
-- 📊 Task Management: Real-time task status monitoring
-- 🔍 Result Comparison:
-  - Horizontal/vertical comparison modes
-  - Multi-modal support (text/images/videos etc.)
-- ⬇️ Result Export: One-click package download
+❌ **Parameter Tuning Headaches**:  
+Manually adjusting dimensions/weights/sampling steps through 20 revisions, still failing to meet requirements.
 
-## Installation Guide
+❌ **Chaotic Asset Management**:  
+Generating 100 images with inconsistent naming – 10 minutes generating, 2 hours finding.
+
+---
+
+## ☀️ How ComfyUI-Lumi-Batcher Solves These
+
+ComfyUI-Lumi-Batcher extends beyond tools like XYZ Plot in WebUI, becoming a powerhouse for batch generation and parameter testing.
+
+- **Beyond Basic Dimensions**: Cross-test any workflow parameter freely – no restrictions to XYZ axes.
+- **Flexible Parameter Grouping**: Combine parameters creatively (e.g., "product shots + prompts" × different base models).
+- **Visual Result Management**: Browse outputs in multi-dimensional grids for easy previewing and batch exporting.
+
+---
+
+## 😁 Why Choose ComfyUI-Lumi-Batcher?
+
+- 🔥 **Easy Adoption**: Intuitive interface lowers learning curve – works seamlessly with your existing ComfyUI knowledge.
+- 🔥 **Efficiency Boost**: Replace repetitive manual inputs with single-parameter configuration and AI-assisted asset management.
+- 🔥 **Multimodal Support**: Accelerates text, image, and video creation workflows.
+
+## 🚀 Installation
 
 > Local environment requires Python 3.10 or higher
 
@@ -49,10 +68,9 @@ git clone https://github.com/bytedance/comfyui-lumi-batcher.git
 
 After installation, in ComfyUI's UI panel, by default in the upper right corner, click the button to open the batch tool interface.
 
-## Beginner's Guide
+## 🤝 Get Help
 
-[ComfyUI Lumi Batcher Guide](https://bytedance.larkoffice.com/docx/LGLWdPIj8ooQyxxMAOQcWmR8nCh)
+**[Beginner's Guide](https://bytedance.larkoffice.com/docx/LGLWdPIj8ooQyxxMAOQcWmR8nCh)**
 
-## Tool Architecture Diagram
-
-![Architecture Diagram](./static/architecture_en.png)
+**Contact Us**
+![Contact Image](https://github.com/user-attachments/assets/b24c1e8c-dba8-47ed-9ad4-ed197f57301b)
