@@ -23,38 +23,38 @@ https://github.com/user-attachments/assets/7608db68-b7ca-411a-bdf1-b3d8f4a04410
 
 ## 📌 Overview
 
-**ComfyUI-Lumi-Batcher is a batch processing extension specifically designed for ComfyUI to enhance AIGC creation efficiency.**
+## **ComfyUI-Lumi-Batcher is a specialized batch processing extension for ComfyUI, designed to enhance AIGC creation efficiency.**
 
-## 😭 Are You Experiencing These Creative Challenges
+## 😭 Are You Facing These Creative Challenges?
 
-❌ _Advanced Model Selection Difficulty_
-Repeatedly replacing models and manually generating images, spending 3 hours without finding the optimal style
+❌ **Model Indecision**:  
+Spending hours replacing models manually, unable to pinpoint the best style.
 
-❌ _Parameter Tuning Driving Designers Crazy_
-Manually adjusting dimensions/weights/sampling steps, revising 20 versions for a single image and still not satisfying the client
+❌ **Parameter Tuning Headaches**:  
+Manually adjusting dimensions/weights/sampling steps through 20 revisions, still failing to meet requirements.
 
-❌ _Material Management Like Finding a Needle in a Haystack_
-Generating 100 images with chaotic naming, spending 10 minutes generating but 2 hours searching for images
-
----
-
-## ☀️ How Comfyui-Lumi-Batcher Solves Your Problems
-
-ComfyUI-Lumi-Batcher is to ComfyUI what xyz pilot is to webui, but with even broader applications - it's a powerful tool for parameter tuning, style exploration, and batch material generation.
-
-- **Beyond Simple 'XYZ' Dimensions - All Parameters at Your Fingertips**: Not limited to XYZ 3D parameter cross-testing, but all parameters within the workflow can be cross-combined for comprehensive testing in one go;
-- **Free Combination of Multiple Parameter Sets, Custom Configuration for Scenarios**: Batch tuning can combine multiple parameters, such as "product images + corresponding prompts" cross different base models;
-- **Multi-dimensional Spreadsheet, Free Style Exploration Preview or Batch Export**: Aggregated browsing of different parameters with visualization tools giving you full control over workflow effects.
+❌ **Chaotic Asset Management**:  
+Generating 100 images with inconsistent naming – 10 minutes generating, 2 hours finding.
 
 ---
 
-## 😁 Why Choose Comfyui-Lumi-Batcher
+## ☀️ How ComfyUI-Lumi-Batcher Solves These
 
-- 🔥**Easy to Use**: Smooth interaction reduces learning curve - if you can run ComfyUI, you can master this tool
-- 🔥**Efficient Creation**: "One-time parameter setup" replaces "repeated parameter input", "intelligent result management" replaces "manual download for effect comparison" - a leap in creative efficiency
-- 🔥**Multi-modal Support**: Deep integration into various creative scenarios, whether you're working with text, images, or video creation, it can give you a powerful boost
+ComfyUI-Lumi-Batcher extends beyond tools like XYZ Plot in WebUI, becoming a powerhouse for batch generation and parameter testing.
 
-## Installation Guide
+- **Beyond Basic Dimensions**: Cross-test any workflow parameter freely – no restrictions to XYZ axes.
+- **Flexible Parameter Grouping**: Combine parameters creatively (e.g., "product shots + prompts" × different base models).
+- **Visual Result Management**: Browse outputs in multi-dimensional grids for easy previewing and batch exporting.
+
+---
+
+## 😁 Why Choose ComfyUI-Lumi-Batcher?
+
+- 🔥 **Easy Adoption**: Intuitive interface lowers learning curve – works seamlessly with your existing ComfyUI knowledge.
+- 🔥 **Efficiency Boost**: Replace repetitive manual inputs with single-parameter configuration and AI-assisted asset management.
+- 🔥 **Multimodal Support**: Accelerates text, image, and video creation workflows.
+
+## 🚀 Installation
 
 > Local environment requires Python 3.10 or higher
 
@@ -70,7 +70,7 @@ After installation, in ComfyUI's UI panel, by default in the upper right corner,
 
 ## 🤝 Get Help
 
-**[New User Guide](https://bytedance.larkoffice.com/docx/LGLWdPIj8ooQyxxMAOQcWmR8nCh)**
+**[Beginner's Guide](https://bytedance.larkoffice.com/docx/LGLWdPIj8ooQyxxMAOQcWmR8nCh)**
 
 **Contact Us**
 ![Contact Image](https://github.com/user-attachments/assets/b24c1e8c-dba8-47ed-9ad4-ed197f57301b)
