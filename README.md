@@ -1,39 +1,58 @@
-# ComfyUI Lumi Batcher
-
 [简体中文](./README_CN.md) | English
 
-## Overview
+<div align="center">
 
-ComfyUI Lumi Batcher is a batch processing extension plugin designed for ComfyUI, aiming to improve workflow debugging efficiency. Traditional debugging methods require adjusting parameters one by one, while this tool significantly enhances work efficiency through batch processing capabilities.
+**By ByteDance intelligent creation team**
 
-## Core Value
+# 🚀 ComfyUI Lumi Batcher
 
-### Pain Points of Traditional Debugging
+<h4 align="center">
+<div align="center">
+<img src="https://img.shields.io/badge/Version-1.0.0-blue.svg" alt="Version"> 
+<img src="https://img.shields.io/badge/License-GPL 3.0-green.svg" alt="License">
+<img src="https://img.shields.io/github/stars/bytedance/comfyui-lumi-batcher?color=yellow" alt="Stars">
+<img src="https://img.shields.io/github/issues/bytedance/comfyui-lumi-batcher?color=orange" alt="Issues">
+<img src="https://img.shields.io/badge/python-3.10%2B-red.svg" alt="Python">
+</h4>
 
-- Manual parameter adjustment one by one
-- Difficult to manage parameter combinations (e.g., image-text correspondence)
-- Time-consuming and error-prone
+</div>
 
-![Traditional Method](./static/old_way_en.png)
+https://github.com/user-attachments/assets/b6c249eb-235c-4d8c-ab9a-ab7e6de6faf5
 
-### Advantages of Batch Tool
+---
 
-- One-time configuration, automatic execution of multiple parameter combinations
-- Visual result comparison
-- Supports multiple output types (images/text/videos)
+## 📌 Overview
 
-![Batch Tool](./static/new_way_en.png)
+**ComfyUI-Lumi-Batcher is a batch processing extension specifically designed for ComfyUI to enhance AIGC creation efficiency.**
 
-## Features
+## 😭 Are You Experiencing These Creative Challenges
 
-### Core Functions
+❌ _Advanced Model Selection Difficulty_
+Repeatedly replacing models and manually generating images, spending 3 hours without finding the optimal style
 
-- 🚀 Batch Task Creation: Intelligent parameter cross-multiplication generation
-- 📊 Task Management: Real-time task status monitoring
-- 🔍 Result Comparison:
-  - Horizontal/vertical comparison modes
-  - Multi-modal support (text/images/videos etc.)
-- ⬇️ Result Export: One-click package download
+❌ _Parameter Tuning Driving Designers Crazy_
+Manually adjusting dimensions/weights/sampling steps, revising 20 versions for a single image and still not satisfying the client
+
+❌ _Material Management Like Finding a Needle in a Haystack_
+Generating 100 images with chaotic naming, spending 10 minutes generating but 2 hours searching for images
+
+---
+
+## ☀️ How Comfyui-Lumi-Batcher Solves Your Problems
+
+ComfyUI-Lumi-Batcher is to ComfyUI what xyz pilot is to webui, but with even broader applications - it's a powerful tool for parameter tuning, style exploration, and batch material generation.
+
+- **Beyond Simple 'XYZ' Dimensions - All Parameters at Your Fingertips**: Not limited to XYZ 3D parameter cross-testing, but all parameters within the workflow can be cross-combined for comprehensive testing in one go;
+- **Free Combination of Multiple Parameter Sets, Custom Configuration for Scenarios**: Batch tuning can combine multiple parameters, such as "product images + corresponding prompts" cross different base models;
+- **Multi-dimensional Spreadsheet, Free Style Exploration Preview or Batch Export**: Aggregated browsing of different parameters with visualization tools giving you full control over workflow effects.
+
+---
+
+## 😁 Why Choose Comfyui-Lumi-Batcher
+
+- 🔥**Easy to Use**: Smooth interaction reduces learning curve - if you can run ComfyUI, you can master this tool
+- 🔥**Efficient Creation**: "One-time parameter setup" replaces "repeated parameter input", "intelligent result management" replaces "manual download for effect comparison" - a leap in creative efficiency
+- 🔥**Multi-modal Support**: Deep integration into various creative scenarios, whether you're working with text, images, or video creation, it can give you a powerful boost
 
 ## Installation Guide
 
@@ -49,10 +68,9 @@ git clone https://github.com/bytedance/comfyui-lumi-batcher.git
 
 After installation, in ComfyUI's UI panel, by default in the upper right corner, click the button to open the batch tool interface.
 
-## Beginner's Guide
+## 🤝 Get Help
 
-[ComfyUI Lumi Batcher Guide](https://bytedance.larkoffice.com/docx/LGLWdPIj8ooQyxxMAOQcWmR8nCh)
+**[New User Guide](https://bytedance.larkoffice.com/docx/LGLWdPIj8ooQyxxMAOQcWmR8nCh)**
 
-## Tool Architecture Diagram
-
-![Architecture Diagram](./static/architecture_en.png)
+**Contact Us**
+![Contact Image](https://github.com/user-attachments/assets/b24c1e8c-dba8-47ed-9ad4-ed197f57301b)
