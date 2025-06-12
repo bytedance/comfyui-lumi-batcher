@@ -125,7 +125,7 @@ export const UploadComponent: React.FC<PropsType> = ({
           accept
         ) {
           result.push(
-            ...tempArr.filter((i) => accept.includes(i.split('.').pop() || '')),
+            ...tempArr.filter((i) => accept.includes((i.split('.').pop() || '').toLowerCase())),
           );
         } else {
           result.push(...tempArr);
