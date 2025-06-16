@@ -2,9 +2,9 @@
 
 <div align="center">
 
-**By ByteDance intelligent creation team**
-
 # 🚀 ComfyUI Lumi Batcher
+
+**By Intelligent-Creation Team，ByteDance**
 
 <h4 align="center">
 <div align="center">
@@ -17,13 +17,19 @@
 
 </div>
 
-https://github.com/user-attachments/assets/7608db68-b7ca-411a-bdf1-b3d8f4a04410
+https://github.com/user-attachments/assets/9d4588b5-696f-4b5c-b01b-4b6def5056cf
+
+&nbsp;
 
 ---
+
+&nbsp;
 
 ## 📌 Overview
 
 ## **ComfyUI-Lumi-Batcher is a specialized batch processing extension for ComfyUI, designed to enhance AIGC creation efficiency.**
+
+&nbsp;
 
 ## 😭 Are You Facing These Creative Challenges?
 
@@ -36,7 +42,11 @@ Manually adjusting dimensions/weights/sampling steps through 20 revisions, still
 ❌ **Chaotic Asset Management**:  
 Generating 100 images with inconsistent naming – 10 minutes generating, 2 hours finding.
 
+&nbsp;
+
 ---
+
+&nbsp;
 
 ## ☀️ How ComfyUI-Lumi-Batcher Solves These
 
@@ -46,13 +56,23 @@ ComfyUI-Lumi-Batcher extends beyond tools like XYZ Plot in WebUI, becoming a pow
 - **Flexible Parameter Grouping**: Combine parameters creatively (e.g., "product shots + prompts" × different base models).
 - **Visual Result Management**: Browse outputs in multi-dimensional grids for easy previewing and batch exporting.
 
+&nbsp;
+
 ---
+
+&nbsp;
 
 ## 😁 Why Choose ComfyUI-Lumi-Batcher?
 
 - 🔥 **Easy Adoption**: Intuitive interface lowers learning curve – works seamlessly with your existing ComfyUI knowledge.
 - 🔥 **Efficiency Boost**: Replace repetitive manual inputs with single-parameter configuration and AI-assisted asset management.
 - 🔥 **Multimodal Support**: Accelerates text, image, and video creation workflows.
+
+&nbsp;
+
+---
+
+&nbsp;
 
 ## 🚀 Installation
 
@@ -68,9 +88,17 @@ git clone https://github.com/bytedance/comfyui-lumi-batcher.git
 
 After installation, in ComfyUI's UI panel, by default in the upper right corner, click the button to open the batch tool interface.
 
+&nbsp;
+
+---
+
+&nbsp;
+
 ## 🤝 Get Help
 
 **[Beginner's Guide](https://bytedance.larkoffice.com/docx/LGLWdPIj8ooQyxxMAOQcWmR8nCh)**
 
-**Contact Us**
-![Contact Image](https://github.com/user-attachments/assets/b24c1e8c-dba8-47ed-9ad4-ed197f57301b)
+<div style="margin-bottom:20px;font-weight: bold;">
+  Contact Us
+</div>
+<img alt="Contact Image" src="https://github.com/user-attachments/assets/b24c1e8c-dba8-47ed-9ad4-ed197f57301b" width="300" style="height:auto;" />
