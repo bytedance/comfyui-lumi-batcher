@@ -2,9 +2,9 @@
 
 <div align="center">
 
-**By ByteDance intelligent creation team**
-
 # 🚀 ComfyUI Lumi Batcher
+
+**By ByteDance intelligent creation team**
 
 <h4 align="center">
 <div align="center">
@@ -17,7 +17,7 @@
 
 </div>
 
-https://github.com/user-attachments/assets/7608db68-b7ca-411a-bdf1-b3d8f4a04410
+https://github.com/user-attachments/assets/9d4588b5-696f-4b5c-b01b-4b6def5056cf
 
 &nbsp;
 
