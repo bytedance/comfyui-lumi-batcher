@@ -44,6 +44,11 @@
 
   &-main {
     margin-top: 9px;
+    .arco-input-inner-wrapper:focus:before,
+    .arco-input-inner-wrapper-focus:before {
+      -webkit-mask-composite: destination-out !important; /* 修改mask模式 */
+      mask-composite: exclude !important; /* 标准属性 */
+    }
   }
 
   &-footer {

@@ -14,6 +14,13 @@
 
 .contentSelector {
   width: 209px;
+
+  :global {
+    .arco-select-view:before {
+      -webkit-mask-composite: destination-out !important; /* 修改mask模式 */
+      mask-composite: exclude !important; /* 标准属性 */
+    }
+  }
 }
 
 .popoverBtn {
