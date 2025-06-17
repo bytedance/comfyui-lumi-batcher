@@ -1,6 +1,6 @@
 aiohttp>=3.11.8
 Pillow>=9.0.0
-openpyxl>=3.0.0
-pandas==2.2.0
-aiofiles==23.2.1
-filetype==1.2.0
+openpyxl>=2.6.0
+pandas>=0.25.0
+aiofiles>=0.8.0
+filetype>=1.0.0
