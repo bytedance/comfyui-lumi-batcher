@@ -27,7 +27,7 @@ export const CustomFilters = (props: {
     <div
       className={styles.container}
       style={{
-        width: languageUtils.getLanguage() === LanguagesEnum.ZH ? 124 : 162,
+        width: languageUtils.getLanguage() === LanguagesEnum.ZH ? 124 : 175,
       }}
     >
       <Checkbox.Group
