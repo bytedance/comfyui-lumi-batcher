@@ -76,13 +76,13 @@ export const CreatorHeader = () => {
               className="batch-tools-modal-button-close"
               type="default"
               size="small"
-              icon={<IconArrowLeft style={{ fontSize: 16 }} />}
               onClick={() => {
                 if (paramsConfig.length === 0) {
                   handleBack();
                 }
               }}
             >
+              <IconArrowLeft style={{ fontSize: 16, marginRight: 8 }} />
               {languageUtils.getText(TranslateKeys.EXIT)}
             </Button>
           </Popconfirm>

@@ -65,7 +65,6 @@ export const CreateTask = () => {
   const BackContent = useMemo(
     () => (
       <Space className="batch-tools-creator-back-content">
-        <IconLeft />
         <Popconfirm
           focusLock
           title={I18n.t(
@@ -86,6 +85,7 @@ export const CreateTask = () => {
               }
             }}
           >
+            <IconLeft style={{ fontSize: 16 }} />
             {languageUtils.getText(TranslateKeys.EXIT)}
           </div>
         </Popconfirm>

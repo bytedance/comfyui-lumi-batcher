@@ -26,11 +26,11 @@ export const TranslationsDataDefault: TranslationsType = {
     'zh-CN': '参数1',
   },
   generating: {
-    'en-US': 'Generating',
+    'en-US': 'Running',
     'zh-CN': '生成中',
   },
   in_line: {
-    'en-US': 'In queue',
+    'en-US': 'Waiting',
     'zh-CN': '排队中',
   },
   success: {
@@ -42,7 +42,7 @@ export const TranslationsDataDefault: TranslationsType = {
     'zh-CN': '失败',
   },
   partial_success: {
-    'en-US': 'Partial success',
+    'en-US': 'Partially succeed',
     'zh-CN': '部分成功',
   },
   cancelled: {
@@ -293,5 +293,63 @@ export const TranslationsDataDefault: TranslationsType = {
   parameter_copied_successfully: {
     'en-US': 'Parameter copied successfully',
     'zh-CN': '参数复制成功',
+  },
+  please_select_or_fuzzy_search__select_at_least_2: {
+    'en-US': 'Please select or fuzzy search, select at least 2',
+    'zh-CN': '请选择或模糊搜索，至少选择2个',
+  },
+  'random_seed_{placeholder1}': {
+    'en-US': 'Random seed {placeholder1}',
+    'zh-CN': '随机种子{placeholder1}',
+  },
+  please_enter_the_number_you_want_to_generate_randomly_: {
+    'en-US': 'Please enter the number you want to generate randomly',
+    'zh-CN': '请输入你想随机生成的个数',
+  },
+  random_generation: {
+    'en-US': 'Random generation',
+    'zh-CN': '随机生成',
+  },
+  'combine_parameters_(bundled)_select_at_least_two_parameters': {
+    'en-US': 'Combine parameters (bundled) - select at least two parameters',
+    'zh-CN': '组合参数（捆绑）至少选择两个参数',
+  },
+  save: {
+    'en-US': 'Save',
+    'zh-CN': '保存',
+  },
+  newbie_help: {
+    'en-US': "Beginner's Guide",
+    'zh-CN': '新手帮助',
+  },
+  guide_image_alt: {
+    'en-US': 'Guide image',
+    'zh-CN': '引导图片',
+  },
+  export_the_file_template__fill_in_the_information__and_upload_it_to_complete_the:
+    {
+      'en-US':
+        'Export the file template, fill in the information, then upload to complete parsing~',
+      'zh-CN': '导出文件模版，填写信息后，上传即可完成解析～',
+    },
+  'download_the_{filetype}_template': {
+    'en-US': 'Download {fileType} template',
+    'zh-CN': '下载{fileType}模板',
+  },
+  row_data: {
+    'en-US': 'Row data',
+    'zh-CN': '行数据',
+  },
+  'successful_{success};_failed__{placeholder3}': {
+    'en-US': 'Successful {success}; Failed {placeholder3}',
+    'zh-CN': '已成功：{success}；已失败：{placeholder3}',
+  },
+  reason_for_failure_: {
+    'en-US': 'Reason for failure: ',
+    'zh-CN': '失败原因：',
+  },
+  'the_specific_reasons_are__{placeholder1}': {
+    'en-US': 'The specific reasons are: {placeholder1}',
+    'zh-CN': '。具体原因有：{placeholder1}',
   },
 };
