@@ -14,6 +14,8 @@ import _ from 'lodash';
 import { useShallow } from 'zustand/react/shallow';
 
 import valuesEmptyGuide from '../../../../static/img/values-empty-guide.png';
+import valuesEmptyGuideEn from '../../../../static/img/values-empty-guide-en.png';
+
 import { InputParamsValue } from '../InputParamsValue';
 import { ParamsValuePreview } from '../ParamsValuePreview';
 
@@ -26,7 +28,7 @@ import {
 } from '@src/create-task/utils/get-node-info';
 import { I18n } from '@common/i18n';
 import { uuid } from '@common/utils/uuid';
-import { languageUtils, TranslateKeys } from '@common/language';
+import { LanguagesEnum, languageUtils, TranslateKeys } from '@common/language';
 import { formatSerialNumber } from '@common/utils/text';
 import { BrandName } from '@common/constant/batch';
 import { createWithPrefix } from '@common/utils/create-with-prefix';
@@ -253,7 +255,17 @@ export const ParamsValueList = () => {
 
   const TableContent = useMemo(() => {
     if (!showGuide) {
-      return <img className="img" src={valuesEmptyGuide} alt="" />;
+      return (
+        <img
+          className="img"
+          src={
+            languageUtils.getLanguage() === LanguagesEnum.EN
+              ? valuesEmptyGuideEn
+              : valuesEmptyGuide
+          }
+          alt=""
+        />
+      );
     } else {
       return (
         <Table

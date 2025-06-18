@@ -139,7 +139,7 @@ export const languageConfigMap: Record<
   },
   [TranslateKeys.SAVE_PARAM_CONFIG_CONTINUE]: {
     [LanguagesEnum.ZH]: '完成后继续',
-    [LanguagesEnum.EN]: 'Complete and add a new one',
+    [LanguagesEnum.EN]: 'Add More Parameters',
   },
   [TranslateKeys.SUBMIT_CREATE_BATCH_TASK]: {
     [LanguagesEnum.ZH]: '提交任务',

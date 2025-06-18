@@ -12,7 +12,7 @@ export const registerBatchInTheRoom = () => {
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
-      .register('/api/batch-tools/sw.js')
+      .register('/api/comfyui-lumi-batcher/sw.js')
       .then(function (registration) {
         console.log(
           'Service Worker registered with scope:',

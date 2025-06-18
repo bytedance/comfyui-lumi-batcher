@@ -16,6 +16,7 @@ import Flex from '@common/components/Flex';
 import ResultDownload from '@src/result-download';
 import AutoResizeInput from '@common/components/AutoResizeInput';
 import { AdvancedFilter } from '@common/components/PreviewTable/components/AdvancedFilter';
+import { I18n } from '@common/i18n';
 
 export default function Header() {
   const { setState } = useResultViewStore;
@@ -92,13 +93,13 @@ export default function Header() {
           shouldChangeConfirm={customColumnsChanged || customRowsChanged}
         />
         <AdvancedFilter
-          label="自定义行"
+          label={I18n.t('custom_rows', {}, '自定义行')}
           list={customRows}
           onFilter={handleRowFilter}
           originList={originRows}
         />
         <AdvancedFilter
-          label="自定义列"
+          label={I18n.t('custom_columns', {}, '自定义列')}
           list={customColumns}
           onFilter={handleColumnFilter}
           originList={originColumns}

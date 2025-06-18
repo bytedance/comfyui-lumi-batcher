@@ -9,6 +9,7 @@ import {
   PreviewTableRowDataType,
   PreviewTableDataType,
 } from '@common/components/PreviewTable/type/table';
+import { I18n } from '@common/i18n';
 
 export const processColumns = (
   columns: ColumnProps<PreviewTableRowDataType>[],
@@ -69,7 +70,7 @@ export const processRows = (
   return [
     {
       id: 'row_data',
-      label: '行数据',
+      label: I18n.t('row_data', {}, '行数据'),
       selected: true,
       expanded: true,
       options: data.map((item) => {

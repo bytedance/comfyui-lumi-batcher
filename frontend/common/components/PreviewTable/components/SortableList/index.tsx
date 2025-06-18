@@ -7,6 +7,7 @@ import _ from 'lodash';
 import { SortableList } from './SortList';
 import { type SortableCompProps } from './type';
 import { useEffect, useRef } from 'react';
+import { safeRemoveChild } from './utils';
 
 export const SortableComp: React.FC<SortableCompProps> = ({
   list,
@@ -24,15 +25,25 @@ export const SortableComp: React.FC<SortableCompProps> = ({
   }) => {
     const items = _.cloneDeep(list);
     onChange(arrayMove(items, oldIndex, newIndex));
-    // 延迟清理
-    cleanupRef.current = setTimeout(() => {
+    try {
+      // 立即清理可能存在的残留DOM
       const clones = document.querySelectorAll('.ReactSortableHelper');
       clones.forEach((clone) => {
-        if (clone.parentNode) {
-          clone.parentNode.removeChild(clone);
-        }
+        safeRemoveChild(clone as HTMLElement);
       });
-    }, 100);
+
+      // 延迟二次清理确保完全清除
+      cleanupRef.current = setTimeout(() => {
+        const remainingClones = document.querySelectorAll(
+          '.ReactSortableHelper',
+        );
+        remainingClones.forEach((clone) => {
+          safeRemoveChild(clone as HTMLElement);
+        });
+      }, 200);
+    } catch (error) {
+      console.error('Error during cleanup:', error);
+    }
   };
 
   useEffect(() => {

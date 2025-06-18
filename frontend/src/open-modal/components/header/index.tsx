@@ -5,7 +5,7 @@ import { Space } from '@arco-design/web-react';
 import './index.scss';
 import Flex from '@common/components/Flex';
 import { I18n } from '@common/i18n';
-// import { LanguageChoose } from '../language-choose';
+import { LanguageChoose } from '../language-choose';
 import ButtonClose from '../button-close';
 
 export default function ModalHeader() {
@@ -33,7 +33,7 @@ export default function ModalHeader() {
       </Space>
 
       <Space size={24}>
-        {/* <LanguageChoose /> */}
+        <LanguageChoose />
         <ButtonClose />
       </Space>
     </Flex>

@@ -116,7 +116,7 @@ class FileProcessor:
     def __init__(self):
         self.isWindows = os.name == "nt"
         self.invalid_chars = re.compile(r'[<>:"/\\|?*\x00-\x1F]')  # 包含控制字符
-        self.max_length = 250  # 标准文件系统最大长度,预留文件后缀
+        self.max_length = 240
 
     def sanitize_filename(self, dir, filename):
         """最终版文件名处理方法"""

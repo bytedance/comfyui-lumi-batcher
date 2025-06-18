@@ -14,13 +14,12 @@ import {
   LanguagesEnum,
   languageUtils,
 } from '@common/language';
-import { I18n } from '@common/i18n';
 import { useContainerStore } from '@common/state/container';
 
 const list = [
   {
     key: LanguagesEnum.ZH,
-    label: I18n.t('simplified_chinese', {}, '简体中文'),
+    label: '简体中文',
     icon: LanguageZhIcon,
   },
   {
