@@ -3,7 +3,7 @@
 import { languageConfigMap, LanguagesEnum } from './config';
 import { type TranslateKeys } from './key';
 
-export const languageStorageKey = 'batch-tools-language';
+export const languageStorageKey = 'comfyui-lumi-batcher-language';
 
 export class LanguageUtils {
   language: LanguagesEnum;

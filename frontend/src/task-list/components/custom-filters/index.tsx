@@ -6,6 +6,7 @@ import { Button, Checkbox, Space } from '@arco-design/web-react';
 
 import styles from './index.module.scss';
 import { I18n } from '@common/i18n';
+import { LanguagesEnum, languageUtils } from '@common/language';
 
 export type FilterValue = Array<any>;
 
@@ -23,7 +24,12 @@ export const CustomFilters = (props: {
   const { filterList, value, onOk, onReset } = props;
   const [currentValue, setCurrentValue] = useState<any>(() => value);
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      style={{
+        width: languageUtils.getLanguage() === LanguagesEnum.ZH ? 124 : 162,
+      }}
+    >
       <Checkbox.Group
         defaultValue={value}
         className={styles.checkbox}

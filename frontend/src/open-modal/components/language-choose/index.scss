@@ -3,6 +3,10 @@
   align-items: center;
   background-color: transparent !important;
   padding: 0;
+
+  &:hover {
+    color: #fff !important;
+  }
 }
 
 .language-trigger-button-active {
