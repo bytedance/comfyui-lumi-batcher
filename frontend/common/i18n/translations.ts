@@ -2,7 +2,7 @@ import { TranslationsType } from './type';
 
 export const TranslationsDataDefault: TranslationsType = {
   simplified_chinese: {
-    'en-US': 'Simplified Chinese',
+    'en-US': '简体中文',
     'zh-CN': '简体中文',
   },
   text: {
