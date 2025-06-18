@@ -375,4 +375,12 @@ export const TranslationsDataDefault: TranslationsType = {
       'Current workflow cannot be executed. Please ensure workflow runs successfully before batch validation.',
     'zh-CN': '当前工作流跑不通，请跑通工作流后再进行批量验证',
   },
+  previous_cell: {
+    'en-US': 'Previous cell',
+    'zh-CN': '上一个单元格',
+  },
+  next_cell: {
+    'en-US': 'Next cell',
+    'zh-CN': '后一个单元格',
+  },
 };
