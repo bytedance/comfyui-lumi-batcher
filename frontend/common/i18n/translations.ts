@@ -360,4 +360,20 @@ export const TranslationsDataDefault: TranslationsType = {
     'en-US': 'Cancel task failed',
     'zh-CN': '取消任务失败',
   },
+  it_is_detected_that_there_is_no_output_node_in_the_current_workflow__please_add_one:
+    {
+      'en-US':
+        'No output node detected in current workflow. Please add one before batch validation!',
+      'zh-CN': '检测到当前工作流没有输出节点，请添加相关节点后再进行批量验证!',
+    },
+  please_check_the_output_node_specification__: {
+    'en-US':
+      'Please check output node specifications. The output node must be a "LumiBatchOutput" node.',
+    'zh-CN': '输出节点规范请查看,',
+  },
+  current_workflow_cannot_be_executed: {
+    'en-US':
+      'Current workflow cannot be executed. Please ensure workflow runs successfully before batch validation.',
+    'zh-CN': '当前工作流跑不通，请跑通工作流后再进行批量验证',
+  },
 };

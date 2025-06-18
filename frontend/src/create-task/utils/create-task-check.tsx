@@ -43,13 +43,13 @@ export const createTaskCheck = async (): Promise<boolean> => {
             />
             <div style={{ display: 'inline-block', textAlign: 'left' }}>
               {I18n.t(
-                'it_is_detected_that_there_is_no_output_node_in_the_current_workflow__please_add_',
+                'it_is_detected_that_there_is_no_output_node_in_the_current_workflow__please_add_one',
                 {},
                 '检测到当前工作流没有输出节点，请添加相关节点后再进行批量验证!',
               )}
               <br />
               {I18n.t(
-                'please_check_the_output_node_specification_',
+                'please_check_the_output_node_specification__',
                 {},
                 '输出节点规范请查看,',
               )}
@@ -68,7 +68,7 @@ export const createTaskCheck = async (): Promise<boolean> => {
     } catch (error) {
       Message.error(
         I18n.t(
-          'it_is_detected_that_the_current_workflow_cannot_be_run_through__please_run_throu',
+          'current_workflow_cannot_be_executed',
           {},
           '检测到当前工作流无法跑通，请跑通工作流后再进行批量验证',
         ),
