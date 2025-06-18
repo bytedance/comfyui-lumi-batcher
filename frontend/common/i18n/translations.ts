@@ -42,7 +42,7 @@ export const TranslationsDataDefault: TranslationsType = {
     'zh-CN': '失败',
   },
   partial_success: {
-    'en-US': 'Partially succeed',
+    'en-US': 'Partially Succeed',
     'zh-CN': '部分成功',
   },
   cancelled: {
@@ -351,5 +351,13 @@ export const TranslationsDataDefault: TranslationsType = {
   'the_specific_reasons_are__{placeholder1}': {
     'en-US': 'The specific reasons are: {placeholder1}',
     'zh-CN': '。具体原因有：{placeholder1}',
+  },
+  cancel_task_successfully: {
+    'en-US': 'Cancel task successfully',
+    'zh-CN': '取消任务成功',
+  },
+  cancel_task_failed: {
+    'en-US': 'Cancel task failed',
+    'zh-CN': '取消任务失败',
   },
 };
