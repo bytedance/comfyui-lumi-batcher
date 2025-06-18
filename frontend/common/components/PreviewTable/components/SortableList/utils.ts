@@ -24,3 +24,13 @@ export function arrayMove<ValueType>(
 
   return newArray;
 }
+
+// 安全移除DOM节点的方法
+export function safeRemoveChild(node: HTMLElement) {
+  if (node && node.parentNode && node.parentNode.contains(node)) {
+    node.parentNode.removeChild(node);
+  } else if (node && node.remove) {
+    // 现代浏览器支持直接remove方法
+    node.remove();
+  }
+}

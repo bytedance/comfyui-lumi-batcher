@@ -383,4 +383,10 @@ export const TranslationsDataDefault: TranslationsType = {
     'en-US': 'Next cell',
     'zh-CN': '后一个单元格',
   },
+  this_task_is_not_compatible_with_the_current_workflow_and_cannot_perform_a_copy_:
+    {
+      'en-US':
+        'This task is not compatible with the current workflow and cannot perform a copy operation',
+      'zh-CN': '当前任务与当前工作流不兼容，无法进行复制操作',
+    },
 };
