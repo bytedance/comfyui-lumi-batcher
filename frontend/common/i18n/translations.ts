@@ -290,4 +290,8 @@ export const TranslationsDataDefault: TranslationsType = {
     'en-US': 'Custom columns',
     'zh-CN': '自定义列',
   },
+  parameter_copied_successfully: {
+    'en-US': 'Parameter copied successfully',
+    'zh-CN': '参数复制成功',
+  },
 };

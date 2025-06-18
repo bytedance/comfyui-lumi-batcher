@@ -5,23 +5,14 @@ import { LanguagesEnum, languageUtils } from '@common/language';
 import { TranslationsType } from './type';
 import { TranslationsDataDefault } from './translations';
 
-const isDev = false;
-let translationsData: TranslationsType = isDev ? {} : TranslationsDataDefault;
 let loseTranslationData: TranslationsType = {};
 export class I18n {
   static t(key: string, params: any, defaultText: string) {
-    // 记录新键值（如果不存在）
-    if (isDev && !translationsData[key]) {
-      translationsData[key] = {
-        [LanguagesEnum.EN]: defaultText,
-        [LanguagesEnum.ZH]: defaultText,
-      };
-    }
-
     const language = languageUtils.getLanguage();
-    const translationConfig = translationsData[key];
+    const translationConfig = TranslationsDataDefault[key];
     let result = defaultText;
 
+    // 记录新键值（如果不存在）
     if (!translationConfig) {
       loseTranslationData[key] = {
         [LanguagesEnum.EN]: defaultText,
@@ -41,7 +32,7 @@ export class I18n {
   }
 
   static getTranslationsData() {
-    return JSON.stringify(translationsData);
+    return JSON.stringify(TranslationsDataDefault);
   }
 
   static getLoseTranslationData() {
