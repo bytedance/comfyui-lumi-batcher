@@ -389,4 +389,8 @@ export const TranslationsDataDefault: TranslationsType = {
         'This task is not compatible with the current workflow and cannot perform a copy operation',
       'zh-CN': '当前任务与当前工作流不兼容，无法进行复制操作',
     },
+  help_documentation: {
+    'en-US': 'Help documentation',
+    'zh-CN': '帮助文档',
+  },
 };
