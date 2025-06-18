@@ -16,7 +16,7 @@ export class LanguageUtils {
     return (
       (window.localStorage.getItem(
         languageStorageKey,
-      ) as LanguagesEnum | null) || LanguagesEnum.ZH
+      ) as LanguagesEnum | null) || LanguagesEnum.EN
     );
   }
 
