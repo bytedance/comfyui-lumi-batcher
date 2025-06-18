@@ -182,17 +182,16 @@ export const TranslationsDataDefault: TranslationsType = {
   },
   exit_operation_means_that_your_batch_tasks_and_parameters_will_not_be_preserved_:
     {
-      'en-US':
-        'Exit operation means that your batch tasks and parameters will not be preserved. Are you sure you want to exit?',
+      'en-US': 'Parameter settings will not be saved. Exit now? ',
       'zh-CN':
         '退出操作意味着你所进行的批量任务和参数将不会被保留。你确定要退出吗',
     },
   give_up: {
-    'en-US': 'Give up',
+    'en-US': 'Cancel',
     'zh-CN': '放弃',
   },
   ok_to_quit: {
-    'en-US': 'OK to quit',
+    'en-US': 'Exit',
     'zh-CN': '确定退出',
   },
   new_batch_task: {
@@ -311,7 +310,7 @@ export const TranslationsDataDefault: TranslationsType = {
     'zh-CN': '随机生成',
   },
   'combine_parameters_(bundled)_select_at_least_two_parameters': {
-    'en-US': 'Combine parameters (bundled) - select at least two parameters',
+    'en-US': 'Add at least two parameters for combination',
     'zh-CN': '组合参数（捆绑）至少选择两个参数',
   },
   save: {
