@@ -46,4 +46,5 @@ async def batch_delete_files(
             return await delete_file_async(file_path, callback)
 
     tasks = [limited_delete(path) for path in file_paths]
-    return await asyncio.gather(*tasks)
+    results = await asyncio.gather(*tasks)
+    return results

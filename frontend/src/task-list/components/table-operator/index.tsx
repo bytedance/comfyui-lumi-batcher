@@ -21,7 +21,13 @@ import { languageUtils, TranslateKeys } from '@common/language';
 import ResultDownload from '@src/result-download';
 import { IconDelete } from '@arco-design/web-react/icon';
 
-export default function TableOperator({ task }: { task: TaskInfo }) {
+export default function TableOperator({
+  task,
+  refresh,
+}: {
+  task: TaskInfo;
+  refresh: Function;
+}) {
   const [uiConfig] = useBatchToolsStore(useShallow((s) => [s.uiConfig]));
   const statusType = task.status;
   const handler = useHandler(task);
@@ -69,7 +75,10 @@ export default function TableOperator({ task }: { task: TaskInfo }) {
       {showCancelOperation ? (
         <Popconfirm
           title={I18n.t('confirm_to_cancel_the_task?', {}, '确认取消任务吗？')}
-          onOk={handler.cancel}
+          onOk={async () => {
+            await handler.cancel();
+            refresh();
+          }}
         >
           <IconButtonTooltip
             icon={<IconCancel />}
@@ -100,7 +109,10 @@ export default function TableOperator({ task }: { task: TaskInfo }) {
       ) : null}
       <Popconfirm
         title={I18n.t('confirm_to_delete_the_task', {}, '确认删除任务吗？')}
-        onOk={handler.delete}
+        onOk={async () => {
+          await handler.delete();
+          refresh();
+        }}
       >
         <IconButtonTooltip
           icon={<IconDelete />}
