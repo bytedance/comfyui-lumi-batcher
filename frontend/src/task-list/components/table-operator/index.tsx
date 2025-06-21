@@ -19,6 +19,7 @@ import IconButtonTooltip from '@common/components/IconButtonTooltip';
 import Flex from '@common/components/Flex';
 import { languageUtils, TranslateKeys } from '@common/language';
 import ResultDownload from '@src/result-download';
+import { IconDelete } from '@arco-design/web-react/icon';
 
 export default function TableOperator({ task }: { task: TaskInfo }) {
   const [uiConfig] = useBatchToolsStore(useShallow((s) => [s.uiConfig]));
@@ -97,6 +98,15 @@ export default function TableOperator({ task }: { task: TaskInfo }) {
           onClick={handler.copy}
         />
       ) : null}
+      <Popconfirm
+        title={I18n.t('confirm_to_delete_the_task', {}, '确认删除任务吗？')}
+        onOk={handler.delete}
+      >
+        <IconButtonTooltip
+          icon={<IconDelete />}
+          tooltip={I18n.t('delete_task', {}, '删除任务')}
+        />
+      </Popconfirm>
     </Flex>
   );
 }

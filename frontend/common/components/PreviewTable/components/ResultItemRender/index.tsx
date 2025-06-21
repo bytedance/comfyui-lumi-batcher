@@ -9,14 +9,37 @@ import { LoadImg } from '../LoadImg';
 import { CustomChange } from '../modal-preview/custom-change';
 import styles from './index.module.scss';
 import { ResultItem, ResultOutputTypeEnum } from '@api/result';
+import { I18n } from '@common/i18n';
+import { IconDownload } from '@arco-design/web-react/icon';
+import { batchDownloadByFetchUrl } from '@api/download';
 
 export const ResultItemRender: React.FC<{
   objectFit?: 'contain' | 'cover';
   renderMode?: 'full' | 'clean';
   result: ResultItem;
   onClose: () => void;
-}> = ({ renderMode = 'full', objectFit, result, onClose }) => {
+  getPopupContainer?: () => HTMLElement;
+  extra?: React.ReactNode;
+}> = ({
+  renderMode = 'full',
+  objectFit,
+  result,
+  extra = null,
+  onClose,
+  getPopupContainer,
+}) => {
   const { url, type } = result;
+
+  const searchParams = new URLSearchParams(url.split('?')[1]);
+  const fileName = searchParams.get('file_name');
+
+  const handleDownloadFile = () => {
+    if (fileName) {
+      batchDownloadByFetchUrl(url, fileName);
+    } else {
+      console.log('fileName is empty');
+    }
+  };
 
   if (type === ResultOutputTypeEnum.Image) {
     return renderMode === 'full' ? (
@@ -29,7 +52,22 @@ export const ResultItemRender: React.FC<{
           objectFit,
           background: 'var(--color-fill-2)',
         }}
-        extra={<CustomChange />}
+        extra={
+          <>
+            <CustomChange />
+            {extra ? extra : null}
+          </>
+        }
+        getPopupContainer={
+          getPopupContainer ? getPopupContainer : () => document.body
+        }
+        actions={[
+          {
+            key: 'download',
+            name: I18n.t('download', {}, '下载'),
+            content: <IconDownload onClick={handleDownloadFile} />,
+          },
+        ]}
       />
     ) : (
       <div

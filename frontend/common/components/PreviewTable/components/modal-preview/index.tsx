@@ -145,17 +145,17 @@ function GroupResultPreview({ onClose }: { onClose: () => void }) {
       <div className={styles.layout}>
         <div className={styles.resource}>
           <ResultItemRender
-            renderMode={
-              preview![showIndex]?.type === ResultOutputTypeEnum.Image
-                ? 'clean'
-                : 'full'
-            }
+            // renderMode={
+            //   preview![showIndex]?.type === ResultOutputTypeEnum.Image
+            //     ? 'clean'
+            //     : 'full'
+            // }
             objectFit="contain"
             result={preview![showIndex]}
             onClose={onClose}
+            extra={RenderExtra}
           />
         </div>
-        {RenderExtra}
       </div>
       <CloseIcon onClose={onClose} />
     </div>

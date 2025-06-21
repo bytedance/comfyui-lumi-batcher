@@ -76,6 +76,18 @@ class BatchTaskDao:
                 print(f"An error occurred on insert task: {e.args[0]}")
                 return None
 
+    def delete(self, id: str):
+        with sqlite3.connect(self.db_file) as conn:
+            try:
+                cursor = conn.cursor()
+                sql = read_sql_file(os.path.join(self.sql_dir, "delete.sql"))
+                cursor.execute(sql, (id,))
+                conn.commit()
+                return True
+            except sqlite3.Error as e:
+                print(f"An error occurred on delete task: {e.args[0]}")
+                return False
+
     def get_task_by_id(self, id):
         with sqlite3.connect(self.db_file) as conn:
             try:

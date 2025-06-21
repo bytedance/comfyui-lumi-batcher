@@ -18,6 +18,22 @@ export const batchDownloadZipByGetUrl = (url: string, file_name = 'result') => {
   document.body.removeChild(a);
 };
 
+export const batchDownloadByFetchUrl = (url: string, file_name = 'result') => {
+  fetch(url, {
+    method: 'GET',
+    credentials: 'include',
+  })
+    .then((response) => response.blob())
+    .then((blob) => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${file_name}`;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    });
+};
+
 export const commonDownloadFileByFetchUrl = async (
   taskId: string,
   isLite = '',

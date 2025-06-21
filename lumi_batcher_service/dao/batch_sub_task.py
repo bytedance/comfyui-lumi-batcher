@@ -122,6 +122,18 @@ class BatchSubTaskDao:
         print("Failed to insert sub task after multiple retries")
         return False
 
+    def delete(self, batch_task_id: str):
+        with sqlite3.connect(self.db_file) as conn:
+            try:
+                cursor = conn.cursor()
+                sql = read_sql_file(os.path.join(self.sql_dir, "delete.sql"))
+                cursor.execute(sql, (batch_task_id,))
+                conn.commit()
+                return True
+            except sqlite3.Error as e:
+                print(f"An error occurred on delete sub task: {e.args[0]}")
+                return False
+
     def get_result(self, batch_task_id: str):
         with sqlite3.connect(self.db_file) as conn:
             try:

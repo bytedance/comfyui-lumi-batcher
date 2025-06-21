@@ -42,6 +42,7 @@ from lumi_batcher_service.controller.task.update_prompt import (
 )
 from lumi_batcher_service.controller.output.nodes import process_output_nodes
 from lumi_batcher_service.controller.output.process import process_output
+from lumi_batcher_service.common.delete_file import batch_delete_files
 
 
 class BatchToolsHandler:
@@ -561,6 +562,67 @@ class BatchToolsHandler:
             except Exception as e:
                 return web.json_response(getErrorResponse(e, "取消任务失败"))
 
+        @server.PromptServer.instance.routes.post(getApiPath("/batch-task/delete"))
+        async def deleteTask(request):
+            try:
+                resp_code = 200
+                json_data = await request.json()
+                # 解析请求参数
+                batch_task_id = json_data["batch_task_id"]
+
+                response = {"code": resp_code, "message": "删除任务成功", "data": True}
+
+                result = self.batchSubTaskDao.get_result(batch_task_id)
+
+                results = process_output(result)
+
+                need_delete_paths: list[str] = []
+
+                for r in results:
+                    l = r.get("list", [])
+                    for i in l:
+                        t = i.get("type", "")
+                        v = i.get("value", "")
+                        if t == "image" or t == "video":
+                            file_path = f"output/{v}"
+                            # 检查文件是否存在
+                        if not os.path.exists(file_path):
+                            new_file_path = get_file_absolute_path(file_path)
+
+                            if os.path.exists(new_file_path):
+                                file_path = new_file_path
+
+                        need_delete_paths.append(file_path)
+
+                resourcesMap = self.resourceController.get_resources_map(batch_task_id)
+
+                for r in resourcesMap.values():
+                    need_delete_paths.append(
+                        self.workSpaceManager.getFilePath(self.resources_path, r)
+                    )
+
+                need_delete_paths = list(set(need_delete_paths))
+
+                # 清除批量任务产生的结果、依赖资源
+                await batch_delete_files(need_delete_paths, concurrency=10)
+                # 清除批量任务结果压缩包
+                self.workSpaceManager.delete_file(
+                    os.path.join(
+                        self.workSpaceManager.getDirectory(self.download_path),
+                        batch_task_id + ".tar",
+                    )
+                )
+                # 清除批量任务
+                self.batchTaskDao.delete(batch_task_id)
+                # 清除子任务
+                self.batchSubTaskDao.delete(batch_task_id)
+                # 清除批量任务涉及资源
+                self.resourcesDao.delete(batch_task_id)
+
+                return web.json_response(response)
+            except Exception as e:
+                return web.json_response(getErrorResponse(e, "删除任务失败"))
+
         @server.PromptServer.instance.routes.post(getApiPath("/resolve-file"))
         async def resolve_file(request):
             try:
@@ -642,7 +704,7 @@ class BatchToolsHandler:
                 body=file_data,
                 headers={
                     "Content-Type": f"{mime_type}; charset=utf-8",
-                    "Cache-Control": "public, max-age=2592000",
+                    # "Cache-Control": "public, max-age=2592000",
                 },
             )
 

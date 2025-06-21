@@ -6,7 +6,7 @@ import { Message } from '@arco-design/web-react';
 
 import { I18n } from '@common/i18n';
 import { ParamsConfigType } from '@common/type/batch-task';
-import { cancelTask, TaskInfo } from '@api/batch-task';
+import { cancelTask, deleteTask, TaskInfo } from '@api/batch-task';
 import { useContainerStore } from '@common/state/container';
 import { useResultViewStore } from '@src/result-view/store';
 import { useCreatorStore } from '@src/create-task/store';
@@ -37,6 +37,23 @@ export default function useHandler(task: TaskInfo) {
           );
         } catch (error) {
           Message.error(I18n.t('cancel_task_failed', {}, '取消任务失败'));
+        }
+      },
+      /**
+       * @description 删除任务
+       */
+      async delete() {
+        try {
+          // 先取消任务
+          await cancelTask(id);
+          // 是否补充埋点
+          // 再执行删除
+          await deleteTask(id);
+          Message.success(
+            I18n.t('delete_task_successfully', {}, '删除任务成功'),
+          );
+        } catch (error) {
+          Message.error(I18n.t('delete_task_failed', {}, '删除任务失败'));
         }
       },
       restart() {
