@@ -81,6 +81,7 @@ export default function TableOperator({
           }}
         >
           <IconButtonTooltip
+            loading={handler.cancelLoading}
             icon={<IconCancel />}
             tooltip={languageUtils.getText(TranslateKeys.CANCEL_TASK)}
           />
@@ -116,6 +117,7 @@ export default function TableOperator({
       >
         <IconButtonTooltip
           icon={<IconDelete />}
+          loading={handler.deleteLoading}
           tooltip={I18n.t('delete_task', {}, '删除任务')}
         />
       </Popconfirm>

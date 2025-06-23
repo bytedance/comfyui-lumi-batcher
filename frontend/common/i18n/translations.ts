@@ -394,8 +394,9 @@ export const TranslationsDataDefault: TranslationsType = {
     'zh-CN': '帮助文档',
   },
   confirm_to_delete_the_task: {
-    'en-US': 'Confirm to delete the task?',
-    'zh-CN': '确认删除任务吗？',
+    'en-US':
+      'Deleting the task will also delete the task results. Confirm deletion?',
+    'zh-CN': '删除任务同时会删除任务结果，确定删除吗？',
   },
   delete_task: {
     'en-US': 'Delete task',

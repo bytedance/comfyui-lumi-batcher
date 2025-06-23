@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import { ColumnTypeEnum } from '@common/constant/creator';
 import { I18n } from '@common/i18n';
+import { getExpressionValue } from '@common/utils/expression';
 import { ValueTypeEnum } from '@common/utils/value-type';
 import { ValueBaseType, NodeInfo } from '@src/create-task/utils/get-node-info';
 
@@ -51,10 +52,17 @@ export const dataTransfer = (
   type: ValueTypeEnum = ValueTypeEnum.STRING,
 ): ValueBaseType[] => {
   if (value instanceof Array) {
-    return value
+    const temp = value
       .filter((item) => item !== '')
-      .map((item) => dataTransferSingle(item, type));
+      .map((item) => getExpressionValue(String(item)))
+      .flat(1);
+    return temp.map((item) => dataTransferSingle(item, type));
   } else {
+    if (value) {
+      return getExpressionValue(String(value))
+        .map((item) => dataTransferSingle(item, type))
+        .flat(1);
+    }
     return [dataTransferSingle(value, type)];
   }
 };

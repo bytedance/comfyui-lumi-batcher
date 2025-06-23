@@ -1,6 +1,6 @@
 // Copyright (c) 2025 Bytedance Ltd. and/or its affiliates
 // SPDX-License-Identifier: GPL-3.0-or-later
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 import { Message } from '@arco-design/web-react';
 
@@ -23,6 +23,8 @@ export default function useHandler(task: TaskInfo) {
   const { changeType } = useContainerStore();
   const { setTask, openDrawer } = useResultViewStore();
   const { copy: copyTask } = useCreatorStore();
+  const [deleteLoading, setDeleteLoading] = useState(false);
+  const [cancelLoading, setCancelLoading] = useState(false);
 
   return useMemo(() => {
     const { id, name } = task;
@@ -30,6 +32,7 @@ export default function useHandler(task: TaskInfo) {
     return {
       async cancel() {
         try {
+          setCancelLoading(true);
           sendBatchToolsCancelTask();
           await cancelTask(id);
           Message.success(
@@ -37,6 +40,8 @@ export default function useHandler(task: TaskInfo) {
           );
         } catch (error) {
           Message.error(I18n.t('cancel_task_failed', {}, '取消任务失败'));
+        } finally {
+          setCancelLoading(false);
         }
       },
       /**
@@ -44,6 +49,7 @@ export default function useHandler(task: TaskInfo) {
        */
       async delete() {
         try {
+          setDeleteLoading(true);
           // 先取消任务
           await cancelTask(id);
           // 是否补充埋点
@@ -54,6 +60,8 @@ export default function useHandler(task: TaskInfo) {
           );
         } catch (error) {
           Message.error(I18n.t('delete_task_failed', {}, '删除任务失败'));
+        } finally {
+          setDeleteLoading(false);
         }
       },
       restart() {
@@ -89,6 +97,8 @@ export default function useHandler(task: TaskInfo) {
       remove() {
         Message.error(I18n.t('pending', {}, '待处理'));
       },
+      deleteLoading,
+      cancelLoading,
     };
-  }, [task]);
+  }, [task, deleteLoading, cancelLoading]);
 }
