@@ -7,7 +7,9 @@ export interface Expression {
 // 使用工厂方法创建表达式
 export const ExpressionFactory = {
   create(expr: string): Expression {
-    const match = expr.match(/\[([0-9.]+),([0-9.]+)\]:([0-9.]+)/);
+    const match = expr.match(
+      /(?:\[|【)([0-9.]+)(?:,|，)([0-9.]+)(?:\]|】)(?:[:：])([0-9.]+)/,
+    );
     if (match) {
       return new RangeExpression(
         parseFloat(match[1]),
