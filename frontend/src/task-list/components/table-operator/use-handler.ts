@@ -18,6 +18,7 @@ import {
   sendBatchToolsCopyParams,
   sendBatchToolsPreviewResult,
 } from '../../../../data/points';
+import { TaskStatusEnum } from '@src/task-list/constants';
 
 export default function useHandler(task: TaskInfo) {
   const { changeType } = useContainerStore();
@@ -27,7 +28,7 @@ export default function useHandler(task: TaskInfo) {
   const [cancelLoading, setCancelLoading] = useState(false);
 
   return useMemo(() => {
-    const { id, name } = task;
+    const { id, name, status } = task;
 
     return {
       async cancel() {
@@ -51,7 +52,11 @@ export default function useHandler(task: TaskInfo) {
         try {
           setDeleteLoading(true);
           // 先取消任务
-          await cancelTask(id);
+          if (
+            [TaskStatusEnum.Running, TaskStatusEnum.Waiting].includes(status)
+          ) {
+            await cancelTask(id);
+          }
           // 是否补充埋点
           // 再执行删除
           await deleteTask(id);
