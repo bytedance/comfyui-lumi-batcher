@@ -586,13 +586,13 @@ class BatchToolsHandler:
                         if t == "image" or t == "video":
                             file_path = f"output/{v}"
                             # 检查文件是否存在
-                        if not os.path.exists(file_path):
-                            new_file_path = get_file_absolute_path(file_path)
+                            if not os.path.exists(file_path):
+                                new_file_path = get_file_absolute_path(file_path)
 
-                            if os.path.exists(new_file_path):
-                                file_path = new_file_path
+                                if os.path.exists(new_file_path):
+                                    file_path = new_file_path
 
-                        need_delete_paths.append(file_path)
+                            need_delete_paths.append(file_path)
 
                 resourcesMap = self.resourceController.get_resources_map(batch_task_id)
 
