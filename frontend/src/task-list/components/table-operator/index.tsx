@@ -8,6 +8,7 @@ import { useShallow } from 'zustand/react/shallow';
 import { ReactComponent as IconCancel } from '@static/icons/backward.svg';
 import { ReactComponent as IconCopy } from '@static/icons/copy.svg';
 import { ReactComponent as IconLayout } from '@static/icons/layout-alt.svg';
+import { ReactComponent as IconDelete } from '@static/icons/task-list/delete-icon.svg';
 
 import { TaskStatusEnum } from '../../constants';
 import useHandler from './use-handler';
@@ -19,7 +20,6 @@ import IconButtonTooltip from '@common/components/IconButtonTooltip';
 import Flex from '@common/components/Flex';
 import { languageUtils, TranslateKeys } from '@common/language';
 import ResultDownload from '@src/result-download';
-import { IconDelete } from '@arco-design/web-react/icon';
 
 export default function TableOperator({
   task,

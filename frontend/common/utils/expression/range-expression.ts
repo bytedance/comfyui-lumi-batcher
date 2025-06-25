@@ -20,9 +20,16 @@ export class RangeExpression implements Expression {
     const start = this.start * factor;
     const end = this.end * factor;
     const step = this.step * factor;
+    const newStep = step > 0 ? step : -step;
 
-    for (let i = start; i <= end; i += step) {
-      result.push(i / factor);
+    if (start > end) {
+      for (let i = start; i >= end; i -= newStep) {
+        result.push(i / factor);
+      }
+    } else {
+      for (let i = start; i <= end; i += newStep) {
+        result.push(i / factor);
+      }
     }
     return result;
   }

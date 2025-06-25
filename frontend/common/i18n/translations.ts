@@ -414,4 +414,8 @@ export const TranslationsDataDefault: TranslationsType = {
     'en-US': 'Download',
     'zh-CN': '下载',
   },
+  download_failed: {
+    'en-US': 'Download failed',
+    'zh-CN': '下载失败',
+  },
 };
