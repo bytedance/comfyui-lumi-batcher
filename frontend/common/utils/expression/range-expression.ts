@@ -5,11 +5,12 @@ export class RangeExpression implements Expression {
     private start: number,
     private end: number,
     private step: number,
+    private startInclusive: boolean,
+    private endInclusive: boolean,
   ) {}
 
   interpret(): number[] {
     const result = [];
-    // 将浮点数转换为整数运算
     const precision = Math.max(
       this.getPrecision(this.start),
       this.getPrecision(this.end),
@@ -23,17 +24,24 @@ export class RangeExpression implements Expression {
     const newStep = step > 0 ? step : -step;
 
     if (start > end) {
-      for (let i = start; i >= end; i -= newStep) {
+      for (
+        let i = this.startInclusive ? start : start - newStep;
+        this.endInclusive ? i >= end : i > end;
+        i -= newStep
+      ) {
         result.push(i / factor);
       }
     } else {
-      for (let i = start; i <= end; i += newStep) {
+      for (
+        let i = this.startInclusive ? start : start + newStep;
+        this.endInclusive ? i <= end : i < end;
+        i += newStep
+      ) {
         result.push(i / factor);
       }
     }
     return result;
   }
-
   private getPrecision(num: number): number {
     const str = num.toString();
     const decimalIndex = str.indexOf('.');
