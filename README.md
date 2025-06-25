@@ -74,6 +74,22 @@ ComfyUI-Lumi-Batcher extends beyond tools like XYZ Plot in WebUI, becoming a pow
 
 &nbsp;
 
+## ⭐️ Release Notes
+
+- 🔍 **Version 1.0.3**：Task management supports deletion functionality, custom parameters support magic expressions for quick input, and single-image result preview supports download functionality
+
+- 📚 **Version 1.0.2**：Support bilingual versions (Chinese/English) and language switching functionality
+
+- 💻 **Version 1.0.1**：Fix file relative path and path compatibility issues in Windows scenarios
+
+- 🎉 **Version 1.0.0**：Initial release of ComfyUI-Lumi-Batcher, featuring basic batch processing and multi-modal support.
+
+&nbsp;
+
+---
+
+&nbsp;
+
 ## 🚀 Installation
 
 > Local environment requires Python 3.10 or higher
