@@ -13,5 +13,8 @@ export enum ContainerTypeEnum {
 /**
  * 变更记录：
  * 1. 2025年6月9日 版本 v1.0.0
+ * 2. 2025年6月12日 版本 v1.0.1
+ * 3. 2025年6月18日 版本 v1.0.2
+ * 4. 2025年6月25日 版本 v1.0.3
  */
-export const BatchToolsVersion = 'v1.0.2';
+export const BatchToolsVersion = 'v1.0.3';
