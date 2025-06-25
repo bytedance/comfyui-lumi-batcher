@@ -2,25 +2,50 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import { Button } from '@arco-design/web-react';
 import { openModal } from '@src/open-modal';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ReactComponent as LogoIcon } from '@static/icons/home/logo.svg';
 import styles from './index.module.scss';
+import { debounce } from 'lodash';
+
+const localStorageKey = 'dragButtonPosition';
+
+type PositionType = {
+  x: number;
+  y: number;
+  top?: number;
+  right?: number;
+  left?: number;
+  bottom?: number;
+};
 
 export const DragButton = () => {
   const ref = useRef<HTMLButtonElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [isClick, setIsClick] = useState(false);
-  const [position, setPosition] = useState<{
-    x: number;
-    y: number;
-    top?: number;
-    right?: number;
-    left?: number;
-    bottom?: number;
-  }>({ x: window.innerWidth - 24, y: 60, top: 60, right: 24 });
+  const [position, setPosition] = useState<PositionType>({
+    x: window.innerWidth - 24,
+    y: 60,
+    top: 60,
+    right: 24,
+  });
   const dragStartPos = useRef({ x: 0, y: 0 });
   const isClickRef = useRef(false);
   const isDraggingRef = useRef(false);
+  const updateTimerRef = useRef<NodeJS.Timeout>();
+
+  const handleUpdateStorage = (pos: PositionType) => {
+    localStorage.setItem(localStorageKey, JSON.stringify(pos));
+  };
+
+  const debouncedUpdate = useMemo(
+    () => debounce(handleUpdateStorage, 200),
+    [handleUpdateStorage],
+  );
+
+  useEffect(() => {
+    debouncedUpdate(position);
+    return () => debouncedUpdate.cancel();
+  }, [position, debouncedUpdate]);
 
   // 在状态更新时同步ref
   useEffect(() => {
@@ -104,6 +129,10 @@ export const DragButton = () => {
   );
 
   useEffect(() => {
+    const pos = localStorage.getItem(localStorageKey);
+    if (pos) {
+      setPosition(JSON.parse(pos));
+    }
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
