@@ -19,7 +19,7 @@ const generateOne = (len: number): number => {
  * @returns 随机数数组
  */
 export const randomSeed = (count: number): number[] => {
-  const len = 15;
+  const len = 8;
   const set = new Set<number>();
 
   const getOnlyOne = (): number => {

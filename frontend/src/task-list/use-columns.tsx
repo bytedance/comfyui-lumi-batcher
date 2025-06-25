@@ -115,7 +115,7 @@ export function useColumns(refresh: Function) {
         dataIndex: '_',
         fixed: 'right',
         render(col, item) {
-          return <TableOperator task={item} />;
+          return <TableOperator task={item} refresh={refresh} />;
         },
       },
     ],

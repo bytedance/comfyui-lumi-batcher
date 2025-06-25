@@ -8,6 +8,7 @@ import { useShallow } from 'zustand/react/shallow';
 import { ReactComponent as IconCancel } from '@static/icons/backward.svg';
 import { ReactComponent as IconCopy } from '@static/icons/copy.svg';
 import { ReactComponent as IconLayout } from '@static/icons/layout-alt.svg';
+import { ReactComponent as IconDelete } from '@static/icons/task-list/delete-icon.svg';
 
 import { TaskStatusEnum } from '../../constants';
 import useHandler from './use-handler';
@@ -20,7 +21,13 @@ import Flex from '@common/components/Flex';
 import { languageUtils, TranslateKeys } from '@common/language';
 import ResultDownload from '@src/result-download';
 
-export default function TableOperator({ task }: { task: TaskInfo }) {
+export default function TableOperator({
+  task,
+  refresh,
+}: {
+  task: TaskInfo;
+  refresh: Function;
+}) {
   const [uiConfig] = useBatchToolsStore(useShallow((s) => [s.uiConfig]));
   const statusType = task.status;
   const handler = useHandler(task);
@@ -68,9 +75,13 @@ export default function TableOperator({ task }: { task: TaskInfo }) {
       {showCancelOperation ? (
         <Popconfirm
           title={I18n.t('confirm_to_cancel_the_task?', {}, '确认取消任务吗？')}
-          onOk={handler.cancel}
+          onOk={async () => {
+            await handler.cancel();
+            refresh();
+          }}
         >
           <IconButtonTooltip
+            loading={handler.cancelLoading}
             icon={<IconCancel />}
             tooltip={languageUtils.getText(TranslateKeys.CANCEL_TASK)}
           />
@@ -97,6 +108,19 @@ export default function TableOperator({ task }: { task: TaskInfo }) {
           onClick={handler.copy}
         />
       ) : null}
+      <Popconfirm
+        title={I18n.t('confirm_to_delete_the_task', {}, '确认删除任务吗？')}
+        onOk={async () => {
+          await handler.delete();
+          refresh();
+        }}
+      >
+        <IconButtonTooltip
+          icon={<IconDelete />}
+          loading={handler.deleteLoading}
+          tooltip={I18n.t('delete_task', {}, '删除任务')}
+        />
+      </Popconfirm>
     </Flex>
   );
 }

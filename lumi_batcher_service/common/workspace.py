@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 import os
 import shutil
+import stat
 
 
 # 工作区管理，用于创建目录、获取目录
@@ -117,3 +118,25 @@ class WorkSpaceManager:
                 print(f"Deleted directory: {directory}")
             except Exception as e:
                 print(f"Failed to delete directory {directory}: {e}")
+
+    def delete_file(self, file_path):
+        """
+        删除指定文件。
+
+        :param file_path: 要删除的文件路径
+        """
+        try:
+            # Normalize path for Windows
+            file_path = os.path.normpath(file_path)
+
+            # On Windows, try to remove read-only attribute if needed
+            if os.name == "nt":
+                try:
+                    os.chmod(file_path, stat.S_IWRITE)  # Make file writable
+                except Exception:
+                    pass  # Continue even if permission change fails
+
+            os.remove(file_path)
+            print(f"Deleted file: {file_path}")
+        except Exception as e:
+            print(f"Failed to delete file {file_path}: {e}")

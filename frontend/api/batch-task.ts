@@ -95,6 +95,16 @@ export async function cancelTask(id: string) {
   return res.data;
 }
 
+/**
+ * @description 删除任务
+ */
+export async function deleteTask(id: string) {
+  const res = await requestClient.post<any>(`${apiPrefix}/batch-task/delete`, {
+    batch_task_id: id,
+  });
+  return res.data;
+}
+
 export const queuePrompt = async (
   number: number,
   output: any,

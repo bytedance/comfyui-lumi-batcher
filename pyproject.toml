@@ -1,9 +1,16 @@
 [project]
 name = "comfyui-lumi-batcher"
 description = "ComfyUI Lumi Batcher is a batch processing extension plugin designed for ComfyUI, aiming to improve workflow debugging efficiency. Traditional debugging methods require adjusting parameters one by one, while this tool significantly enhances work efficiency through batch processing capabilities."
-version = "1.0.2"
-license = {file = "LICENSE"}
-dependencies = ["aiohttp>=3.11.8", "Pillow>=9.0.0", "openpyxl>=3.0.0", "pandas==2.2.0", "aiofiles==23.2.1", "filetype==1.2.0"]
+version = "1.0.3"
+license = { file = "LICENSE" }
+dependencies = [
+    "aiohttp>=3.11.8",
+    "Pillow>=9.0.0",
+    "openpyxl>=3.0.0",
+    "pandas==2.2.0",
+    "aiofiles==23.2.1",
+    "filetype==1.2.0",
+]
 
 [project.urls]
 Repository = "https://github.com/bytedance/comfyui-lumi-batcher"

@@ -74,6 +74,19 @@ ComfyUI-Lumi-Batcher 之于 comfyui，用途范围超过 xyz pilot 之于 webui�
 
 &nbsp;
 
+## ⭐️ 版本更新
+
+- 🔍 **Version 1.0.3**：任务管理支持删除功能，自定义参数支持魔法表达式快速输入，单图结果预览支持下载功能
+- 📚 **Version 1.0.2**：支持双语版本（中文/英文）和语言切换功能
+- 💻 **Version 1.0.1**：修复 Windows 场景下文件相对路径和路径兼容性问题
+- 🎉 **Version 1.0.0**：初始发布 ComfyUI-Lumi-Batcher，提供基础批量处理和多模态支持
+
+&nbsp;
+
+---
+
+&nbsp;
+
 ## 🚀 如何安装
 
 > 本地环境需要 Python3.10 以上版本

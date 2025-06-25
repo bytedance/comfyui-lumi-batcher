@@ -61,6 +61,14 @@ export function useTaskList() {
       const res = await getTaskList(taskName, pageSize, currentPage, tsl);
 
       if (reqKey === currentReqKey.current) {
+        // 判断是否非首页，且查询数据为空
+        if (currentPage > 1 && res.data.data.length === 0) {
+          useTaskListStore.setState({
+            currentPage: currentPage - 1,
+          });
+          await simpleGetTaskList();
+          return;
+        }
         setState({
           taskList: res.data.data,
           total: res.data.total,

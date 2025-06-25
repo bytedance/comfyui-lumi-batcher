@@ -393,4 +393,29 @@ export const TranslationsDataDefault: TranslationsType = {
     'en-US': 'Help documentation',
     'zh-CN': '帮助文档',
   },
+  confirm_to_delete_the_task: {
+    'en-US':
+      'Deleting the task will also delete the task results. Confirm deletion?',
+    'zh-CN': '删除任务同时会删除任务结果，确定删除吗？',
+  },
+  delete_task: {
+    'en-US': 'Delete task',
+    'zh-CN': '删除任务',
+  },
+  delete_task_successfully: {
+    'en-US': 'Delete task successfully',
+    'zh-CN': '删除任务成功',
+  },
+  delete_task_failed: {
+    'en-US': 'Delete task failed',
+    'zh-CN': '删除任务失败',
+  },
+  download: {
+    'en-US': 'Download',
+    'zh-CN': '下载',
+  },
+  download_failed: {
+    'en-US': 'Download failed',
+    'zh-CN': '下载失败',
+  },
 };
