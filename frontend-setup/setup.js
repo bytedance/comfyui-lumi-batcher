@@ -9,7 +9,7 @@ const staticFilePrefixPath =
 
 async function injectEntry() {
   const htmlResponse = await fetch(
-    `${staticFileUrl}?path=${staticFilePrefixPath}/index.html`
+    `${staticFileUrl}?path=${staticFilePrefixPath}/index.html&timeStamp=${new Date().getTime()}`
   );
   const html = await htmlResponse.text();
   const parser = new DOMParser();
