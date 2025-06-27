@@ -1,7 +1,11 @@
 // Copyright (c) 2025 Bytedance Ltd. and/or its affiliates
 // SPDX-License-Identifier: GPL-3.0-or-later
 import { AllNodesOptions } from '@common/type/batch-task';
-import { RE_IMAGE_SUFFIX, RE_VIDEO_SUFFIX } from '@common/utils/value-type';
+import {
+  getSpecialValue,
+  RE_IMAGE_SUFFIX,
+  RE_VIDEO_SUFFIX,
+} from '@common/utils/value-type';
 import { isNil, isNumber, isString } from 'lodash';
 
 type ValueType = 'image' | 'text' | 'number' | 'video';
@@ -9,7 +13,10 @@ type ValueType = 'image' | 'text' | 'number' | 'video';
 export function checkParamType(
   value?: AllNodesOptions[number]['paramsList'][number]['value'],
 ): ValueType {
-  if (isString(value) && RE_IMAGE_SUFFIX.test(value.toLowerCase())) {
+  if (
+    isString(value) &&
+    RE_IMAGE_SUFFIX.test(getSpecialValue(value.toLowerCase()))
+  ) {
     return 'image';
   } else if (isString(value) && RE_VIDEO_SUFFIX.test(value.toLowerCase())) {
     return 'video';
