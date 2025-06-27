@@ -21,6 +21,7 @@ export enum ValueTypeEnum {
 
 /** 获取传入值类型 */
 export const getType = (value: any): ValueTypeEnum => {
+  const lowerStr = String(value).toLowerCase();
   if (value === undefined) {
     return ValueTypeEnum.UNDEFINED;
   } else if (typeof value === 'number') {
@@ -30,13 +31,20 @@ export const getType = (value: any): ValueTypeEnum => {
     // } else {
     //   return ValueTypeEnum.INT;
     // }
-  } else if (RE_IMAGE_SUFFIX.test(String(value).toLowerCase())) {
+  } else if (RE_IMAGE_SUFFIX.test(getSpecialValue(lowerStr))) {
     return ValueTypeEnum.IMAGE;
-  } else if (RE_VIDEO_SUFFIX.test(String(value).toLowerCase())) {
+  } else if (RE_VIDEO_SUFFIX.test(lowerStr)) {
     return ValueTypeEnum.VIDEO;
   } else if (typeof value === 'string') {
     return ValueTypeEnum.STRING;
   } else {
     return ValueTypeEnum.STRING;
   }
+};
+
+export const getSpecialValue = (value: string) => {
+  if (value.endsWith(' [output]')) {
+    return value.split(' [output]')[0];
+  }
+  return value;
 };
