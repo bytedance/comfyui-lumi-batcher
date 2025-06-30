@@ -38,7 +38,7 @@ export const getImageUrlV2 = (
   }
   const cache = useCache ? '' : `&cache=${Date.now()}}`;
 
-  if (fileName.endsWith(SpecialOutputSuffix)) {
+  if (fileName?.endsWith(SpecialOutputSuffix)) {
     type = 'output';
     fileName = getSpecialOutputValue(fileName);
     return `${apiPrefix}/view-image?file_name=${encodeURIComponent(fileName)}&type=${type}${cache}`;
