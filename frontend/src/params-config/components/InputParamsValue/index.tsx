@@ -29,11 +29,13 @@ import {
 import { ParamsConfigTypeItem } from '@common/type/batch-task';
 import { useCreatorStore } from '@src/create-task/store';
 import {
+  buildSpecialOutputValue,
   RE_IMAGE_SUFFIX,
   RE_VIDEO_SUFFIX,
   ValueTypeEnum,
 } from '@common/utils/value-type';
 import { TemplateFileType } from '@common/constant/creator';
+import { SpecialOutputSuffix } from '@common/constant/params-config';
 
 interface InputParamsValueProps {
   onChange: (value: ValueBaseType[]) => void;
@@ -260,11 +262,21 @@ export const InputParamsValue: React.FC<InputParamsValueProps> = (props) => {
             }
           }}
         >
-          {options.map((option) => (
-            <Select.Option key={Math.random()} value={String(option || '')}>
-              {option}
-            </Select.Option>
-          ))}
+          {options.map((option) => {
+            const v = String(option || '');
+            return (
+              <Select.Option
+                key={Math.random()}
+                value={
+                  String(nodeInfo?.paramValue).endsWith(SpecialOutputSuffix)
+                    ? buildSpecialOutputValue(v)
+                    : v
+                }
+              >
+                {option}
+              </Select.Option>
+            );
+          })}
         </Select>
       ) : (
         <Input

@@ -14,9 +14,10 @@ export const getKey = (c: ConfigOptionSimple, v = '') =>
 export const getImageKey = (s: string): string => s.split('/').pop() ?? '';
 
 export const getRenderCellType = (s: string) => {
-  if (RE_VIDEO_SUFFIX.test(s.toLowerCase())) {
+  const lower = s.toLowerCase();
+  if (RE_VIDEO_SUFFIX.test(lower)) {
     return 'video';
-  } else if (RE_IMAGE_SUFFIX.test(s.toLowerCase())) {
+  } else if (RE_IMAGE_SUFFIX.test(lower)) {
     return 'image';
   } else {
     return 'string';

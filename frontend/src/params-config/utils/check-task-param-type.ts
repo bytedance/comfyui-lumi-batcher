@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import { AllNodesOptions } from '@common/type/batch-task';
 import {
-  getSpecialValue,
+  getSpecialOutputValue,
   RE_IMAGE_SUFFIX,
   RE_VIDEO_SUFFIX,
 } from '@common/utils/value-type';
@@ -15,7 +15,7 @@ export function checkParamType(
 ): ValueType {
   if (
     isString(value) &&
-    RE_IMAGE_SUFFIX.test(getSpecialValue(value.toLowerCase()))
+    RE_IMAGE_SUFFIX.test(getSpecialOutputValue(value.toLowerCase()))
   ) {
     return 'image';
   } else if (isString(value) && RE_VIDEO_SUFFIX.test(value.toLowerCase())) {
@@ -44,4 +44,15 @@ export function checkTaskParamType(
   )?.value;
 
   return checkParamType(value);
+}
+
+export function getParamOriginValue(
+  allNodesOptions: AllNodesOptions,
+  nodeId: string | number,
+  internal_name: string,
+) {
+  const nodeParamsList = allNodesOptions.find(
+    (item) => item.id === nodeId,
+  )?.paramsList;
+  return nodeParamsList?.find((item) => item.label === internal_name)?.value;
 }

@@ -1,5 +1,8 @@
 // Copyright (c) 2025 Bytedance Ltd. and/or its affiliates
 // SPDX-License-Identifier: GPL-3.0-or-later
+
+import { SpecialOutputSuffix } from '@common/constant/params-config';
+
 /** 判断视频后缀的正则 */
 export const RE_VIDEO_SUFFIX =
   /\.(mp4|avi|mov|wmv|flv|mkv|webm|mpeg|mpg|m4v|3gp|3g2|mxf|ogv|ts|vob)$/i;
@@ -31,7 +34,7 @@ export const getType = (value: any): ValueTypeEnum => {
     // } else {
     //   return ValueTypeEnum.INT;
     // }
-  } else if (RE_IMAGE_SUFFIX.test(getSpecialValue(lowerStr))) {
+  } else if (RE_IMAGE_SUFFIX.test(getSpecialOutputValue(lowerStr))) {
     return ValueTypeEnum.IMAGE;
   } else if (RE_VIDEO_SUFFIX.test(lowerStr)) {
     return ValueTypeEnum.VIDEO;
@@ -42,9 +45,13 @@ export const getType = (value: any): ValueTypeEnum => {
   }
 };
 
-export const getSpecialValue = (value: string) => {
+export const getSpecialOutputValue = (value: string) => {
   if (value.endsWith(' [output]')) {
     return value.split(' [output]')[0];
   }
   return value;
+};
+
+export const buildSpecialOutputValue = (value: string) => {
+  return `${value}${SpecialOutputSuffix}`;
 };
