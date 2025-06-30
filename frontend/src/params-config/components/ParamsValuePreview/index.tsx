@@ -28,7 +28,7 @@ export const ParamsValuePreview: React.FC<{
   const [type, setType] = useState(checkParamType(value));
 
   const Content = useMemo(() => {
-    const url = getImageUrlV2(value, 'input', false);
+    const url = getImageUrlV2(String(value), 'input', false);
     if (type === 'image') {
       return (
         <Image

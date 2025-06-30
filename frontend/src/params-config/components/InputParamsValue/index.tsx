@@ -268,7 +268,7 @@ export const InputParamsValue: React.FC<InputParamsValueProps> = (props) => {
               <Select.Option
                 key={Math.random()}
                 value={
-                  String(nodeInfo?.paramValue).endsWith(SpecialOutputSuffix)
+                  String(nodeInfo?.paramValue)?.endsWith(SpecialOutputSuffix)
                     ? buildSpecialOutputValue(v)
                     : v
                 }

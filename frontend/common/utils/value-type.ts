@@ -46,10 +46,11 @@ export const getType = (value: any): ValueTypeEnum => {
 };
 
 export const getSpecialOutputValue = (value: string) => {
-  if (value.endsWith(' [output]')) {
-    return value.split(' [output]')[0];
+  const v = String(value);
+  if (String(v).endsWith(' [output]')) {
+    return v.split(' [output]')[0];
   }
-  return value;
+  return v;
 };
 
 export const buildSpecialOutputValue = (value: string) => {
