@@ -24,7 +24,9 @@ export const checkOutputNodes = (output: Comfy.WorkflowOutput) =>
 
 export const createTaskCheck = async (): Promise<boolean> => {
   try {
+    window.everywhere_prompt_being_queued = true;
     const { output, workflow } = await window.app.graphToPrompt();
+    window.everywhere_prompt_being_queued = false;
     const link = useBatchToolsStore.getState().task.outputRuleLink;
     const hasOutputNode = checkOutputNodes(output);
     // save image节点验证
