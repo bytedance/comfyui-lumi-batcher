@@ -33,7 +33,9 @@ export async function validateWorkflowParamsConfig(
   if (!flag) {
     return false;
   }
+  window.everywhere_prompt_being_queued = true;
   const workflowParamsConfig = (await window.app.graphToPrompt())?.output;
+  window.everywhere_prompt_being_queued = false;
 
   for (const item of taskParamsConfig) {
     const { type, internal_name } = item;
