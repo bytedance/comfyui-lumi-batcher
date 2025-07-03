@@ -155,6 +155,10 @@ export namespace Comfy {
     handleFile(file: File): Promise<void>;
     queuePrompt(num: number, batchCount = 1): Promise<void>;
     showMissingNodesError(missingNodeTypes, hasAddedNodes: boolean): void;
+    ue_modified_prompt?: () => Promise<{
+      output: Comfy.WorkflowOutput;
+      workflow: Comfy.Workflow;
+    }>;
   }
 
   export interface ApiEventMap {

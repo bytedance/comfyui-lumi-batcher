@@ -6,7 +6,6 @@ import json
 import mimetypes
 import os
 import traceback
-from urllib.parse import unquote
 import uuid
 import aiofiles
 import server
@@ -26,13 +25,18 @@ from lumi_batcher_service.constant.task import (
     StatusCounts,
     PackageInfo,
 )
-from lumi_batcher_service.controller.homeless.save_image import getSaveImageConfig
+
+# from lumi_batcher_service.controller.homeless.save_image import getSaveImageConfig
+import mimetypes
+from urllib.parse import unquote
+from lumi_batcher_service.common.file import (
+    get_file_absolute_path,
+    get_file_info,
+)
 from lumi_batcher_service.thread.task_scheduler_manager import RunInThread
 from lumi_batcher_service.common.error import getErrorResponse
 from lumi_batcher_service.common.file import (
-    find_comfyui_dir,
     get_file_absolute_path,
-    get_file_info,
 )
 from lumi_batcher_service.controller.task.cancel_queue import cancel_queue
 from lumi_batcher_service.common.resolve_file import resolveFileManager
@@ -124,10 +128,9 @@ class BatchToolsHandler:
                 # 生成唯一id，并写入文件
                 batch_task_id = str(uuid.uuid4())
 
-                # 处理SaveImage节点，配置
-                save_image_config_list = getSaveImageConfig(prompt, batch_task_id)
-
-                params_config = params_config + save_image_config_list
+                # 2025.07.02 取消：处理SaveImage节点的配置
+                # save_image_config_list = getSaveImageConfig(prompt, batch_task_id)
+                # params_config = params_config + save_image_config_list
 
                 params_config_str = json.dumps(params_config)
 
@@ -435,40 +438,6 @@ class BatchToolsHandler:
                 return web.json_response(response)
             except Exception as e:
                 return web.json_response(getErrorResponse(e, "获取结果列表失败"))
-
-        @server.PromptServer.instance.routes.post(getApiPath("/upload-file"))
-        async def uploadFile(request):
-            try:
-                reader = await request.multipart()
-                field = await reader.next()
-
-                if field.name == "file":
-                    # 获取上传文件的名称
-                    filename = field.filename
-                    file_path = os.path.join("input", os.path.basename(filename))
-
-                    size = 0
-                    # 异步写入文件
-                    async with aiofiles.open(file_path, "wb") as f:
-                        while True:
-                            chunk = await field.read_chunk()
-                            if not chunk:
-                                break
-                            size += len(chunk)
-                            await f.write(chunk)
-
-                    # 返回文件路径作为响应
-                    return web.json_response(
-                        {
-                            "code": 200,
-                            "message": "上传文件成功",
-                            "data": {"file_name": filename, "file_size": size},
-                        }
-                    )
-
-                return web.Response(status=400, text="No file field in POST request")
-            except Exception as e:
-                return web.json_response(getErrorResponse(e, "上传文件失败"))
 
         @server.PromptServer.instance.routes.get(getApiPath("/view-image"))
         async def view_image(request):

@@ -1,6 +1,6 @@
 // Copyright (c) 2025 Bytedance Ltd. and/or its affiliates
 // SPDX-License-Identifier: GPL-3.0-or-later
-import { queuePrompt } from '@api/batch-task';
+import { workflowValidate } from '@api/common';
 import { Link, Message } from '@arco-design/web-react';
 import { IconCloseCircleFill } from '@arco-design/web-react/icon';
 import { I18n } from '@common/i18n';
@@ -24,7 +24,17 @@ export const checkOutputNodes = (output: Comfy.WorkflowOutput) =>
 
 export const createTaskCheck = async (): Promise<boolean> => {
   try {
-    const { output, workflow } = await window.app.graphToPrompt();
+    let output: any;
+    let workflow: any;
+    if (window.app?.ue_modified_prompt) {
+      const res = await window.app.ue_modified_prompt();
+      output = res.output;
+      workflow = res.workflow;
+    } else {
+      output = await window.app.graphToPrompt();
+      workflow = output.workflow;
+      output = output.output;
+    }
     const link = useBatchToolsStore.getState().task.outputRuleLink;
     const hasOutputNode = checkOutputNodes(output);
     // save image节点验证
@@ -64,7 +74,7 @@ export const createTaskCheck = async (): Promise<boolean> => {
     }
 
     try {
-      await queuePrompt(0, output, workflow);
+      await workflowValidate(0, output, workflow);
     } catch (error) {
       Message.error(
         I18n.t(
@@ -79,7 +89,6 @@ export const createTaskCheck = async (): Promise<boolean> => {
     return true;
   } catch (error) {
     console.error('Failed to execute create-task check');
-    // Message.error('工作流校验失败，请检查工作流');
     return false;
   }
 };

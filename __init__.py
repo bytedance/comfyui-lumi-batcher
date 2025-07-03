@@ -17,12 +17,14 @@ check_and_register_module()
 
 
 from lumi_batcher_service.handler.batch_tools import BatchToolsHandler
+from lumi_batcher_service.handler.common import CommonHandler
 from lumi_batcher_service.controller.package.recover import recover_package
 
 from lumi_batcher_service.hooks.task_start import batch_tools_task_start_hook
 from lumi_batcher_service.hooks.task_done import batch_tools_task_done_hook
 
 batchToolsHandler = BatchToolsHandler()
+commonHandler = CommonHandler()
 recover_package(batchToolsHandler)
 # 任务-开始执行
 batch_tools_task_start_hook(batchToolsHandler)
