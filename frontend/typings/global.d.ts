@@ -23,7 +23,6 @@ declare global {
     LGraph: typeof LGraph;
     LGraphNode: typeof LGraphNode;
     LGraphGroup: typeof LGraphGroup;
-    everywhere_prompt_being_queued: boolean;
   }
   const CUSTOM_BA_SCENE: string, BA_BUILD_REGION: string;
 }

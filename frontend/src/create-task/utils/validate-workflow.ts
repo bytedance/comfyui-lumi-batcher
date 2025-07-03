@@ -33,9 +33,14 @@ export async function validateWorkflowParamsConfig(
   if (!flag) {
     return false;
   }
-  window.everywhere_prompt_being_queued = true;
-  const workflowParamsConfig = (await window.app.graphToPrompt())?.output;
-  window.everywhere_prompt_being_queued = false;
+  let workflowParamsConfig: Comfy.WorkflowOutput;
+  if (window.app?.ue_modified_prompt) {
+    const res = await window.app.ue_modified_prompt();
+    workflowParamsConfig = res.output;
+  } else {
+    const res = await window.app.graphToPrompt();
+    workflowParamsConfig = res.output;
+  }
 
   for (const item of taskParamsConfig) {
     const { type, internal_name } = item;

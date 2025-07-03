@@ -12,9 +12,16 @@ import { I18n } from '@common/i18n';
 export const createBatchTaskFunc = async () => {
   try {
     const { paramsConfig, taskName } = useCreatorStore.getState();
-    window.everywhere_prompt_being_queued = true;
-    const { output, workflow } = await window.app.graphToPrompt();
-    window.everywhere_prompt_being_queued = false;
+    let output: any, workflow: any;
+    if (window.app?.ue_modified_prompt) {
+      const res = await window.app.ue_modified_prompt();
+      output = res.output;
+      workflow = res.workflow;
+    } else {
+      output = await window.app.graphToPrompt();
+      workflow = output.workflow;
+      output = output.output;
+    }
     await createBatchTask({
       client_id: sessionStorage.getItem('clientId') ?? '',
       prompt: output,
