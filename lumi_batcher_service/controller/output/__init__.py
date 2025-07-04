@@ -9,6 +9,7 @@ from .video import (
 
 output_processor_map = {
     "SaveImage": process_save_image,
+    "Image Save": process_save_image,
     "ShowText|pysssss": process_pysssss_show_text,
     "VHS_VideoCombine": process_vhs_video_combine,
     "VideoCombine_Adv": process_vhs_video_combine,
@@ -17,6 +18,7 @@ output_processor_map = {
 
 default_output_class_type_list = [
     "SaveImage",
+    "Image Save",
     "ShowText|pysssss",
     "VHS_VideoCombine",
     "VideoCombine_Adv",
