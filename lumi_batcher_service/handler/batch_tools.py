@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 import asyncio
 import copy
+import folder_paths
 import json
 import mimetypes
 import os
@@ -450,7 +451,7 @@ class BatchToolsHandler:
             except:
                 file_name = file_name
 
-            file_path = f"output/{file_name}"
+            file_path = f"{folder_paths.get_output_directory()}/{file_name}"
 
             if type == "input":
                 file_path = f"input/{file_name}"
