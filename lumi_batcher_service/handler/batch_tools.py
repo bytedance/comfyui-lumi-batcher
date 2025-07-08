@@ -8,6 +8,7 @@ import os
 import traceback
 import uuid
 import aiofiles
+import folder_paths
 import server
 import execution
 from aiohttp import web
@@ -441,6 +442,7 @@ class BatchToolsHandler:
 
         @server.PromptServer.instance.routes.get(getApiPath("/view-image"))
         async def view_image(request):
+            output_directory = folder_paths.get_output_directory()
             type = request.rel_url.query.get("type", "output")
             file_name = request.rel_url.query.get("file_name")
 
@@ -450,7 +452,7 @@ class BatchToolsHandler:
             except:
                 file_name = file_name
 
-            file_path = f"output/{file_name}"
+            file_path = f"{output_directory}/{file_name}"
 
             if type == "input":
                 file_path = f"input/{file_name}"
@@ -538,6 +540,7 @@ class BatchToolsHandler:
                 json_data = await request.json()
                 # 解析请求参数
                 batch_task_id = json_data["batch_task_id"]
+                output_directory = folder_paths.get_output_directory()
 
                 response = {"code": resp_code, "message": "删除任务成功", "data": True}
 
@@ -553,7 +556,7 @@ class BatchToolsHandler:
                         t = i.get("type", "")
                         v = i.get("value", "")
                         if t == "image" or t == "video":
-                            file_path = f"output/{v}"
+                            file_path = f"{output_directory}/{v}"
                             # 检查文件是否存在
                             if not os.path.exists(file_path):
                                 new_file_path = get_file_absolute_path(file_path)

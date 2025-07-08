@@ -9,6 +9,7 @@ import { Comfy } from '@typings/comfy';
 
 const OutputNodesList = [
   'SaveImage',
+  'Image Save',
   'VHS_VideoCombine',
   'VideoCombine_Adv',
   'ShowText|pysssss',

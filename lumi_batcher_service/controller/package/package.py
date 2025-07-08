@@ -7,6 +7,7 @@ import os
 import shutil
 import tempfile
 import traceback
+import folder_paths
 from lumi_batcher_service.handler.batch_tools import BatchToolsHandler
 from lumi_batcher_service.controller.output.process import process_output
 from lumi_batcher_service.constant.package import PackageStatus
@@ -137,7 +138,8 @@ def resolve_results(results: list[dict], dir: str):
         output_file_name = file_processor.sanitize_filename(dir, output_file_name)
 
         if type in ["image", "video"]:
-            path = os.path.join("output", value)
+            output_directory = folder_paths.get_output_directory()
+            path = os.path.join(output_directory, value)
 
             if not os.path.isfile(path):
                 new_file_path = get_file_absolute_path(path)
