@@ -8,7 +8,7 @@ import { languageUtils, TranslateKeys } from '@common/language';
 import { ParamsConfigType } from '@common/type/batch-task';
 import { uuid } from '@common/utils/uuid';
 import { I18n } from '@common/i18n';
-import { getCurrentToken } from '@common/utils/auth';
+import { getCurrentApiKey, getCurrentToken } from '@common/utils/auth';
 
 export const createBatchTaskFunc = async () => {
   try {
@@ -28,6 +28,7 @@ export const createBatchTaskFunc = async () => {
       prompt: output,
       workflow,
       auth_token_comfy_org: getCurrentToken(),
+      api_key_comfy_org: getCurrentApiKey(),
       extra_data: {
         extra_pnginfo: { workflow },
       },

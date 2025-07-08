@@ -11,3 +11,15 @@ export const getCurrentToken = () => {
     return '';
   }
 };
+
+export const getCurrentApiKey = () => {
+  const obj = getValueByPrefix('firebase:authUser');
+  if (!obj) {
+    return '';
+  }
+  try {
+    return JSON.parse(obj)?.apiKey ?? '';
+  } catch (error) {
+    return '';
+  }
+};
