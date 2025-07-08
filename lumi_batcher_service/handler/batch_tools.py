@@ -113,6 +113,7 @@ class BatchToolsHandler:
                 prompt = json_data["prompt"]
                 workflow = json_data["workflow"]
                 client_id = json_data["client_id"]
+                auth_token_comfy_org = json_data["auth_token_comfy_org"]
                 number = None
                 if "number" in json_data:
                     number = float(json_data["number"])
@@ -166,7 +167,8 @@ class BatchToolsHandler:
                             "client_id": client_id,
                             "prompt": item["prompt"],
                             "extra_data": {
-                                "extra_pnginfo": {"workflow": item["workflow"]}
+                                "auth_token_comfy_org": auth_token_comfy_org,
+                                "extra_pnginfo": {"workflow": item["workflow"]},
                             },
                         }
 
