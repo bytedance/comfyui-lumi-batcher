@@ -10,6 +10,8 @@ export interface CreateBatchTaskRequest {
   client_id: string;
   prompt: Comfy.WorkflowOutput;
   workflow: any;
+  auth_token_comfy_org: string;
+  api_key_comfy_org: string;
   extra_data: {
     extra_pnginfo: {
       workflow: Comfy.GraphPrompt['workflow'];

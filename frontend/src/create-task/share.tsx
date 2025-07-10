@@ -8,6 +8,7 @@ import { languageUtils, TranslateKeys } from '@common/language';
 import { ParamsConfigType } from '@common/type/batch-task';
 import { uuid } from '@common/utils/uuid';
 import { I18n } from '@common/i18n';
+import { getCurrentApiKey, getCurrentToken } from '@common/utils/auth';
 
 export const createBatchTaskFunc = async () => {
   try {
@@ -26,7 +27,11 @@ export const createBatchTaskFunc = async () => {
       client_id: sessionStorage.getItem('clientId') ?? '',
       prompt: output,
       workflow,
-      extra_data: { extra_pnginfo: { workflow } },
+      auth_token_comfy_org: getCurrentToken(),
+      api_key_comfy_org: getCurrentApiKey(),
+      extra_data: {
+        extra_pnginfo: { workflow },
+      },
       task_name: taskName,
       params_config: paramsConfig,
       // number: 1,
@@ -36,6 +41,7 @@ export const createBatchTaskFunc = async () => {
       I18n.t('create_batch_task_successfully', {}, '创建批量任务成功'),
     );
   } catch (error) {
+    console.log('创建批量任务失败', error);
     Message.error(
       I18n.t('failed_to_create_batch_task', {}, '创建批量任务失败'),
     );
