@@ -17,6 +17,7 @@ import ResultDownload from '@src/result-download';
 import AutoResizeInput from '@common/components/AutoResizeInput';
 import { AdvancedFilter } from '@common/components/PreviewTable/components/AdvancedFilter';
 import { I18n } from '@common/i18n';
+import { defaultTableConfigOptions } from '@src/result-view/constand';
 
 export default function Header() {
   const { setState } = useResultViewStore;
@@ -68,7 +69,10 @@ export default function Header() {
   const configValue = useMemo(
     () =>
       isNumber(selectedConfigOptionIndex)
-        ? concatKeys(tableConfigOptions[selectedConfigOptionIndex])
+        ? concatKeys(
+            tableConfigOptions[selectedConfigOptionIndex] ||
+              defaultTableConfigOptions,
+          )
         : undefined,
     [tableConfigOptions, selectedConfigOptionIndex],
   );
