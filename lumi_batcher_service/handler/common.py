@@ -1,13 +1,14 @@
 import os
+import uuid
 
 import aiofiles
-import execution
 import server
 from aiohttp import web
 from lumi_batcher_service.common.error import getErrorResponse
 from lumi_batcher_service.common.file import (
     find_comfyui_dir,
 )
+from lumi_batcher_service.common.validate_prompt import handle_validate_prompt
 
 
 class CommonHandler:
@@ -57,7 +58,8 @@ class CommonHandler:
 
             if "prompt" in json_data:
                 prompt = json_data["prompt"]
-                valid = execution.validate_prompt(prompt)
+                prompt_id = str(uuid.uuid4())
+                valid = await handle_validate_prompt(prompt_id, prompt)
                 extra_data = {}
                 if "extra_data" in json_data:
                     extra_data = json_data["extra_data"]
