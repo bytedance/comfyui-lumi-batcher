@@ -48,6 +48,7 @@ from lumi_batcher_service.controller.task.update_prompt import (
 from lumi_batcher_service.controller.output.nodes import process_output_nodes
 from lumi_batcher_service.controller.output.process import process_output
 from lumi_batcher_service.common.delete_file import batch_delete_files
+from lumi_batcher_service.common.validate_prompt import handle_validate_prompt
 
 
 class BatchToolsHandler:
@@ -163,7 +164,7 @@ class BatchToolsHandler:
                     ),
                 )
 
-                def process_item(item):
+                async def process_item(item):
                     if "prompt" in item and "workflow" in item:
                         queue_request_body = {
                             "client_id": client_id,
@@ -185,7 +186,7 @@ class BatchToolsHandler:
                             queue_request_body["number"] = number
 
                         try:
-                            queue_response = self.post_prompt(queue_request_body)
+                            queue_response = await self.post_prompt(queue_request_body)
 
                             final_response["data"]["prompt_post_list"].append(
                                 queue_response
@@ -236,7 +237,7 @@ class BatchToolsHandler:
                             final_response["data"]["prompt_post_list"].append(e)
                             traceback.print_exc()
 
-                tasks = [asyncio.to_thread(process_item, item) for item in functionRes]
+                tasks = [process_item(item) for item in functionRes]
 
                 await asyncio.gather(*tasks)
 
@@ -821,7 +822,7 @@ class BatchToolsHandler:
 
         return count
 
-    def post_prompt(self, json_data):
+    async def post_prompt(self, json_data):
         json_data = server.PromptServer.instance.trigger_on_prompt(json_data)
 
         if "number" in json_data:
@@ -836,7 +837,8 @@ class BatchToolsHandler:
 
         if "prompt" in json_data:
             prompt = json_data["prompt"]
-            valid = execution.validate_prompt(prompt)
+            prompt_id = str(uuid.uuid4())
+            valid = await handle_validate_prompt(prompt_id, prompt)
             extra_data = {}
             if "extra_data" in json_data:
                 extra_data = json_data["extra_data"]
@@ -844,7 +846,6 @@ class BatchToolsHandler:
             if "client_id" in json_data:
                 extra_data["client_id"] = json_data["client_id"]
             if valid[0]:
-                prompt_id = str(uuid.uuid4())
                 outputs_to_execute = valid[2]
                 server.PromptServer.instance.prompt_queue.put(
                     (number, prompt_id, prompt, extra_data, outputs_to_execute)

@@ -76,6 +76,8 @@ ComfyUI-Lumi-Batcher extends beyond tools like XYZ Plot in WebUI, becoming a pow
 
 ## ⭐️ Release Notes
 
+- ☀️ **Version 1.0.6**：Compatible with official ComfyUI version 0.3.44 for changes made to validate_prompt
+
 - ☕️ **Version 1.0.5**：Supports batch processing in API node scenarios, allows custom output directories, and batch supports the Image Save output node of the was-node-suite-comfyui plugin
 
 - 👁 **Version 1.0.4**：Optimized the detection logic when initiating batch tasks from workflows to no longer actually initiate a task inference, and supports batch processing in scenarios using the cg-use-everywhere plugin
