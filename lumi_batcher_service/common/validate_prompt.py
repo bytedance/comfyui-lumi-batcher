@@ -10,7 +10,10 @@ async def handle_validate_prompt(prompt_id: str, prompt: dict):
     param_count = len(sig.parameters)
 
     try:
-        if param_count == 2:
+        if param_count == 3:
+            # 三个参数时的处理逻辑,默认全部校验
+            result = await execution.validate_prompt(prompt_id, prompt, None)
+        elif param_count == 2:
             # 两个参数时的处理逻辑
             result = await execution.validate_prompt(prompt_id, prompt)
         else:
