@@ -26,6 +26,10 @@ from lumi_batcher_service.constant.task import (
     StatusCounts,
     PackageInfo,
 )
+from lumi_batcher_service.common.file_path import (
+    is_under_delete_white_dir,
+    is_under_lumi_batcher,
+)
 
 # from lumi_batcher_service.controller.homeless.save_image import getSaveImageConfig
 import mimetypes
@@ -581,6 +585,11 @@ class BatchToolsHandler:
 
                 need_delete_paths = list(set(need_delete_paths))
 
+                # 过滤掉不在白名单目录下的路径
+                need_delete_paths = [
+                    p for p in need_delete_paths if is_under_delete_white_dir(p)
+                ]
+
                 # 清除批量任务产生的结果、依赖资源
                 await batch_delete_files(need_delete_paths, concurrency=10)
                 # 清除批量任务结果压缩包
@@ -657,9 +666,8 @@ class BatchToolsHandler:
                 return web.Response(status=400, text="Missing path parameter")
 
             # 安全检查：确保路径在允许的目录范围内
-            # allowed_dirs = ["static", "public"]
-            # if not any(file_path.startswith(dir) for dir in allowed_dirs):
-            #     return web.Response(status=403, text="Access denied")
+            if not is_under_lumi_batcher(file_path):
+                return web.Response(status=403, text="Access denied")
 
             # 检查文件是否存在
             if not os.path.exists(file_path):
