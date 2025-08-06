@@ -36,6 +36,7 @@ import {
 } from '@common/utils/value-type';
 import { TemplateFileType } from '@common/constant/creator';
 import { SpecialOutputSuffix } from '@common/constant/params-config';
+import { uuid } from '@common/utils/uuid';
 
 interface InputParamsValueProps {
   onChange: (value: ValueBaseType[]) => void;
@@ -266,7 +267,7 @@ export const InputParamsValue: React.FC<InputParamsValueProps> = (props) => {
             const v = String(option || '');
             return (
               <Select.Option
-                key={Math.random()}
+                key={uuid()}
                 value={
                   String(nodeInfo?.paramValue)?.endsWith(SpecialOutputSuffix)
                     ? buildSpecialOutputValue(v)
