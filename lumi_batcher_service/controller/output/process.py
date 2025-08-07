@@ -47,6 +47,8 @@ def process_output(result: list[dict]):
                         "value": current_value,
                     }
 
+                temp = {**temp, "extra": o}
+
                 outputs.append(temp)
 
         results.append(
