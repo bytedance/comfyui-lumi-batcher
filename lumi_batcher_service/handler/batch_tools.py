@@ -273,6 +273,151 @@ class BatchToolsHandler:
                 print("----create batch task error-----", e)
                 return web.json_response(getErrorResponse(e, "创建批量任务失败"))
 
+        @server.PromptServer.instance.routes.post(getApiPath("/prompt"))
+        async def prompt(request):
+            try:
+                resp_code = 200
+                json_data = await request.json()
+                # 解析请求参数
+                prompt = json_data["prompt"]
+                workflow = json_data["workflow"]
+                client_id = json_data.get("client_id", "")
+                batch_task_id = json_data.get("batch_task_id", "")
+                number = None
+                if "number" in json_data:
+                    number = float(json_data["number"])
+
+                # 初始化运行参数
+                params_config = []
+                queue_count = 1
+                statusCounts = StatusCounts()
+                packageInfo = PackageInfo()
+                errorMessages = []
+
+                # 生成唯一id
+                if batch_task_id == "":
+                    batch_task_id = str(uuid.uuid4())
+
+                task_name = batch_task_id
+
+                params_config_str = json.dumps(params_config)
+
+                batch_task_info = self.batchTaskDao.get_task_by_id(batch_task_id)
+
+                if batch_task_info == None:
+                    self.batchTaskDao.insert_task(
+                        batch_task_id,
+                        task_name,
+                        queue_count,
+                        CommonTaskStatus.WAITING.value,
+                        params_config_str,
+                        statusCounts.to_json(),
+                        packageInfo.to_json(),
+                        json.dumps(errorMessages),
+                        json.dumps(
+                            {
+                                "output_nodes": process_output_nodes(prompt),
+                                "prompt": prompt,
+                            }
+                        ),
+                    )
+                else:
+                    self.batchTaskDao.update_property(
+                        batch_task_id,
+                        "queue_count",
+                        batch_task_info.get("queue_count", 1) + 1,
+                    )
+                    self.batchTaskDao.update_property(
+                        batch_task_id, "status", CommonTaskStatus.RUNNING.value
+                    )
+
+                await asyncio.sleep(3)
+
+                queue_response = {}
+
+                def process_item():
+                    nonlocal queue_response
+                    queue_request_body = {
+                        "client_id": client_id,
+                        "prompt": prompt,
+                        "extra_data": {
+                            "extra_pnginfo": {"workflow": workflow},
+                        },
+                    }
+
+                    if number == -1:
+                        queue_request_body["front"] = True
+                    elif number is not None:
+                        queue_request_body["number"] = number
+
+                    try:
+                        queue_response = self.post_prompt(queue_request_body)
+
+                        prompt_id = queue_response.get("prompt_id", str(uuid.uuid4()))
+                        error = queue_response.get(
+                            "error", "创建任务失败，请检查工作流！"
+                        )
+
+                        if "error" in queue_response:
+                            self.batchSubTaskDao.insert_task(
+                                batch_task_id,
+                                prompt_id,
+                                params_config_str,
+                                SubTaskStatus.FAILED.value,
+                                json.dumps(error),
+                                json.dumps([]),
+                            )
+                            # 更新创建失败数量
+                            statusCounts.create_failed = statusCounts.create_failed + 1
+                            errorMessages.append(error)
+                        else:
+                            self.batchSubTaskDao.insert_task(
+                                batch_task_id,
+                                prompt_id,
+                                params_config_str,
+                                SubTaskStatus.PENDING.value,
+                                json.dumps(error),
+                                json.dumps([]),
+                            )
+
+                    except Exception as e:
+                        self.batchSubTaskDao.insert_task(
+                            batch_task_id,
+                            str(uuid.uuid4()),
+                            params_config_str,
+                            SubTaskStatus.FAILED.value,
+                            json.dumps("创建任务失败，请检查工作流！"),
+                            json.dumps([]),
+                        )
+                        # 更新创建失败数量
+                        statusCounts.create_failed = statusCounts.create_failed + 1
+                        traceback.print_exc()
+
+                tasks = [asyncio.to_thread(process_item)]
+
+                await asyncio.gather(*tasks)
+
+                if statusCounts.create_failed == queue_count:
+                    self.batchTaskDao.update_property(batch_task_id, "status", "failed")
+                    self.batchTaskDao.update_property(
+                        batch_task_id, "messages", json.dumps(errorMessages)
+                    )
+                elif statusCounts.create_failed > 0:
+                    self.batchTaskDao.update_property(
+                        batch_task_id, "status_counts", statusCounts.to_json()
+                    )
+
+                return web.json_response(
+                    {
+                        "code": resp_code,
+                        "message": "创建任务成功",
+                        "data": {"batch_task_id": batch_task_id, **queue_response},
+                    }
+                )
+            except Exception as e:
+                print("----create task error-----", e)
+                return web.json_response(getErrorResponse(e, "创建任务失败"))
+
         @server.PromptServer.instance.routes.get(getApiPath("/batch-task/list"))
         async def getTaskList(request):
             try:

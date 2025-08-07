@@ -16,7 +16,7 @@ export function isConfigOptionSimple(
 export function concatNames(
   info: Pick<ConfigOptionSimple, 'nodeId' | 'internal_name'>,
 ) {
-  return `#${info.nodeId}:${info.internal_name}`;
+  return `#${info?.nodeId}:${info?.internal_name}`;
 }
 
 /** 拼接参数 Name */

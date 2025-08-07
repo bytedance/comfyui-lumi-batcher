@@ -17,6 +17,7 @@ import { PreviewTableDataType } from '@common/components/PreviewTable/type/table
 import { ConfigOption, ConfigOptionSimple } from '@common/type/result';
 import { GetRoomResultsResponse } from '@api/result';
 import { processResult } from '@common/utils/transfer/task-result';
+import { defaultTableConfigOptions } from '@src/result-view/constand';
 
 const CustomParamsConfigFilters = 'custom_params_config_filters';
 
@@ -63,7 +64,9 @@ export const useData = () => {
     });
 
     // 填充当前所选对比维度涉及的列数据
-    const s = tableConfigOptions[selectedConfigOptionIndex] as ConfigOption;
+    const s =
+      (tableConfigOptions[selectedConfigOptionIndex] as ConfigOption) ||
+      defaultTableConfigOptions;
     // 根据当前res数据，涉及到的id索引，通过序列化的任务key找到每个单元格对应的数据，同时构建表格所需数据
     let cases: Array<string> = [];
     if (s.type === 'group') {

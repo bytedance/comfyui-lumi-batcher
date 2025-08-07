@@ -8,7 +8,7 @@ export const CommonSeparator = '+';
 
 // 从参数配置中获取key
 export const getKey = (c: ConfigOptionSimple, v = '') =>
-  `#${c.nodeId}:${c.internal_name}${v !== '' ? `=${v}` : ''}`;
+  `#${c?.nodeId}:${c?.internal_name}${v !== '' ? `=${v}` : ''}`;
 
 // 从数据集图片路径中取文件key
 export const getImageKey = (s: string): string => s.split('/').pop() ?? '';

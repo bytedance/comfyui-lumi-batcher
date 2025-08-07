@@ -8,6 +8,7 @@ import { useCreatorStore } from '@src/create-task/store';
 import { goToCreateTask } from '@src/create-task';
 import { I18n } from '@common/i18n';
 import { languageUtils, TranslateKeys } from '@common/language';
+import { createPromptTask } from '@api/task';
 
 export const CreateTaskButton = (props: { style?: React.CSSProperties }) => {
   const [uiConfig] = useBatchToolsStore(useShallow((s) => [s.uiConfig]));
@@ -18,16 +19,35 @@ export const CreateTaskButton = (props: { style?: React.CSSProperties }) => {
   return (
     <>
       {uiConfig.showCreateTask ? (
-        <Button
-          type="primary"
-          onClick={goToCreateTask}
-          loading={checkWorkflowLoading}
-          style={props.style ?? {}}
-        >
-          {checkWorkflowLoading
-            ? I18n.t('checking_workflow', {}, '正在检测工作流')
-            : languageUtils.getText(TranslateKeys.CREATE_BATCH_TASK)}
-        </Button>
+        <>
+          <Button
+            type="primary"
+            onClick={goToCreateTask}
+            loading={checkWorkflowLoading}
+            style={props.style ?? {}}
+          >
+            {checkWorkflowLoading
+              ? I18n.t('checking_workflow', {}, '正在检测工作流')
+              : languageUtils.getText(TranslateKeys.CREATE_BATCH_TASK)}
+          </Button>
+          <Button
+            type="primary"
+            onClick={() => {
+              window.app.graphToPrompt().then((data) => {
+                const { workflow, output } = data;
+
+                createPromptTask({
+                  workflow,
+                  prompt: output,
+                  // batch_task_id: 1,
+                });
+              });
+            }}
+            style={props.style ?? {}}
+          >
+            发起单批量任务
+          </Button>
+        </>
       ) : null}
     </>
   );

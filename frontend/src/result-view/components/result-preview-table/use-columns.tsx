@@ -20,6 +20,7 @@ import {
   PreviewTableCellValueType,
 } from '@common/components/PreviewTable/type/table';
 import { ConfigOption, ConfigOptionSimple } from '@common/type/result';
+import { defaultTableConfigOptions } from '@src/result-view/constand';
 
 const findOrderIndex = (array: number[], num: number): number => {
   let left = 0;
@@ -140,7 +141,9 @@ export const useColumns = () => {
     });
 
     // 处理选中的列
-    const s = tableConfigOptions[selectedConfigOptionIndex as number];
+    const s =
+      tableConfigOptions[selectedConfigOptionIndex as number] ||
+      defaultTableConfigOptions;
     if (s.type === 'group') {
       const c = s as {
         type: string;

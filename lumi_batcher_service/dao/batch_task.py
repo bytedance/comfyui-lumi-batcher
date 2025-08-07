@@ -196,6 +196,10 @@ class BatchTaskDao:
                     sql = read_sql_file(
                         os.path.join(self.sql_dir, "update_messages.sql")
                     )
+                elif property_name == "queue_count":
+                    sql = read_sql_file(
+                        os.path.join(self.sql_dir, "update_queue_count.sql")
+                    )
                 else:
                     raise Exception("Invalid property name")
 
