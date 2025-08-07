@@ -12,3 +12,13 @@ def process_pysssss_show_text(ui):
         result = [{"type": OutputNodeType.Text, "value": json.dumps(text)}]
 
     return result, output_key
+
+
+def process_display_anys_as_list(ui):
+    result = None
+    output_key = "result"
+    if output_key in ui:
+        text = ui[output_key]
+        result = [{"type": OutputNodeType.Text, "value": json.dumps(text)}]
+
+    return result, output_key
