@@ -456,6 +456,12 @@ class BatchToolsHandler:
             type = request.rel_url.query.get("type", "output")
             file_name = request.rel_url.query.get("file_name")
 
+            if file_name.startswith("."):
+                return web.Response(
+                    status=400,
+                    text="File name starts with '.' is not allowed",
+                )
+
             # 自动解码已编码的参数
             try:
                 file_name = unquote(file_name)
@@ -627,6 +633,12 @@ class BatchToolsHandler:
                         # 指定服务器上的保存路径
                         directory = self.workSpaceManager.getDirectory(self.upload_path)
                         file_path = os.path.join(directory, filename)
+
+                        if filename.startswith("."):
+                            return web.Response(
+                                status=400,
+                                text="File name starts with '.' is not allowed",
+                            )
 
                         size = 0
                         # 异步写入文件
