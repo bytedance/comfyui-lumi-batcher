@@ -391,7 +391,7 @@ class BatchToolsHandler:
                         statusCounts.create_failed = statusCounts.create_failed + 1
                         traceback.print_exc()
 
-                tasks = [process_item]
+                tasks = [process_item()]
 
                 await asyncio.gather(*tasks)
 
