@@ -418,4 +418,15 @@ export const TranslationsDataDefault: TranslationsType = {
     'en-US': 'Download failed',
     'zh-CN': '下载失败',
   },
+  the_parameter_type_check_failed__please_check_the_parameter_configuration__: {
+    'en-US':
+      'The parameter type check failed. Please check the parameter configuration~',
+    'zh-CN': '参数类型检查失败，请检查参数配置~',
+  },
+  the_parameters_have_been_successfully_uploaded_and_parsed__the_details_are_as_follow:
+    {
+      'en-US':
+        'The parameters have been successfully uploaded and parsed. The details are as follows:',
+      'zh-CN': '参数已成功上传并解析，详情如下：',
+    },
 };
