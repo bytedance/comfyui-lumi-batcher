@@ -331,8 +331,6 @@ class BatchToolsHandler:
                         batch_task_id, "status", CommonTaskStatus.RUNNING.value
                     )
 
-                await asyncio.sleep(3)
-
                 queue_response = {}
 
                 async def process_item():
@@ -393,7 +391,7 @@ class BatchToolsHandler:
                         statusCounts.create_failed = statusCounts.create_failed + 1
                         traceback.print_exc()
 
-                tasks = [asyncio.to_thread(process_item)]
+                tasks = [process_item]
 
                 await asyncio.gather(*tasks)
 
