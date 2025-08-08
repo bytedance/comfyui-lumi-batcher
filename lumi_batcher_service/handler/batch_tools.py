@@ -456,12 +456,6 @@ class BatchToolsHandler:
             type = request.rel_url.query.get("type", "output")
             file_name = request.rel_url.query.get("file_name")
 
-            if file_name.startswith("."):
-                return web.Response(
-                    status=400,
-                    text="File name starts with '.' is not allowed",
-                )
-
             # 自动解码已编码的参数
             try:
                 file_name = unquote(file_name)
@@ -478,6 +472,12 @@ class BatchToolsHandler:
                 file_path = os.path.join(
                     self.workSpaceManager.getDirectory(self.download_path),
                     file_name,
+                )
+
+            if not is_under_delete_white_dir(file_path):
+                return web.Response(
+                    status=400,
+                    text="file path is not in white list",
                 )
 
             # 检查文件是否存在
@@ -634,10 +634,10 @@ class BatchToolsHandler:
                         directory = self.workSpaceManager.getDirectory(self.upload_path)
                         file_path = os.path.join(directory, filename)
 
-                        if filename.startswith("."):
+                        if not is_under_delete_white_dir(file_path):
                             return web.Response(
                                 status=400,
-                                text="File name starts with '.' is not allowed",
+                                text="file path is not in white list",
                             )
 
                         size = 0
