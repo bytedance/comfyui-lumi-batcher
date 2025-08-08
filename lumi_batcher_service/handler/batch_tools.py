@@ -335,7 +335,7 @@ class BatchToolsHandler:
 
                 queue_response = {}
 
-                def process_item():
+                async def process_item():
                     nonlocal queue_response
                     queue_request_body = {
                         "client_id": client_id,
@@ -351,7 +351,7 @@ class BatchToolsHandler:
                         queue_request_body["number"] = number
 
                     try:
-                        queue_response = self.post_prompt(queue_request_body)
+                        queue_response = await self.post_prompt(queue_request_body)
 
                         prompt_id = queue_response.get("prompt_id", str(uuid.uuid4()))
                         error = queue_response.get(
