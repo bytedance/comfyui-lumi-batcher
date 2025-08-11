@@ -125,7 +125,9 @@ export const UploadComponent: React.FC<PropsType> = ({
           accept
         ) {
           result.push(
-            ...tempArr.filter((i) => accept.includes((i.split('.').pop() || '').toLowerCase())),
+            ...tempArr.filter((i) =>
+              accept.includes((i.split('.').pop() || '').toLowerCase()),
+            ),
           );
         } else {
           result.push(...tempArr);
@@ -156,7 +158,7 @@ export const UploadComponent: React.FC<PropsType> = ({
       } else {
         Message.success(
           I18n.t(
-            'the_parameters_have_been_successfully_uploaded_and_parsed__the_details_are_as_fo',
+            'the_parameters_have_been_successfully_uploaded_and_parsed__the_details_are_as_follow',
             {},
             '参数已成功上传并解析，详情如下表～',
           ),

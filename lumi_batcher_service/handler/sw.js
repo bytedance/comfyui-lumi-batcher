@@ -25,7 +25,7 @@ self.onmessage = (event) => {
   const downloadUrl =
     data.url ||
     self.registration.scope +
-      Math.random() +
+      new Date().getTime() +
       "/" +
       (typeof data === "string" ? data : data.filename);
   const port = event.ports[0];

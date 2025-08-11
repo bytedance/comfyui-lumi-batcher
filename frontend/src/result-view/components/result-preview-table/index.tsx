@@ -13,6 +13,8 @@ import { useData } from './use-data';
 import useResize from '@common/hooks/use-resize';
 import { customCompare } from '@common/components/PreviewTable/utils/compare';
 import { PreviewTable } from '@common/components/PreviewTable';
+import { memoryMap } from '@common/utils/advanced-map';
+import { orderColumns, orderRows } from './order';
 
 export const ResultPreviewTable = () => {
   const height = useResize(() => window.innerHeight - 60 - 76);
@@ -40,47 +42,48 @@ export const ResultPreviewTable = () => {
     // 创建配置映射表
     const configMap = new Map();
     // 自增序号
-    let count = 0;
+    let count = 1;
+
+    const { set: configMapSet } = memoryMap(configMap);
+
     customColumns.forEach((cc) => {
-      configMap.set(cc.id, { ...cc, order: count++ });
-      cc.options?.forEach((opt) => {
-        configMap.set(opt.id, { ...opt, order: count++ });
-      });
+      if (cc.options?.length > 1) {
+        cc.options?.forEach((opt) => {
+          configMapSet(opt.id, { ...opt, order: count++ });
+        });
+      } else {
+        configMapSet(cc.id, { ...cc, order: count++ });
+      }
     });
 
-    return columns
-      .filter((c) => {
-        const config = configMap.get(c.dataIndex);
-        return config?.selected !== false;
-      })
-      .sort((a, b) => {
-        const configA = configMap.get(a.dataIndex);
-        const configB = configMap.get(b.dataIndex);
-        return (configA?.order ?? Infinity) - (configB?.order ?? Infinity);
-      });
+    const { get: filterConfigGet } = memoryMap(configMap);
+    const { get: orderConfigGet } = memoryMap(configMap);
+
+    return orderColumns(columns, orderConfigGet).filter((c) => {
+      const config = filterConfigGet(c.dataIndex || '');
+      return config?.selected !== false;
+    });
   }, [columns, customColumns]);
 
   const finalData = useMemo(() => {
     // 创建配置映射表
     const configMap = new Map();
     let count = 0;
+    const { set: configMapSet } = memoryMap(configMap);
     customRows.forEach((cc) => {
-      configMap.set(cc.id, { ...cc, order: count++ });
+      configMapSet(cc.id, { ...cc, order: count++ });
       cc.options?.forEach((opt) => {
-        configMap.set(opt.id, { ...opt, order: count++ });
+        configMapSet(opt.id, { ...opt, order: count++ });
       });
     });
 
-    return data
-      .filter((d) => {
-        const config = configMap.get(d.id);
-        return config?.selected !== false;
-      })
-      .sort((a, b) => {
-        const configA = configMap.get(a.id);
-        const configB = configMap.get(b.id);
-        return (configA?.order ?? Infinity) - (configB?.order ?? Infinity);
-      });
+    const { get: filterConfigGet } = memoryMap(configMap);
+    const { get: orderConfigGet } = memoryMap(configMap);
+
+    return orderRows(data, orderConfigGet).filter((d) => {
+      const config = filterConfigGet(d.id);
+      return config?.selected !== false;
+    });
   }, [data, customRows]);
 
   useEffect(() => {

@@ -1,13 +1,20 @@
 // Copyright (c) 2025 Bytedance Ltd. and/or its affiliates
 // SPDX-License-Identifier: GPL-3.0-or-later
+import { v4 as uuidv4 } from 'uuid';
+
 const generateOne = (len: number): number => {
   let res = '';
-  for (let i = 0; i < len; i++) {
-    const r = Math.floor(Math.random() * 10);
-    if (r <= 0) {
-      res += '1';
-    } else {
-      res += r.toString();
+  // 生成UUID并提取数字部分，确保足够长度
+  while (res.length < len) {
+    // 生成UUID v4并移除连字符
+    const uuid = uuidv4().replace(/-/g, '');
+    // 遍历UUID的每个十六进制字符
+    for (const char of uuid) {
+      // 转换为十进制数字(0-15)后取模10得到0-9
+      const digit = parseInt(char, 16) % 10;
+      // 保持原逻辑：0替换为1，其他数字直接使用
+      res += digit === 0 ? '1' : digit.toString();
+      if (res.length === len) break;
     }
   }
   return Number(res);
