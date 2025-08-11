@@ -477,7 +477,7 @@ class BatchToolsHandler:
             if not is_under_delete_white_dir(file_path):
                 return web.Response(
                     status=400,
-                    text="file path is not in white list",
+                    text="file path: {} is not in white list".format(file_path),
                 )
 
             # 检查文件是否存在

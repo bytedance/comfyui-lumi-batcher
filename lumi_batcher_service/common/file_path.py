@@ -24,14 +24,18 @@ def is_under_lumi_batcher(path: str) -> bool:
         # 极端路径解析失败时降级处理
         path_obj = Path(path).expanduser()
 
-    if is_windows:
-        # Windows: 大小写不敏感的路径前缀匹配
-        target_str = str(target_dir).lower()
-        path_str = str(path_obj).lower()
-        return path_str == target_str or path_str.startswith(f"{target_str}{os.sep}")
-    else:
-        # Unix-like: 保持原有的is_relative_to精确匹配
-        return path_obj.is_relative_to(target_dir)
+    # 提取目标文件夹名称（无论原始路径层级）
+    target_folder = target_dir.name.lower() if is_windows else target_dir.name
+
+    # 标准化路径并分割为组件
+    try:
+        path_str = path_obj.as_posix().lower() if is_windows else path_obj.as_posix()
+        path_components = [comp for comp in path_str.rstrip("/").split("/") if comp]
+    except Exception:
+        return False
+
+    # 检查目标文件夹是否存在于路径的任何层级
+    return target_folder in path_components
 
 
 def is_under_delete_white_dir(path: str) -> bool:
@@ -69,11 +73,29 @@ def is_under_delete_white_dir(path: str) -> bool:
             # Windows路径处理：转为小写POSIX格式后比较
             path_str = path_obj.as_posix().lower()
             white_str = white_dir_obj.as_posix().lower()
-            if path_str == white_str or path_str.startswith(f"{white_str}/"):
+
+            # 提取白名单路径的最后一个文件夹名称
+            # 移除尾部斜杠并分割路径
+            white_folder = white_str.rstrip("/").split("/")[-1]
+            # 分割目标路径为组件并过滤空字符串
+            path_components = [comp for comp in path_str.rstrip("/").split("/") if comp]
+
+            # 检查白名单文件夹是否存在于路径的任何层级
+            if white_folder in path_components:
                 return True
         else:
-            # Unix-like系统保持原逻辑
-            if path_obj.is_relative_to(white_dir_obj):
+            # Unix-like系统优化为名称级匹配
+            path_str = path_obj.as_posix()
+            white_str = white_dir_obj.as_posix()
+
+            # 提取白名单路径的最后一个文件夹名称
+            white_folder = white_str.rstrip("/").split("/")[-1]
+            # 分割目标路径为组件并过滤空字符串
+            path_components = [comp for comp in path_str.rstrip("/").split("/") if comp]
+
+            # 检查白名单文件夹是否存在于路径的任何层级
+            # 保留Unix系统大小写敏感性
+            if white_folder in path_components:
                 return True
 
     return False
