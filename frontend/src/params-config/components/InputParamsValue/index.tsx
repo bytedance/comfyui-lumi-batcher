@@ -70,8 +70,10 @@ export const InputParamsValue: React.FC<InputParamsValueProps> = (props) => {
   );
   const rootRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<any>(null);
+  const justSelected = useRef(false);
   const [value, setValue] = useState<string | string[]>(defaultValue);
   const [inputValue, setInputValue] = useState<string | string[]>('');
+  const [lastSearch, setLastSearch] = useState<string>('');
   const [popupVisible, setPopupVisible] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -198,13 +200,30 @@ export const InputParamsValue: React.FC<InputParamsValueProps> = (props) => {
           mode={enterFrom === 'batch-input' ? 'multiple' : undefined}
           defaultValue={defaultValue}
           value={value ? (value instanceof Array ? value : [value]) : []}
+          inputValue={inputValue as string}
           onChange={(v) => {
             setValue(v);
+            justSelected.current = true;
+            setTimeout(() => {
+              justSelected.current = false;
+            }, 0);
             if (enterFrom === 'single-input') {
               handleChange(v);
+            } else {
+              // Restore last search after multi-select
+              setInputValue(lastSearch);
             }
           }}
-          onInputValueChange={setInputValue}
+          onInputValueChange={(val) => {
+            if (val === '' && justSelected.current) {
+              // Ignore clear if due to selection
+              return;
+            }
+            setInputValue(val);
+            if (val) {
+              setLastSearch(val);
+            }
+          }}
           popupVisible={popupVisible}
           allowCreate={{
             formatter: (input_value) => ({
