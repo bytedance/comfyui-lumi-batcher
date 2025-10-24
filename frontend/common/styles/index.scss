@@ -1,3 +1,8 @@
 .clear-arco-typography-margin-bottom {
   margin-bottom: 0 !important;
 }
+
+// 覆盖arco-design的默认样式
+main {
+  display: flex;
+}
