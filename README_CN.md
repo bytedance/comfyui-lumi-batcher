@@ -76,6 +76,7 @@ ComfyUI-Lumi-Batcher 之于 comfyui，用途范围超过 xyz pilot 之于 webui�
 
 ## ⭐️ 版本更新
 
+- 🚀 **version 1.0.8**: 修复 ComfyUI 官方最新版 UI 模板选择弹窗滚动问题，支持结果图拖入画布能够恢复准确的参数
 - ✂️ **Version 1.0.7**：支持 ComfyUI 官方最新版改动，保证批量工具使用
 - ☀️ **Version 1.0.6**：兼容官方 0.3.44 版本针对 validate_prompt 的改动
 - ☕️ **Version 1.0.5**：支持使用 api 节点场景下的批量，支持自定义 output 目录，批量支持 was-node-suite-comfyui 插件的 Image Save 输出节点
