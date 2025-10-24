@@ -49,6 +49,9 @@ from lumi_batcher_service.controller.task.update_prompt import (
     updatePrompt,
     generateSimpleConfigDefault,
 )
+from lumi_batcher_service.controller.task.update_workflow import (
+    update_workflow,
+)
 from lumi_batcher_service.controller.output.nodes import process_output_nodes
 from lumi_batcher_service.controller.output.process import process_output
 from lumi_batcher_service.common.delete_file import batch_delete_files
@@ -803,6 +806,7 @@ class BatchToolsHandler:
                 )
                 for config_item in paramsCombine:
                     updatePrompt(temp_prompt, config_item, ba_batch_tools_params_config)
+                    update_workflow(temp_workflow, temp_prompt, config_item)
 
                 resultList.append(
                     {
