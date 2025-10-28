@@ -79,11 +79,11 @@ export const usePreviewTableStore = create<
       ] as PreviewTableCellValueType;
       const previewList: ResultItem[] = [];
       value
-        .filter((i) => i.type === 'image')
+        .filter((i) => ['image', 'video'].includes(i.type))
         .forEach((value) =>
           value.value.forEach((i) =>
             previewList.push({
-              type: ResultOutputTypeEnum.Image,
+              type: value.type as ResultOutputTypeEnum,
               url: i,
             }),
           ),

@@ -11,7 +11,6 @@ import { isElementInContainer } from '../../utils/element';
 import { ResultItemRender } from '../ResultItemRender';
 import { CustomChange } from './custom-change';
 import styles from './index.module.scss';
-import { ResultOutputTypeEnum } from '@api/result';
 import { openFullScreenModal } from '@common/components/FullscreenModal';
 
 function CloseIcon({ onClose }: { onClose: () => void }) {
@@ -62,11 +61,13 @@ function GroupResultPreview({ onClose }: { onClose: () => void }) {
                 onClose={onClose}
                 renderMode="clean"
                 objectFit="cover"
+                isMulti
+                withCustomChange={false}
               />
             </div>
           ))}
         </div>
-        <CustomChange />
+        <CustomChange isMulti />
       </>
     ),
     [onClose, preview, showIndex],
@@ -145,15 +146,12 @@ function GroupResultPreview({ onClose }: { onClose: () => void }) {
       <div className={styles.layout}>
         <div className={styles.resource}>
           <ResultItemRender
-            // renderMode={
-            //   preview![showIndex]?.type === ResultOutputTypeEnum.Image
-            //     ? 'clean'
-            //     : 'full'
-            // }
             objectFit="contain"
             result={preview![showIndex]}
             onClose={onClose}
             extra={RenderExtra}
+            isMulti
+            withCustomChange={false}
           />
         </div>
       </div>

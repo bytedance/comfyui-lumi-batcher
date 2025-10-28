@@ -76,6 +76,7 @@ ComfyUI-Lumi-Batcher 之于 comfyui，用途范围超过 xyz pilot 之于 webui�
 
 ## ⭐️ 版本更新
 
+- 🚀 **version 1.0.9**: 修复图片大图场景上下切换单元格导致的放大缩小问题;增加上下左右的单元格切换能力
 - 🚀 **version 1.0.8**: 修复 ComfyUI 官方最新版 UI 模板选择弹窗滚动问题，支持结果图拖入画布能够恢复准确的参数
 - ✂️ **Version 1.0.7**：支持 ComfyUI 官方最新版改动，保证批量工具使用
 - ☀️ **Version 1.0.6**：兼容官方 0.3.44 版本针对 validate_prompt 的改动

@@ -105,6 +105,14 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
             },
           };
         },
+        onHeaderCell: () => ({
+          onClick: () => {
+            usePreviewTableStore.setState({
+              currentCol: index,
+              currentRow: -1,
+            });
+          },
+        }),
       })),
     [columnList],
   );
