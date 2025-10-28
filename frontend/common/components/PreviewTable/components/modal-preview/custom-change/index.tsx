@@ -9,11 +9,16 @@ import { ReactComponent as ArrowRight } from '@static/icons/arrow-right.svg';
 
 import { usePreviewTableStore } from '../../../store';
 import { type PreviewTableCellValueType } from '../../../type/table';
-import { changePreview } from '../../../utils/change-preview';
+import {
+  AcceptKeyCodeList,
+  changePreview,
+} from '../../../utils/change-preview';
 import styles from './index.module.scss';
 import { I18n } from '@common/i18n';
 
-export const CustomChange: React.FC = () => {
+export const CustomChange: React.FC<{
+  isMulti?: boolean;
+}> = ({ isMulti = false }) => {
   const [currentCol, currentRow, columnList] = usePreviewTableStore(
     useShallow((s) => [s.currentCol, s.currentRow, s.columnList]),
   );
@@ -60,14 +65,17 @@ export const CustomChange: React.FC = () => {
 
   useEffect(() => {
     const fn = (e: KeyboardEvent) => {
-      changePreview(e.code);
+      if (AcceptKeyCodeList.includes(e.code)) {
+        changePreview(e.code);
+        e.stopImmediatePropagation();
+      }
     };
-    document.addEventListener('keydown', fn);
+    window.addEventListener('keydown', fn, { capture: !isMulti });
 
     return () => {
-      document.removeEventListener('keydown', fn);
+      window.removeEventListener('keydown', fn, { capture: !isMulti });
     };
-  }, []);
+  }, [isMulti]);
 
   return (
     <div className={styles.container}>

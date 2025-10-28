@@ -16,17 +16,21 @@ import { batchDownloadByFetchUrl } from '@api/download';
 export const ResultItemRender: React.FC<{
   objectFit?: 'contain' | 'cover';
   renderMode?: 'full' | 'clean';
+  isMulti?: boolean;
   result: ResultItem;
   onClose: () => void;
   getPopupContainer?: () => HTMLElement;
   extra?: React.ReactNode;
+  withCustomChange?: boolean;
 }> = ({
   renderMode = 'full',
+  isMulti = false,
   objectFit,
   result,
   extra = null,
   onClose,
   getPopupContainer,
+  withCustomChange = true,
 }) => {
   const { url, type } = result;
 
@@ -54,7 +58,7 @@ export const ResultItemRender: React.FC<{
         }}
         extra={
           <>
-            <CustomChange />
+            <CustomChange isMulti={isMulti} />
             {extra ? extra : null}
           </>
         }
@@ -81,16 +85,19 @@ export const ResultItemRender: React.FC<{
     );
   } else if (type === ResultOutputTypeEnum.Video) {
     return (
-      <BlobVideo
-        className={styles.video}
-        width="100%"
-        src={url}
-        controls={renderMode === 'full'}
-        style={{
-          objectFit,
-        }}
-        hoverPlay
-      />
+      <>
+        <BlobVideo
+          className={styles.video}
+          width="100%"
+          src={url}
+          controls={renderMode === 'full'}
+          style={{
+            objectFit,
+          }}
+          hoverPlay
+        />
+        {withCustomChange ? <CustomChange isMulti={isMulti} /> : null}
+      </>
     );
   }
 

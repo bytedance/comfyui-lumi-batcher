@@ -2,6 +2,13 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import { usePreviewTableStore } from '../store';
 
+export const AcceptKeyCodeList = [
+  'ArrowUp',
+  'ArrowDown',
+  'ArrowLeft',
+  'ArrowRight',
+];
+
 export const changePreview = (code: string) => {
   try {
     let { currentCol: col, currentRow: row } = usePreviewTableStore.getState();
