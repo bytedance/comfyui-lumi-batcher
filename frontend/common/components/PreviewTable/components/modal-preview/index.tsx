@@ -67,7 +67,7 @@ function GroupResultPreview({ onClose }: { onClose: () => void }) {
             </div>
           ))}
         </div>
-        <CustomChange />
+        <CustomChange isMulti />
       </>
     ),
     [onClose, preview, showIndex],
