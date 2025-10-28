@@ -1,7 +1,7 @@
 [project]
 name = "comfyui-lumi-batcher"
 description = "ComfyUI Lumi Batcher is a batch processing extension plugin designed for ComfyUI, aiming to improve workflow debugging efficiency. Traditional debugging methods require adjusting parameters one by one, while this tool significantly enhances work efficiency through batch processing capabilities."
-version = "1.0.8"
+version = "1.0.9"
 license = { file = "LICENSE" }
 dependencies = [
     "aiohttp>=3.11.8",
