@@ -873,8 +873,19 @@ class BatchToolsHandler:
                 extra_data["client_id"] = json_data["client_id"]
             if valid[0]:
                 outputs_to_execute = valid[2]
+                sensitive = {}
+                for sensitive_val in execution.SENSITIVE_EXTRA_DATA_KEYS:
+                    if sensitive_val in extra_data:
+                        sensitive[sensitive_val] = extra_data.pop(sensitive_val)
                 server.PromptServer.instance.prompt_queue.put(
-                    (number, prompt_id, prompt, extra_data, outputs_to_execute)
+                    (
+                        number,
+                        prompt_id,
+                        prompt,
+                        extra_data,
+                        outputs_to_execute,
+                        sensitive,
+                    )
                 )
                 response = {
                     "prompt_id": prompt_id,
