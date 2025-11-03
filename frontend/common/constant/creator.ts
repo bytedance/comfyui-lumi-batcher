@@ -42,18 +42,22 @@ export const TemplateXlsxGroupLink =
   'https://lf3-static.bytednsdoc.com/obj/eden-cn/nupaonpmeh7nuhpeuhpa/batch-tools-sdk/group-param-value-demo.xlsx';
 export const TemplateZipVideoLink =
   'https://lf3-static.bytednsdoc.com/obj/eden-cn/nupaonpmeh7nuhpeuhpa/batch-tools-sdk/video-param-value-demo.zip';
+export const TemplateZipAudioLink =
+  'https://lf3-static.bytednsdoc.com/obj/eden-cn/nupaonpmeh7nuhpeuhpa/batch-tools-sdk/audio-param-value-demo.zip';
 
 export type TemplateFileType =
   | 'xlsx'
   | 'zip_image'
   | 'zip_video'
-  | 'xlsx_group';
+  | 'xlsx_group'
+  | 'zip_audio';
 
 export const TemplateFileNameMap: Record<TemplateFileType, string> = {
   xlsx: 'demo-params.xlsx',
   xlsx_group: 'demo-params-group.xlsx',
   zip_image: 'demo-params-image.zip',
   zip_video: 'demo-params-video.zip',
+  zip_audio: 'demo-params-audio.zip',
 };
 
 export const TemplateFileHrefMap: Record<TemplateFileType, string> = {
@@ -61,4 +65,5 @@ export const TemplateFileHrefMap: Record<TemplateFileType, string> = {
   zip_image: TemplateZipLink,
   xlsx_group: TemplateXlsxGroupLink,
   zip_video: TemplateZipVideoLink,
+  zip_audio: TemplateZipAudioLink,
 };

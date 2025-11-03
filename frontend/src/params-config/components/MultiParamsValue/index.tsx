@@ -10,6 +10,7 @@ import { InputParamsValue } from '../InputParamsValue';
 import { useCreatorStore } from '@src/create-task/store';
 import { I18n } from '@common/i18n';
 import { languageUtils, TranslateKeys } from '@common/language';
+import { getPopoverType } from '@src/params-config/utils/popover-type';
 
 export const MultiParamsValue = () => {
   const [currentParamsConfig, updateCurrentConfig, allNodesOptions] =
@@ -47,12 +48,7 @@ export const MultiParamsValue = () => {
             <GridItem key={config_id}>
               <InputParamsValue
                 popover={{
-                  type:
-                    taskParamType === 'video'
-                      ? 'zip_video'
-                      : taskParamType === 'image'
-                        ? 'zip_image'
-                        : 'xlsx',
+                  type: getPopoverType(taskParamType),
                   size: 'small',
                 }}
                 currentParamConfig={config}

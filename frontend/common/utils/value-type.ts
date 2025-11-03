@@ -9,6 +9,8 @@ export const RE_VIDEO_SUFFIX =
 /** 判断图片后缀的正则 */
 export const RE_IMAGE_SUFFIX =
   /\.(bmp|jpg|png|tif|gif|pcx|tga|exif|fpx|svg|psd|cdr|pcd|dxf|ufo|eps|ai|raw|WMF|webp|jpeg)$/;
+/** 判断音频后缀的正则 */
+export const RE_AUDIO_SUFFIX = /\.(mp3|wav|aac|flac|ogg|m4a|wma)$/i;
 
 /** 参数值类型推导 */
 export enum ValueTypeEnum {
@@ -20,6 +22,7 @@ export enum ValueTypeEnum {
   /** 数字类型 */
   NUMBER = 'number',
   VIDEO = 'video',
+  AUDIO = 'audio',
 }
 
 /** 获取传入值类型 */
@@ -38,6 +41,8 @@ export const getType = (value: any): ValueTypeEnum => {
     return ValueTypeEnum.IMAGE;
   } else if (RE_VIDEO_SUFFIX.test(lowerStr)) {
     return ValueTypeEnum.VIDEO;
+  } else if (RE_AUDIO_SUFFIX.test(lowerStr)) {
+    return ValueTypeEnum.AUDIO;
   } else if (typeof value === 'string') {
     return ValueTypeEnum.STRING;
   } else {

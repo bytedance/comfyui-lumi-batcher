@@ -9,6 +9,7 @@ import './index.scss';
 import { getImageUrlV2 } from '@common/utils/image';
 import BlobVideo from '@common/components/PreviewTable/components/BlobVideo';
 import { checkParamType } from '@src/params-config/utils/check-task-param-type';
+import { AudioValuePreview } from '@common/components/AudioValuePreview';
 
 export const ParamsValuePreview: React.FC<{
   value: any;
@@ -68,6 +69,31 @@ export const ParamsValuePreview: React.FC<{
           hoverPlay
           controls={false}
         />
+      );
+    } else if (type === 'audio') {
+      return (
+        <AudioValuePreview
+          audioProps={{
+            src: url,
+            style: {
+              maxWidth,
+              maxHeight,
+              border: isError
+                ? '1px solid #ff453a'
+                : '1px solid var(--border-color-border-1, rgba(255, 255, 255, 0.12))',
+              borderRadius: 4,
+              objectFit: 'cover',
+              marginTop: 8,
+              ...{ width: width ?? undefined, height: height ?? undefined },
+            },
+            className: 'param-value-preview-audio',
+          }}
+          wrapperStyle={{
+            color: isError ? '#ff453a' : '',
+          }}
+          isError={isError}
+          value={value}
+        ></AudioValuePreview>
       );
     } else {
       return (

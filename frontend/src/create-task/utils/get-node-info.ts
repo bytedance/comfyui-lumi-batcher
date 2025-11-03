@@ -15,6 +15,8 @@ export const getUploadAccept = (value: any): string => {
     .svg, .psd, .cdr, .pcd, .dxf, .ufo, .eps, .ai, .raw, .WMF, .webp, .jpeg`;
   } else if (type === ValueTypeEnum.VIDEO) {
     return `${zipSuffix}, .mp4, .avi, .mov,`;
+  } else if (type === ValueTypeEnum.AUDIO) {
+    return `${zipSuffix}, .wav, .mp3, .aac`;
   } else {
     return '.xls, .xlsx, .txt';
   }
