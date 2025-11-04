@@ -1,10 +1,8 @@
 import os
 from .value import OutputNodeType
-import folder_paths
 
 
 def process_save_audio(ui):
-    output_directory = folder_paths.get_output_directory()
     result = []
     output_key = "audio"
     if output_key in ui:
@@ -13,7 +11,7 @@ def process_save_audio(ui):
             for item in audio_list:
                 filename = item.get("filename", "")
                 subfolder = item.get("subfolder", "")
-                file_path = os.path.join(output_directory, subfolder, filename)
+                file_path = os.path.join(subfolder, filename)
                 result.append(
                     {
                         "type": OutputNodeType.Audio,

@@ -24,7 +24,7 @@ def process_output(result: list[dict]):
                 temp = {}
                 value_type = value.get("type")
                 current_value = value.get("value")
-                if value_type in ["image", "video"]:
+                if value_type in ["image", "video", "audio"]:
                     try:
                         value_id = current_value
                         cover_id = value.get("cover")
@@ -33,7 +33,7 @@ def process_output(result: list[dict]):
                             "type": value_type,
                             "url": value_id,
                             "cover": cover_id,
-                            "format": value.get("format"),
+                            "format": value.get("format", ""),
                             "value": value_id,
                         }
 

@@ -137,7 +137,7 @@ def resolve_results(results: list[dict], dir: str):
         # 处理文件名中的特殊字符，处理文件路径长度，文件名长度
         output_file_name = file_processor.sanitize_filename(dir, output_file_name)
 
-        if type in ["image", "video"]:
+        if type in ["image", "video", "audio"]:
             output_directory = folder_paths.get_output_directory()
             path = os.path.join(output_directory, value)
 
