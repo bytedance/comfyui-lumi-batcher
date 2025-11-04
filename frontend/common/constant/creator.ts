@@ -23,6 +23,8 @@ export enum ColumnTypeEnum {
   Image = 'image',
   /** 视频 */
   Video = 'video',
+  /** 音频 */
+  Audio = 'audio',
   /** 数字 */
   Number = 'number',
 }
@@ -32,6 +34,7 @@ export const ColumnTypeEnumLabel: Record<ColumnTypeEnum, string> = {
   [ColumnTypeEnum.Image]: I18n.t('picture', {}, '图片'),
   [ColumnTypeEnum.Video]: I18n.t('video', {}, '视频'),
   [ColumnTypeEnum.Number]: I18n.t('number', {}, '数字'),
+  [ColumnTypeEnum.Audio]: I18n.t('audio', {}, '音频'),
 };
 
 export const TemplateXlsxLink =

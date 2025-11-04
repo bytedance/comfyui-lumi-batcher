@@ -16,6 +16,7 @@ import { CommonParamValueType } from '@common/type/result';
 const OrderList: CommonParamValueType[] = [
   'image',
   'video',
+  'audio',
   'string',
   'number',
 ];
@@ -86,6 +87,8 @@ export const RenderValue: React.FC<{
     video: RenderVideo,
     string: RenderText,
     number: RenderText,
+    // TODO 音频场景
+    audio: RenderText,
   };
   if (value.length > 0) {
     const compList: any[] = [];

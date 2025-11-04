@@ -59,7 +59,7 @@ export const PreviewTableDefaultState = {
 export const usePreviewTableStore = create<
   PreviewTableState,
   PreviewTableAction
->(PreviewTableDefaultState, (set, get) => ({
+>(PreviewTableDefaultState, (set: Function, get: Function) => ({
   getCellValue(row: number, col: number): PreviewTableCellValueType {
     const { data, columnList } = get();
     if (row >= 0 && row < data.length && col >= 0 && col < columnList.length) {
@@ -79,7 +79,7 @@ export const usePreviewTableStore = create<
       ] as PreviewTableCellValueType;
       const previewList: ResultItem[] = [];
       value
-        .filter((i) => ['image', 'video'].includes(i.type))
+        .filter((i) => ['image', 'video', 'audio'].includes(i.type))
         .forEach((value) =>
           value.value.forEach((i) =>
             previewList.push({

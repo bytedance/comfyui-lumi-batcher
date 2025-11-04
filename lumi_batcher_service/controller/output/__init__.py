@@ -6,6 +6,7 @@ from .video import (
     process_vhs_video_combine,
     process_save_video,
 )
+from .audio import process_save_audio
 
 output_processor_map = {
     "SaveImage": process_save_image,
@@ -14,6 +15,9 @@ output_processor_map = {
     "VHS_VideoCombine": process_vhs_video_combine,
     "VideoCombine_Adv": process_vhs_video_combine,
     "SaveVideo": process_save_video,
+    "SaveAudio": process_save_audio,
+    "SaveAudioMP3": process_save_audio,
+    "SaveAudioOpus": process_save_audio,
 }
 
 default_output_class_type_list = [
@@ -23,4 +27,7 @@ default_output_class_type_list = [
     "VHS_VideoCombine",
     "VideoCombine_Adv",
     "SaveVideo",
+    "SaveAudio",
+    "SaveAudioMP3",
+    "SaveAudioOpus",
 ]

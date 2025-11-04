@@ -5,6 +5,7 @@ import requestClient, { apiPrefix } from './request-instance';
 /** 结果输出类型 */
 export enum ResultOutputTypeEnum {
   Video = 'video',
+  Audio = 'audio',
   Image = 'image',
   Text = 'text',
 }

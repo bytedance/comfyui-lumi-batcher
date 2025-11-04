@@ -15,6 +15,9 @@ const OutputNodesList = [
   'ShowText|pysssss',
   'DisplayString',
   'SaveVideo',
+  'SaveAudio',
+  'SaveAudioMP3',
+  'SaveAudioOpus',
 ];
 
 // 检测输出节点是否在输出节点列表中

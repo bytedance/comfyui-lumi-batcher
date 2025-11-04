@@ -35,6 +35,8 @@ export const transferResultValueType = (
     return 'image';
   } else if (type === ResultOutputTypeEnum.Video) {
     return 'video';
+  } else if (type === ResultOutputTypeEnum.Audio) {
+    return 'audio';
   } else if (type === ResultOutputTypeEnum.Text) {
     return 'string';
   } else {

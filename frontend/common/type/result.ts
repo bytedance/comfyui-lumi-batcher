@@ -23,4 +23,9 @@ export type ConfigOption =
 export type PreviewMode = 'table' | 'v-table';
 
 // 通用描述参数值的类型
-export type CommonParamValueType = 'string' | 'number' | 'image' | 'video';
+export type CommonParamValueType =
+  | 'string'
+  | 'number'
+  | 'image'
+  | 'video'
+  | 'audio';
