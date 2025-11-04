@@ -51,6 +51,12 @@
   width: 22px;
 }
 
+.renderAudio {
+  width: auto;
+  height: 22px;
+  color: var(--text-color-text-1, rgba(255, 255, 255, 0.85));
+}
+
 .popoverContainer {
   width: 256px;
   transform: translateX(9px);

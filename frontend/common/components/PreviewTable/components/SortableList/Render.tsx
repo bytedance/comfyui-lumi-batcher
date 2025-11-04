@@ -12,13 +12,14 @@ import BlobVideo from '../BlobVideo';
 import { LoadImg } from '../LoadImg';
 import styles from './index.module.scss';
 import { CommonParamValueType } from '@common/type/result';
+import { AudioValuePreview } from '@common/components/AudioValuePreview';
 
 const OrderList: CommonParamValueType[] = [
   'image',
   'video',
-  'audio',
   'string',
   'number',
+  'audio',
 ];
 
 const RenderText: React.FC<{
@@ -72,6 +73,19 @@ const RenderVideo: React.FC<{
   </div>
 );
 
+const RenderAudio: React.FC<{
+  value: string;
+}> = ({ value }) => (
+  <div className={styles.renderAudio}>
+    <AudioValuePreview
+      audioProps={{
+        src: value,
+      }}
+      value={''}
+    ></AudioValuePreview>
+  </div>
+);
+
 export const RenderValue: React.FC<{
   value: PreviewTableCellValueType;
   showTooltip?: boolean;
@@ -87,8 +101,7 @@ export const RenderValue: React.FC<{
     video: RenderVideo,
     string: RenderText,
     number: RenderText,
-    // TODO 音频场景
-    audio: RenderText,
+    audio: RenderAudio,
   };
   if (value.length > 0) {
     const compList: any[] = [];
