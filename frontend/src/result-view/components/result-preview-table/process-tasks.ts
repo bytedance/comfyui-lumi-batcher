@@ -1,12 +1,9 @@
 // Copyright (c) 2025 Bytedance Ltd. and/or its affiliates
 // SPDX-License-Identifier: GPL-3.0-or-later
-import {
-  type GetRoomResultsResponse,
-  type TaskResultInfo,
-} from '@/api/batch-task/result';
-import { type ParamsConfigType } from '@/type/batch-task';
 
+import { GetRoomResultsResponse, TaskResultInfo } from '@api/result';
 import { CommonSeparator, getKey } from './utils';
+import { ParamsConfigType } from '@common/type/batch-task';
 
 /** 用于存放序列化的key映射任务结果 */
 export interface SerializedTaskResultMap {
@@ -34,11 +31,11 @@ export const processTasks = (
   const res: SerializedTaskResultMap = {};
   const map: SerializedParamsConfigMap = {};
 
-  tasks.forEach(task => {
+  tasks.forEach((task) => {
     try {
       const paramsConfig: ParamsConfigType = JSON.parse(task.ParamsConfig);
       let serializedKey = '';
-      const p = paramsConfig.filter(i => i.category !== 'system');
+      const p = paramsConfig.filter((i) => i.category !== 'system');
       const keys: string[] = [];
 
       p.forEach((item, index) => {

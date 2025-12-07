@@ -9,6 +9,7 @@ export const getDefaultDisplayResult = (
   const weightList = [
     ResultOutputTypeEnum.Video,
     ResultOutputTypeEnum.Image,
+    ResultOutputTypeEnum.Audio,
     ResultOutputTypeEnum.Text,
   ];
 

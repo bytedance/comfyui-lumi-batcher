@@ -3,12 +3,13 @@
 import { AllNodesOptions } from '@common/type/batch-task';
 import {
   getSpecialOutputValue,
+  RE_AUDIO_SUFFIX,
   RE_IMAGE_SUFFIX,
   RE_VIDEO_SUFFIX,
 } from '@common/utils/value-type';
 import { isNil, isNumber, isString } from 'lodash';
 
-type ValueType = 'image' | 'text' | 'number' | 'video';
+export type ValueType = 'image' | 'text' | 'number' | 'video' | 'audio';
 
 export function checkParamType(
   value?: AllNodesOptions[number]['paramsList'][number]['value'],
@@ -20,6 +21,8 @@ export function checkParamType(
     return 'image';
   } else if (isString(value) && RE_VIDEO_SUFFIX.test(value.toLowerCase())) {
     return 'video';
+  } else if (isString(value) && RE_AUDIO_SUFFIX.test(value.toLowerCase())) {
+    return 'audio';
   } else if (isNumber(value)) {
     return 'number';
   } else {

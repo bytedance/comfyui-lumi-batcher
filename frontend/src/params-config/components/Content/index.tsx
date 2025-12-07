@@ -18,6 +18,7 @@ import { languageUtils, TranslateKeys } from '@common/language';
 import { ParamsConfigTypeItem } from '@common/type/batch-task';
 import { useCreatorStore } from '@src/create-task/store';
 import { I18n } from '@common/i18n';
+import { getPopoverType } from '@src/params-config/utils/popover-type';
 
 const RadioGroup = Radio.Group;
 
@@ -66,12 +67,7 @@ export const ParamsConfigContent = () => {
           <InputParamsValue
             currentParamConfig={currentParamsConfig}
             popover={{
-              type:
-                taskParamType === 'video'
-                  ? 'zip_video'
-                  : taskParamType === 'image'
-                    ? 'zip_image'
-                    : 'xlsx',
+              type: getPopoverType(taskParamType),
               size: 'large',
             }}
             onChange={(value) => {

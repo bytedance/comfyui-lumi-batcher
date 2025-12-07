@@ -574,7 +574,7 @@ class BatchToolsHandler:
                     for i in l:
                         t = i.get("type", "")
                         v = i.get("value", "")
-                        if t == "image" or t == "video":
+                        if t == "image" or t == "video" or t == "audio":
                             file_path = f"{output_directory}/{v}"
                             # 检查文件是否存在
                             if not os.path.exists(file_path):

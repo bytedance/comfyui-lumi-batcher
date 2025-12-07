@@ -10,6 +10,7 @@ class OutputNodeType(Enum):
     Image = "image"
     Video = "video"
     Text = "text"
+    Audio = "audio"
 
 
 @dataclass

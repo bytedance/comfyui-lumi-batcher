@@ -14,6 +14,7 @@ export const processResult = (
     ResultOutputTypeEnum.Image,
     ResultOutputTypeEnum.Text,
     ResultOutputTypeEnum.Video,
+    ResultOutputTypeEnum.Audio,
   ].forEach((type) => {
     const temp = info.list.filter((v) => v.type === type);
     if (temp.length > 0) {
@@ -35,6 +36,8 @@ export const transferResultValueType = (
     return 'image';
   } else if (type === ResultOutputTypeEnum.Video) {
     return 'video';
+  } else if (type === ResultOutputTypeEnum.Audio) {
+    return 'audio';
   } else if (type === ResultOutputTypeEnum.Text) {
     return 'string';
   } else {
@@ -51,7 +54,8 @@ export const getValue = (
   try {
     if (
       info.type === ResultOutputTypeEnum.Image ||
-      info.type === ResultOutputTypeEnum.Video
+      info.type === ResultOutputTypeEnum.Video ||
+      info.type === ResultOutputTypeEnum.Audio
     ) {
       res = noProcessResource ? info.url : processOutputUrl(info.url);
     } else if (info.type === ResultOutputTypeEnum.Text) {

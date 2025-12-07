@@ -5,6 +5,7 @@ interface CssExports {
   dragIcon: string;
   listContainer: string;
   popoverContainer: string;
+  renderAudio: string;
   renderImage: string;
   renderText: string;
   renderVideo: string;

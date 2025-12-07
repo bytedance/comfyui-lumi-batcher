@@ -12,12 +12,14 @@ import BlobVideo from '../BlobVideo';
 import { LoadImg } from '../LoadImg';
 import styles from './index.module.scss';
 import { CommonParamValueType } from '@common/type/result';
+import { AudioValuePreview } from '@common/components/AudioValuePreview';
 
 const OrderList: CommonParamValueType[] = [
   'image',
   'video',
   'string',
   'number',
+  'audio',
 ];
 
 const RenderText: React.FC<{
@@ -71,6 +73,20 @@ const RenderVideo: React.FC<{
   </div>
 );
 
+const RenderAudio: React.FC<{
+  value: string;
+  name?: string;
+}> = ({ value, name = '' }) => (
+  <div className={styles.renderAudio}>
+    <AudioValuePreview
+      audioProps={{
+        src: value,
+      }}
+      value={name}
+    />
+  </div>
+);
+
 export const RenderValue: React.FC<{
   value: PreviewTableCellValueType;
   showTooltip?: boolean;
@@ -79,6 +95,7 @@ export const RenderValue: React.FC<{
     CommonParamValueType,
     FunctionComponent<{
       value: string;
+      name?: string;
       showTooltip?: boolean;
     }>
   > = {
@@ -86,6 +103,7 @@ export const RenderValue: React.FC<{
     video: RenderVideo,
     string: RenderText,
     number: RenderText,
+    audio: RenderAudio,
   };
   if (value.length > 0) {
     const compList: any[] = [];
@@ -99,7 +117,7 @@ export const RenderValue: React.FC<{
             textValueList.push(item);
           } else {
             item.value.forEach((v, i) => {
-              compList.push(<Comp key={i} value={v} />);
+              compList.push(<Comp key={i} value={v} name={item.label} />);
             });
           }
         });

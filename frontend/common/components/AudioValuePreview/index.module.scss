@@ -1,0 +1,26 @@
+.container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow: hidden;
+
+  .name {
+    margin-bottom: 0;
+    max-width: calc(100% - 50px);
+  }
+}
+
+.audio {
+}
+
+.musicIcon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.playIcon {
+  font-size: 18px;
+  cursor: pointer;
+  flex-shrink: 0;
+}

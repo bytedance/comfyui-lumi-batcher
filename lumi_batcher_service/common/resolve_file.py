@@ -132,6 +132,16 @@ class ResolveFileManager:
                     with open(output_path, "wb") as video_file:
                         video_file.write(video_data)
                         res.append(file_name)
+                elif file.lower().endswith((".wav", ".mp3", ".aac")):
+                    # 读取音频内容
+                    audio_data = zip_ref.read(file)
+                    # 完整的输出路径
+                    output_path = os.path.join(output_directory, file_name)
+                    # 将音频写入输出目录
+                    with open(output_path, "wb") as audio_file:
+                        audio_file.write(audio_data)
+                        res.append(file_name)
+
         return res
 
     def resolve_single_file(self, path) -> list[str]:

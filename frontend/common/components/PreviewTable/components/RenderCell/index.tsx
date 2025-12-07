@@ -11,6 +11,7 @@ import { RenderText } from '../RenderText';
 import { RenderVideo } from '../RenderVideo';
 import styles from './index.module.scss';
 import { CommonParamValueType } from '@common/type/result';
+import { RenderAudio } from '../RenderAudio';
 
 export interface RenderCellProps {
   cell: PreviewTableCellValueType;
@@ -24,6 +25,7 @@ const OrderList: CommonParamValueType[] = [
   'video',
   'string',
   'number',
+  'audio',
 ];
 
 export const RenderCell: React.FC<RenderCellProps> = ({
@@ -46,6 +48,7 @@ export const RenderCell: React.FC<RenderCellProps> = ({
       video: RenderVideo,
       string: RenderText,
       number: RenderText,
+      audio: RenderAudio,
     };
     if (cell && cell.length > 0) {
       const isOnlyText =
