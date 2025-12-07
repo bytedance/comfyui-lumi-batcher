@@ -137,7 +137,7 @@ const processConfigToData = (
           return {
             type: t,
             value: [getRenderCellValue(t, v, imageSrc)],
-            label: getKey(cc),
+            label: t === 'audio' ? v : getKey(cc),
           };
         }),
       } as any);
@@ -158,7 +158,7 @@ const processConfigToData = (
           {
             type: t,
             value: [getRenderCellValue(t, v, imageSrc)],
-            label: getKey(c),
+            label: t === 'audio' ? value : getKey(c),
           },
         ],
       } as any);

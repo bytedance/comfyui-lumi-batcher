@@ -40,7 +40,7 @@ export default function ConfigTableSlider() {
       <Slider
         className={styles.slider}
         min={50}
-        max={150}
+        max={300}
         range={false}
         value={previewPercent}
         onChange={onPreviewPercentUpdate}

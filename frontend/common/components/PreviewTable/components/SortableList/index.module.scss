@@ -52,9 +52,11 @@
 }
 
 .renderAudio {
-  width: auto;
+  max-width: 100%;
+  overflow: hidden;
   height: 22px;
   color: var(--text-color-text-1, rgba(255, 255, 255, 0.85));
+  line-height: normal;
 }
 
 .popoverContainer {

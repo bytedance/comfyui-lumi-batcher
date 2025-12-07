@@ -11,6 +11,7 @@ import {
   CommonSeparator,
   getImageKey,
   getKey,
+  getLabel,
   getRenderCellType,
   getRenderCellValue,
 } from './utils';
@@ -92,7 +93,7 @@ export const useColumns = () => {
           },
           dataIndex: nodeKey,
           fixed: 'left',
-          width: cellSize,
+          width: Math.min(cellSize, 300),
           render(col: PreviewTableCellValueType, item) {
             // 定制渲染内容
             return (
@@ -125,7 +126,7 @@ export const useColumns = () => {
             label: nodeKey,
           },
           fixed: 'left',
-          width: cellSize,
+          width: Math.min(cellSize, 300),
           render(col: PreviewTableCellValueType, item) {
             // 定制渲染内容
             return (
@@ -168,7 +169,7 @@ export const useColumns = () => {
             return {
               type: t,
               value: [getRenderCellValue(t, v, imageSrc) as string],
-              label: getKey(cc),
+              label: t === 'audio' ? v : getKey(cc),
             };
           },
         );
@@ -197,7 +198,7 @@ export const useColumns = () => {
           {
             type: t,
             value: [getRenderCellValue(t, v, imageSrc) as string],
-            label: getKey(c),
+            label: t === 'audio' ? v : getLabel(c),
           },
         ];
         const dataIndex = getKey(c, v);

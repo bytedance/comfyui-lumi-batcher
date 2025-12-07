@@ -3,6 +3,7 @@
 interface CssExports {
   container: string;
   musicIcon: string;
+  name: string;
   playIcon: string;
 }
 declare const cssExports: CssExports;

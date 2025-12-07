@@ -75,14 +75,15 @@ const RenderVideo: React.FC<{
 
 const RenderAudio: React.FC<{
   value: string;
-}> = ({ value }) => (
+  name?: string;
+}> = ({ value, name = '' }) => (
   <div className={styles.renderAudio}>
     <AudioValuePreview
       audioProps={{
         src: value,
       }}
-      value={''}
-    ></AudioValuePreview>
+      value={name}
+    />
   </div>
 );
 
@@ -94,6 +95,7 @@ export const RenderValue: React.FC<{
     CommonParamValueType,
     FunctionComponent<{
       value: string;
+      name?: string;
       showTooltip?: boolean;
     }>
   > = {
@@ -115,7 +117,7 @@ export const RenderValue: React.FC<{
             textValueList.push(item);
           } else {
             item.value.forEach((v, i) => {
-              compList.push(<Comp key={i} value={v} />);
+              compList.push(<Comp key={i} value={v} name={item.label} />);
             });
           }
         });

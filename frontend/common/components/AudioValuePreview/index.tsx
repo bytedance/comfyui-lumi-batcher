@@ -1,13 +1,14 @@
+import React from 'react';
+
+import { Typography } from '@arco-design/web-react';
 import {
   IconFileAudio,
   IconPause,
   IconPlayArrow,
 } from '@arco-design/web-react/icon';
-import React from 'react';
+import cn from 'classnames';
 
 import styles from './index.module.scss';
-import cn from 'classnames';
-import { Typography } from '@arco-design/web-react';
 
 export const AudioValuePreview = (props: {
   audioProps: React.DetailedHTMLProps<
@@ -45,16 +46,16 @@ export const AudioValuePreview = (props: {
       >
         您的浏览器不支持音频元素。
       </audio>
-      <Typography.Paragraph
-        ellipsis={{
-          rows: 1,
-          showTooltip: true,
-          wrapper: 'div',
+      <Typography.Ellipsis
+        className={styles.name}
+        rows={1}
+        showTooltip
+        style={{
+          color: props.isError ? '#ff453a' : '',
         }}
-        style={{ color: props.isError ? '#ff453a' : '', marginBottom: 0 }}
       >
         {typeof props.value === 'string' ? props.value : String(props.value)}
-      </Typography.Paragraph>
+      </Typography.Ellipsis>
       {isPlaying ? (
         <IconPause className={styles.playIcon} onClick={handlePause} />
       ) : (

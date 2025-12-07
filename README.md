@@ -76,6 +76,8 @@ ComfyUI-Lumi-Batcher extends beyond tools like XYZ Plot in WebUI, becoming a pow
 
 ## ⭐️ Release Notes
 
+- 🎵 **Version 1.0.11**: Supports audio scene batch processing
+
 - ✂️ **Version 1.0.10**: Supports the latest ComfyUI version 0.3.67 changes, ensuring batch tool functionality.
 
 - 🚀 **version 1.0.9**: Fixes the zoom-in/zoom-out issue when switching between cells with images/videos in the preview table; Adds support for cell navigation using the arrow keys.
