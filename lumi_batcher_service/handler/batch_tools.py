@@ -60,7 +60,9 @@ from lumi_batcher_service.common.validate_prompt import handle_validate_prompt
 
 class BatchToolsHandler:
     instance = None
-    workSpaceManager = WorkSpaceManager("comfyui_lumi_batcher_workspace")
+    workSpaceManager = WorkSpaceManager(
+        os.path.join(folder_paths.base_path, "comfyui_lumi_batcher_workspace")
+    )
     api_prefix = "/api/comfyui-lumi-batcher"
 
     resources_path = "resources"
@@ -468,7 +470,8 @@ class BatchToolsHandler:
             file_path = f"{output_directory}/{file_name}"
 
             if type == "input":
-                file_path = f"input/{file_name}"
+                input_directory = folder_paths.get_input_directory()
+                file_path = os.path.join(input_directory, file_name)
             elif type == "resource":
                 file_path = self.resourceController.get_resource_path(file_name)
             elif type == "download":
