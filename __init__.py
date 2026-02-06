@@ -32,6 +32,7 @@ batch_tools_task_start_hook(batchToolsHandler)
 batch_tools_task_done_hook(batchToolsHandler)
 NODE_CLASS_MAPPINGS = {}
 NODE_INSTANCE_MAPPINGS = {}
-WEB_DIRECTORY = "./frontend-setup"
+# Point to the actual frontend dist directory
+WEB_DIRECTORY = "./frontend/dist"
 
 __all__ = ["NODE_CLASS_MAPPINGS", "NODE_INSTANCE_MAPPINGS", "WEB_DIRECTORY"]

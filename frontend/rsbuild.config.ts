@@ -8,9 +8,8 @@ import { pluginTypedCSSModules } from '@rsbuild/plugin-typed-css-modules';
 import { pluginLess } from '@rsbuild/plugin-less';
 const path = require('path');
 
-const staticFileUrl = '/api/comfyui-lumi-batcher/get-static-file';
-const staticFilePrefixPath =
-  './custom_nodes/comfyui-lumi-batcher/frontend/dist';
+// Use direct extension path instead of API endpoint
+const extensionBasePath = "/extensions/comfyui-lumi-batcher";
 
 export default defineConfig({
   plugins: [
@@ -33,7 +32,7 @@ export default defineConfig({
       js: 'cheap-module-source-map',
       css: true,
     },
-    assetPrefix: `${staticFileUrl}?path=${staticFilePrefixPath}`,
+    assetPrefix: `${extensionBasePath}`,
   },
   resolve: {
     alias: {
