@@ -2,6 +2,23 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 from lumi_batcher_service.constant.task import Category
 
+
+def parse_bool(value):
+    if isinstance(value, bool):
+        return value
+
+    if isinstance(value, (int, float)):
+        return value != 0
+
+    if isinstance(value, str):
+        normalized = value.strip().lower()
+        if normalized in {"true", "1", "yes", "on"}:
+            return True
+        if normalized in {"false", "0", "no", "off", ""}:
+            return False
+
+    return bool(value)
+
 # TODO: 暂不处理workflow中的参数值准确性，如果需要处理，则需要前端将节点更多的信息返回
 # 需要处理的内容为 nodes --> id匹配的元素 --> 与internal_name相匹配的位置的widgets_values中的项  --> 修改其值为final_value
 # simpleConfig: 简洁版的批量配置，这里不包含参数间的关系，仅描述什么节点配置了什么值
@@ -43,6 +60,8 @@ def updatePrompt(prompt, config_item, simpleConfig={}) -> dict[str, any]:
                     final_value = int(float(final_value))
                 elif type == "float":
                     final_value = float(final_value)
+                elif type == "boolean":
+                    final_value = parse_bool(final_value)
                 # 如何使数据类型则直接透传
                 elif type == "data":
                     final_value = value
