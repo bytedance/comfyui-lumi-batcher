@@ -3,6 +3,19 @@ from pathlib import Path
 import sys
 
 
+def _get_dynamic_white_dirs() -> list[str]:
+    """读取 ComfyUI 的动态目录配置（如自定义 output 目录）。"""
+    try:
+        import folder_paths
+
+        return [
+            folder_paths.get_output_directory(),
+            folder_paths.get_input_directory(),
+        ]
+    except Exception:
+        return []
+
+
 def is_under_lumi_batcher(path: str) -> bool:
     """判断路径是否位于comfyui-lumi-batcher目录下
 
@@ -53,6 +66,7 @@ def is_under_delete_white_dir(path: str) -> bool:
         "input",
         "output",
     ]  # 白名单目录列表
+    white_dir_list.extend(_get_dynamic_white_dirs())
 
     is_windows = sys.platform.startswith("win")
 
