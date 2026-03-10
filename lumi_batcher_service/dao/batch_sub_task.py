@@ -58,7 +58,8 @@ class BatchSubTaskDao:
     db_file = ""
     sql_dir = os.path.join(
         os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-        "sql/batch-sub-task",
+        "sql",
+        "batch-sub-task",
     )
     queuing_status = [SubTaskStatus.RUNNING.value, SubTaskStatus.PENDING.value]
 
