@@ -112,6 +112,7 @@ export default function TaskList() {
         ) : (
           <>
             <Table
+              bordered={{ cell: true }}
               rowKey="id"
               columns={columns}
               data={taskList}
