@@ -84,6 +84,38 @@ def resolve_messages(messages) -> tuple:
         )
 
 
+def _on_package_task_done(task: asyncio.Task, batch_task_id: str):
+    try:
+        task.result()
+    except Exception as e:
+        print(f"package task failed, batch_task_id={batch_task_id}: {e}")
+        traceback.print_exc()
+
+
+def run_or_schedule_package_task(
+    batchToolsHandler: BatchToolsHandler, batch_task_id: str
+):
+    try:
+        running_loop = asyncio.get_running_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        try:
+            loop.run_until_complete(
+                execute_package_batch_task(batchToolsHandler, batch_task_id)
+            )
+        finally:
+            loop.close()
+    else:
+        task = running_loop.create_task(
+            execute_package_batch_task(batchToolsHandler, batch_task_id)
+        )
+        task.add_done_callback(
+            lambda t, batch_task_id=batch_task_id: _on_package_task_done(
+                t, batch_task_id
+            )
+        )
+
+
 def batch_tools_task_done_hook(batchToolsHandler: BatchToolsHandler):
     @monkey_patch_class_decorator(execution.PromptQueue, "task_done")
     def overwrite_task_done(origin_fn: Callable, self, *args, **kwargs):
@@ -217,11 +249,8 @@ def batch_tools_task_done_hook(batchToolsHandler: BatchToolsHandler):
                             CommonTaskStatus.PARTIAL_SUCCESS.value,
                             CommonTaskStatus.CANCELLED.value,
                         ]:
-                            loop = asyncio.new_event_loop()
-                            loop.run_until_complete(
-                                execute_package_batch_task(
-                                    batchToolsHandler, batch_task_id
-                                )
+                            run_or_schedule_package_task(
+                                batchToolsHandler, batch_task_id
                             )
 
         except Exception as e:
