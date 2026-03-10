@@ -4,3 +4,4 @@ openpyxl>=2.6.0
 pandas>=0.25.0
 aiofiles>=0.8.0
 filetype>=1.0.0
+natsort>=8.4.0
