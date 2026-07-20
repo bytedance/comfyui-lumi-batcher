@@ -27,6 +27,8 @@ from lumi_batcher_service.constant.task import (
     PackageInfo,
 )
 from lumi_batcher_service.common.file_path import (
+    get_safe_upload_filename,
+    is_path_under_directory,
     is_under_delete_white_dir,
     is_under_lumi_batcher,
 )
@@ -455,39 +457,44 @@ class BatchToolsHandler:
 
         @server.PromptServer.instance.routes.get(getApiPath("/view-image"))
         async def view_image(request):
-            output_directory = folder_paths.get_output_directory()
-            type = request.rel_url.query.get("type", "output")
+            view_type = request.rel_url.query.get("type", "output")
             file_name = request.rel_url.query.get("file_name")
+
+            if not file_name:
+                return web.Response(status=400, text="Missing file_name parameter")
 
             # 自动解码已编码的参数
             try:
                 file_name = unquote(file_name)
-            except:
+            except Exception:
                 file_name = file_name
 
-            file_path = f"{output_directory}/{file_name}"
+            if view_type == "output":
+                base_dir = folder_paths.get_output_directory()
+            elif view_type == "input":
+                base_dir = folder_paths.get_input_directory()
+            elif view_type == "resource":
+                base_dir = self.workSpaceManager.getDirectory(self.resources_path)
+            elif view_type == "download":
+                base_dir = self.workSpaceManager.getDirectory(self.download_path)
+            else:
+                return web.Response(status=400, text="Invalid type parameter")
 
-            if type == "input":
-                file_path = f"input/{file_name}"
-            elif type == "resource":
-                file_path = self.resourceController.get_resource_path(file_name)
-            elif type == "download":
-                file_path = os.path.join(
-                    self.workSpaceManager.getDirectory(self.download_path),
-                    file_name,
-                )
+            file_path = os.path.join(base_dir, file_name)
 
-            if not is_under_delete_white_dir(file_path):
+            if not is_path_under_directory(file_path, base_dir):
                 return web.Response(
                     status=400,
-                    text="file path: {} is not in white list".format(file_path),
+                    text="file path is not under allowed directory",
                 )
 
             # 检查文件是否存在
             if not os.path.exists(file_path):
                 new_file_path = get_file_absolute_path(file_path)
 
-                if os.path.exists(new_file_path):
+                if os.path.exists(new_file_path) and is_path_under_directory(
+                    new_file_path, base_dir
+                ):
                     file_path = new_file_path
                 else:
                     return web.Response(status=404, text="Image not found")
@@ -632,17 +639,18 @@ class BatchToolsHandler:
                         break
                     if field.name == "file":
                         # 获取上传文件的名称
-                        filename = field.filename
+                        filename = get_safe_upload_filename(field.filename)
+                        if filename is None:
+                            return web.Response(status=400, text="Invalid filename")
+
                         # 指定服务器上的保存路径
                         directory = self.workSpaceManager.getDirectory(self.upload_path)
                         file_path = os.path.join(directory, filename)
 
-                        if not is_under_delete_white_dir(file_path):
+                        if not is_path_under_directory(file_path, directory):
                             return web.Response(
                                 status=400,
-                                text="file path: {} is not in white list".format(
-                                    file_path
-                                ),
+                                text="file path is not under upload directory",
                             )
 
                         size = 0
