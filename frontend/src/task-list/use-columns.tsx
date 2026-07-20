@@ -40,7 +40,7 @@ export function useColumns(refresh: Function) {
         },
       },
       {
-        width: 300,
+        width: 400,
         title: I18n.t('task_name', {}, '任务名称'),
         fixed: 'left',
         dataIndex: 'name',
@@ -48,7 +48,7 @@ export function useColumns(refresh: Function) {
           <AutoResizeInput
             value={col}
             fontSize={14}
-            maxWidth={240}
+            maxWidth={340}
             maxLength={50}
             onChange={async (v) => {
               if (v?.trim()) {

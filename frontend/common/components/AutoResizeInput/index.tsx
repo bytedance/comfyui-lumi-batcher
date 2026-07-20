@@ -86,7 +86,7 @@ export default function AutoResizeInput({
     >
       <Tooltip
         {...tooltipProps}
-        content={width === maxWidth ? currentValue : undefined}
+        content={currentValue}
       >
         <Input
           ref={inputRef}
