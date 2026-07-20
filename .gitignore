@@ -2,3 +2,5 @@
 comfyui_lumi_batcher_workspace/
 .DS_Store
 .vscode
+
+workspace/
