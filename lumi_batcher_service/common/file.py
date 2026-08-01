@@ -9,9 +9,8 @@ import os
 import filetype
 import re
 import urllib.parse
-
-import os
 from pathlib import Path
+import folder_paths
 
 
 # 拷贝文件
@@ -217,14 +216,26 @@ def find_comfyui_dir(start_path=None, max_depth=10):
 
 def get_file_absolute_path(file_path):
     """
-    获取文件的绝对路径，如果文件不存在则返回None
+    获取文件的绝对路径，使用 folder_paths 模块遵循 --base-directory 配置
     :param file_path: 文件路径
-    :return: 文件的绝对路径或None
+    :return: 文件的绝对路径
     """
-    comfyui_dir = find_comfyui_dir()
-
+    # 如果路径以 input/ 或 ./input/ 开头，使用 folder_paths.get_input_directory()
+    if file_path.startswith("input/") or file_path.startswith("./input/"):
+        input_dir = folder_paths.get_input_directory()
+        relative_path = file_path.replace("./input/", "").replace("input/", "")
+        return os.path.join(input_dir, relative_path)
+    
+    # 如果路径以 output/ 或 ./output/ 开头，使用 folder_paths.get_output_directory()
+    if file_path.startswith("output/") or file_path.startswith("./output/"):
+        output_dir = folder_paths.get_output_directory()
+        relative_path = file_path.replace("./output/", "").replace("output/", "")
+        return os.path.join(output_dir, relative_path)
+    
+    # 其他情况使用 base_path
+    base_path = folder_paths.base_path
     return (
-        os.path.join(comfyui_dir, file_path[2:])
+        os.path.join(base_path, file_path[2:])
         if file_path.startswith("./")
-        else os.path.join(comfyui_dir, file_path)
+        else os.path.join(base_path, file_path)
     )

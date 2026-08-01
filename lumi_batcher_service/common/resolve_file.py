@@ -4,9 +4,10 @@ import io
 import os
 import pandas
 import zipfile
+import folder_paths
 
 from natsort import natsorted
-from .file import copyFile, get_file_absolute_path, find_comfyui_dir
+from .file import copyFile
 
 
 class ResolveFileManager:
@@ -94,10 +95,7 @@ class ResolveFileManager:
         res = []
         # 打开ZIP文件
         with zipfile.ZipFile(path, "r") as zip_ref:
-            output_directory = os.path.join("input")
-            if os.getcwd() != "ComfyUI":
-                comfyui_dir = find_comfyui_dir()
-                output_directory = os.path.join(comfyui_dir, "input")
+            output_directory = folder_paths.get_input_directory()
 
             if not os.path.exists(output_directory):
                 os.makedirs(output_directory)
@@ -149,10 +147,8 @@ class ResolveFileManager:
 
     def resolve_single_file(self, path) -> list[str]:
         file_name = os.path.basename(path)
-        if os.getcwd() != "ComfyUI":
-            copyFile(path, get_file_absolute_path(f"input/{file_name}"))
-        else:
-            copyFile(path, os.path.join("input", file_name))
+        input_directory = folder_paths.get_input_directory()
+        copyFile(path, os.path.join(input_directory, file_name))
         return [file_name]
 
 

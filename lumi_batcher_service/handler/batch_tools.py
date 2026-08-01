@@ -5,6 +5,7 @@ import copy
 import json
 import mimetypes
 import os
+import time
 import traceback
 import uuid
 import aiofiles
@@ -62,7 +63,9 @@ from lumi_batcher_service.common.validate_prompt import handle_validate_prompt
 
 class BatchToolsHandler:
     instance = None
-    workSpaceManager = WorkSpaceManager("comfyui_lumi_batcher_workspace")
+    workSpaceManager = WorkSpaceManager(
+        os.path.join(folder_paths.base_path, "comfyui_lumi_batcher_workspace")
+    )
     api_prefix = "/api/comfyui-lumi-batcher"
 
     resources_path = "resources"
@@ -885,6 +888,7 @@ class BatchToolsHandler:
                 for sensitive_val in execution.SENSITIVE_EXTRA_DATA_KEYS:
                     if sensitive_val in extra_data:
                         sensitive[sensitive_val] = extra_data.pop(sensitive_val)
+                extra_data["create_time"] = int(time.time() * 1000)
                 server.PromptServer.instance.prompt_queue.put(
                     (
                         number,

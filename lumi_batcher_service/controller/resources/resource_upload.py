@@ -3,6 +3,7 @@
 import os
 import traceback
 import uuid
+import folder_paths
 from lumi_batcher_service.thread.task_scheduler_manager import ThreadTaskManager
 from lumi_batcher_service.common.file import (
     get_file_absolute_path,
@@ -78,10 +79,11 @@ class ResourceUpload:
 
         for value in values:
             try:
-                file_origin_path = f"input/{str(value)}"
-                filePath = os.path.join(os.getcwd(), file_origin_path)
+                input_directory = folder_paths.get_input_directory()
+                filePath = os.path.join(input_directory, str(value))
                 if not os.path.exists(filePath):
-                    new_file_path = get_file_absolute_path(file_origin_path)
+                    # 保持兼容性，尝试使用 get_file_absolute_path
+                    new_file_path = get_file_absolute_path(f"input/{str(value)}")
                     if os.path.exists(new_file_path):
                         filePath = new_file_path
                     else:
@@ -96,11 +98,8 @@ class ResourceUpload:
         return result
 
     def _getRealFileName(self, path: str) -> str:
-        # 获取当前工作目录
-        current_dir = os.getcwd()
-
-        # 构建前缀路径
-        prefix = os.path.join(current_dir, "input")
+        # 使用 folder_paths 获取 input 目录
+        prefix = folder_paths.get_input_directory()
 
         # 检查路径是否以前缀开头
         if path.startswith(prefix):
